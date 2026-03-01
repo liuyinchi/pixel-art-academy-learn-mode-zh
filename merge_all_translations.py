@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-将 待翻译汇总_zh.json 中的翻译合并回 translations_zh.json 和 hardcoded_zh.json。
+将翻译后的汇总文件合并回 translations_zh.json 和 hardcoded_zh.json。
 
 用法:
-  python merge_all_translations.py 待翻译汇总_zh.json
+  python merge_all_translations.py 待翻译汇总.json
 
-文件格式应与 待翻译汇总.json 一致，包含 "cache" 和 "hardcoded" 两个键，
-键名不变，仅将英文 value 改为中文。
+直接在 待翻译汇总.json 上翻译即可，不需要另存为。
+合并时会自动跳过仍为英文（未翻译）的条目，只采纳包含中文的条目。
 """
 import json
 import os
@@ -18,10 +18,10 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 def main():
     if len(sys.argv) < 2:
-        print("用法: python merge_all_translations.py 待翻译汇总_zh.json")
+        print("用法: python merge_all_translations.py 待翻译汇总.json")
         print()
-        print("  将 待翻译汇总_zh.json 中的 cache 部分合并到 translations_zh.json，")
-        print("  硬编码部分合并到 hardcoded_zh.json。")
+        print("  直接在 待翻译汇总.json 上翻译后保存，然后运行本脚本合并。")
+        print("  未翻译的英文条目会自动跳过，只采纳包含中文的条目。")
         sys.exit(1)
 
     path = sys.argv[1]

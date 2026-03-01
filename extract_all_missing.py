@@ -74,9 +74,10 @@ def main():
     print(f"  硬编码待翻译: {len(hardcoded_missing)} 条")
     print(f"  合计: {total} 条")
     if total > 0:
-        print("\n  下一步: 打开 待翻译汇总.json，将英文 value 翻译成中文，另存为 待翻译汇总_zh.json")
-        print("  然后运行: python merge_all_translations.py 待翻译汇总_zh.json")
+        print("\n  下一步: 打开 待翻译汇总.json，将英文 value 翻译成中文，直接保存")
+        print("  然后运行: python merge_all_translations.py 待翻译汇总.json")
         print("  最后重新运行「安装汉化.bat」应用汉化。")
+        print("  （或直接双击「补充翻译.bat」一键完成以上步骤）")
 
 
 if __name__ == '__main__':
