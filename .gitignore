@@ -1,0 +1,5 @@
+# Local backup of user's game files
+backup/
+
+# Temp working files
+my_translations.json

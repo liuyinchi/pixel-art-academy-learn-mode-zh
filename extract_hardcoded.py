@@ -1,0 +1,132 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Extract hardcoded English strings from JS package files.
+
+These are strings NOT in the translation system (cache.json), but directly
+embedded in compiled JavaScript (static class methods + Blaze templates).
+
+Usage:
+  python extract_hardcoded.py [packages_dir]
+
+Output:
+  hardcoded_to_translate.json - {key: English text} for translation
+
+Key format: "filename|||raw_js_string"
+  - filename: the JS package file
+  - raw_js_string: the exact string as it appears in the JS source (with \\n for newlines)
+"""
+import re
+import json
+import os
+import sys
+
+# Packages that contain user-facing hardcoded strings
+TARGET_PACKAGES = [
+    'retronator_pixelartacademy-learnmode.js',
+    'retronator_pixelartacademy-learnmode-intro.js',
+    'retronator_pixelartacademy-learnmode-design.js',
+    'retronator_pixelartacademy-learnmode-pixelartfundamentals.js',
+    'retronator_pixelartacademy-pixelpad.js',
+    'retronator_pixelartacademy-pixelpad-drawing.js',
+    'retronator_pixelartacademy-pixelpad-music.js',
+    'retronator_pixelartacademy-pixelpad-notifications.js',
+    'retronator_pixelartacademy-pixelpad-pico8.js',
+    'retronator_pixelartacademy-pixelpad-pixeltosh.js',
+    'retronator_pixelartacademy-pixelpad-todo.js',
+    'retronator_pixelartacademy-pixelpad-studyplan.js',
+]
+
+# Method names that contain user-facing text
+METHOD_NAMES = [
+    'directive', 'instructions', 'description', 'name', 'shortName',
+    'fullName', 'title', 'label', 'text', 'message', 'hint',
+    'studyPlanDirective',
+]
+
+# Pattern 1: static methodName() { \n return "..."; }
+METHODS_RE = '|'.join(METHOD_NAMES)
+PAT_STATIC = re.compile(
+    r'static\s+(' + METHODS_RE + r')\(\)\s*\{\s*\n\s*return\s+"((?:[^"\\]|\\.)*)"\s*;'
+)
+
+# Pattern 2: Blaze template return "\n   Text\n  ";
+PAT_TEMPLATE = re.compile(
+    r'return\s+"\\n\s+((?:[^"\\]|\\[^u"]|\\u[0-9a-fA-F]{4})*)\\n\s*"\s*;'
+)
+
+
+def extract(packages_dir):
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+
+    # Load existing hardcoded translations to exclude already-translated
+    hz_path = os.path.join(script_dir, 'hardcoded_zh.json')
+    existing_keys = set()
+    if os.path.exists(hz_path):
+        with open(hz_path, 'r', encoding='utf-8') as f:
+            existing_keys = set(json.load(f).keys())
+        print(f"  Already translated (hardcoded): {len(existing_keys)}")
+
+    all_strings = {}
+
+    for pkg in TARGET_PACKAGES:
+        fpath = os.path.join(packages_dir, pkg)
+        if not os.path.exists(fpath):
+            continue
+
+        with open(fpath, 'r', encoding='utf-8') as f:
+            content = f.read()
+
+        found = {}
+
+        # Pattern 1: static methods
+        for m in PAT_STATIC.finditer(content):
+            raw_text = m.group(2)
+            cleaned = raw_text.replace('\\n', '\n').strip()
+            if len(cleaned) >= 3 and re.search(r'[a-zA-Z]{2}', cleaned):
+                found[raw_text] = cleaned
+
+        # Pattern 2: Blaze templates
+        for m in PAT_TEMPLATE.finditer(content):
+            raw_text = m.group(1).strip()
+            cleaned = raw_text.replace('\\n', '\n').strip()
+            if len(cleaned) >= 5 and re.search(r'[a-zA-Z]{3}', cleaned):
+                found[raw_text] = cleaned
+
+        if found:
+            all_strings[pkg] = found
+            print(f"  {pkg}: {len(found)} strings")
+
+    # Build output, excluding already translated
+    output = {}
+    for pkg, items in all_strings.items():
+        for raw, cleaned in items.items():
+            key = f"{pkg}|||{raw}"
+            if key not in existing_keys:
+                output[key] = cleaned
+
+    # Write
+    out_path = os.path.join(script_dir, 'hardcoded_to_translate.json')
+    with open(out_path, 'w', encoding='utf-8') as f:
+        json.dump(output, f, ensure_ascii=False, indent=2)
+
+    print(f"\n  Total: {len(output)} strings to translate")
+    print(f"  Saved to: {out_path}")
+    return len(output)
+
+
+if __name__ == '__main__':
+    if len(sys.argv) >= 2:
+        packages_dir = sys.argv[1]
+    else:
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        game_dir = os.path.dirname(script_dir)
+        packages_dir = os.path.join(game_dir, 'resources', 'app',
+                                     'meteor_extracted', 'packages')
+
+    if not os.path.isdir(packages_dir):
+        print(f"Error: packages directory not found at {packages_dir}")
+        print("Please run the install patch first to extract game files.")
+        sys.exit(1)
+
+    extract(packages_dir)
