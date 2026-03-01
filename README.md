@@ -4,8 +4,21 @@
 
 ## 安装要求
 
-- **Python 3**：[下载地址](https://www.python.org/downloads/)（安装时勾选 "Add to PATH"）
+- **Python 3**
 - **Windows 系统**
+
+### Python 安装方法（二选一）
+
+**方法一：官网安装（推荐）**
+1. 打开 [python.org/downloads](https://www.python.org/downloads/)，下载最新版
+2. 安装时 **务必勾选 "Add Python to PATH"**，然后点 Install Now
+
+**方法二：通过 PyCharm 安装**
+1. 下载安装 [PyCharm Community](https://www.jetbrains.com/pycharm/download/)（免费版即可）
+2. 打开 PyCharm，它会自动提示安装 Python，按提示操作即可
+3. 安装完成后需要手动将 Python 添加到系统 PATH：
+   - 打开 PyCharm → Settings → Project → Python Interpreter，找到 Python 路径（如 `C:\Users\你的用户名\AppData\Local\Programs\Python\Python3xx`）
+   - 将该路径添加到系统环境变量 PATH 中
 
 ## 使用方法
 
