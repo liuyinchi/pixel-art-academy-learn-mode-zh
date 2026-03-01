@@ -2,29 +2,39 @@
 
 为 Steam 游戏 [Pixel Art Academy Learn Mode](https://store.steampowered.com/app/2672610/Pixel_Art_Academy_Learn_Mode/) 提供简体中文本地化支持。
 
-## 安装要求
-
-- **Python 3**
-- **Windows 系统**
-
-### Python 安装方法（二选一）
-
-**方法一：官网安装（推荐）**
-1. 打开 [python.org/downloads](https://www.python.org/downloads/)，下载最新版
-2. 安装时 **务必勾选 "Add Python to PATH"**，然后点 Install Now
-
-**方法二：通过 PyCharm 安装**
-1. 下载安装 [PyCharm Community](https://www.jetbrains.com/pycharm/download/)（免费版即可）
-2. 打开 PyCharm，它会自动提示安装 Python，按提示操作即可
-3. 安装完成后需要手动将 Python 添加到系统 PATH：
-   - 打开 PyCharm → Settings → Project → Python Interpreter，找到 Python 路径（如 `C:\Users\你的用户名\AppData\Local\Programs\Python\Python3xx`）
-   - 将该路径添加到系统环境变量 PATH 中
-
 ## 使用方法
 
-### 1. 安装
+提供两种安装方式，任选其一：
 
-将 `汉化补丁` 文件夹放到游戏根目录下，双击 **`安装汉化.bat`**。
+### 方式一：一键安装器（推荐，无需任何环境）
+
+1. 从 [Releases](https://github.com/liuyinchi/pixel-art-academy-learn-mode-zh/releases) 页面下载 **`Pixel Art Academy 汉化补丁.exe`**
+2. 将 `.exe` 文件放到**游戏根目录**下：
+
+```
+Pixel Art Academy Learn Mode\
+├── Pixel Art Academy 汉化补丁.exe    ← 放在这里
+├── resources\
+└── Pixel Art Academy Learn Mode.exe
+```
+
+3. 双击运行，在 GUI 界面中点击对应按钮：
+   - **安装汉化** — 安装简体中文补丁
+   - **卸载汉化** — 恢复英文原版
+   - **更新后重新汉化** — Steam 更新游戏后重新应用补丁
+
+> 如果 `.exe` 没有放在正确位置，也可以点击「浏览」手动选择游戏目录。
+
+### 方式二：脚本安装（需要 Python 3）
+
+#### 安装要求
+
+- **Windows 系统**
+- **Python 3**（[python.org/downloads](https://www.python.org/downloads/)，安装时 **务必勾选 "Add Python to PATH"**）
+
+#### 操作步骤
+
+1. 将 `汉化补丁` 文件夹放到游戏根目录下，双击 **`安装汉化.bat`**。
 
 ```
 Pixel Art Academy Learn Mode\
@@ -33,20 +43,12 @@ Pixel Art Academy Learn Mode\
 └── Pixel Art Academy Learn Mode.exe
 ```
 
-### 2. 卸载
-
-双击 **`卸载汉化.bat`**
-
-### 3. 游戏更新后
-
-双击 **`更新后重新汉化.bat`**
-
-### 4. 更新后有新增英文？
-
-双击 **`补充翻译.bat`**，按屏幕提示操作：
-1. 脚本自动提取新增的未翻译内容
-2. 自动打开待翻译文件 → 复制内容到 AI（ChatGPT / Claude / DeepSeek）翻译
-3. 把翻译结果粘贴回来保存 → 脚本自动合并并重新应用汉化
+2. **卸载**：双击 **`卸载汉化.bat`**
+3. **游戏更新后**：双击 **`更新后重新汉化.bat`**
+4. **更新后有新增英文？** 双击 **`补充翻译.bat`**，按屏幕提示操作：
+   - 脚本自动提取新增的未翻译内容
+   - 自动打开待翻译文件 → 复制内容到 AI（ChatGPT / Claude / DeepSeek）翻译
+   - 把翻译结果粘贴回来保存 → 脚本自动合并并重新应用汉化
 
 ---
 
@@ -79,6 +81,18 @@ python extract_all_missing.py              # 提取所有未翻译 → 待翻译
 # 翻译 待翻译汇总.json 中的英文 value
 python merge_all_translations.py 待翻译汇总.json   # 合并（自动跳过未翻译的英文）
 # 双击 安装汉化.bat 重新应用
+```
+
+### 构建 .exe 安装器
+
+更新翻译文件后，可重新构建 `.exe`：
+
+```bash
+# 方法一：双击 build_exe.bat（自动安装 PyInstaller 并构建）
+
+# 方法二：手动构建
+pip install pyinstaller
+python -m PyInstaller --onefile --windowed --name "Pixel Art Academy 汉化补丁" --add-data "translations_zh.json;." --add-data "hardcoded_zh.json;." --add-data "fonts;fonts" installer_gui.py
 ```
 
 ### 注意事项
