@@ -1838,5 +1838,19 @@
   "PixelArtAcademy.Tutorials.Drawing.PixelArtFundamentals.Size.SmallestRecognizableSize.Lion|||message": "狮子以鬃毛著称，所以我们给它一个突出的位置。\n雄伟的坐姿传达了它作为百兽之王的地位。",
   "PixelArtAcademy.Tutorials.Drawing.PixelArtFundamentals.Size.SmallestRecognizableSize.Elephant|||message": "最后，大象需要突出的象鼻和象牙，配合它的大耳朵和最大的尺寸。",
   "PixelArtAcademy.Tutorials.Drawing.PixelArtFundamentals.Size.SmallestRecognizableSize.Smaller|||message": "如果我们尝试做得比这更小，就必须开始依赖上下文让观众仍然识别它们。",
-  "PixelArtAcademy.Tutorials.Drawing.PixelArtFundamentals.Size.SmallestRecognizableSize.Complete|||message": "由于我们先看到了更大的精灵，我们可以将较小的与较大的联系起来。\n但例如老鼠的两个像素，它们自己无法阅读。"
+  "PixelArtAcademy.Tutorials.Drawing.PixelArtFundamentals.Size.SmallestRecognizableSize.Complete|||message": "由于我们先看到了更大的精灵，我们可以将较小的与较大的联系起来。\n但例如老鼠的两个像素，它们自己无法阅读。",
+  "PixelArtAcademy.Tutorials.Drawing.PixelArtFundamentals.Jaggies.Curves.Circles|||description": "最圆润的形状在像素艺术中呈现出相当大的挑战，这并不令人意外。",
+  "PixelArtAcademy.Tutorials.Drawing.PixelArtFundamentals.Jaggies.Curves.Circles.Size1|||message": "我们能画的最小的圆就是一个像素。",
+  "PixelArtAcademy.Tutorials.Drawing.PixelArtFundamentals.Jaggies.Curves.Circles.Size2|||message": "就像1像素的圆一样，2像素的圆也很容易看起来像正方形。\n如果出现在合适的上下文中（例如，代表汽车的轮子），观看者仍然可以看出是一个圆。",
+  "PixelArtAcademy.Tutorials.Drawing.PixelArtFundamentals.Jaggies.Curves.Circles.Size3|||message": "3像素的圆看起来更像正方形。",
+  "PixelArtAcademy.Tutorials.Drawing.PixelArtFundamentals.Jaggies.Curves.Circles.Size3Alternative|||message": "现在我们有足够的空间来移除外部角落。",
+  "PixelArtAcademy.Tutorials.Drawing.PixelArtFundamentals.Jaggies.Curves.Circles.Size6Alternative|||message": "有这么多空间，我们可以引入一个像素来分隔较长的线段。",
+  "PixelArtAcademy.Tutorials.Drawing.PixelArtFundamentals.Jaggies.Curves.Circles.Sizes7To10|||message": "当我们进一步增大尺寸时，圆再次开始看起来像圆角正方形。",
+  "PixelArtAcademy.Tutorials.Drawing.PixelArtFundamentals.Jaggies.Curves.Circles.Sizes9To11|||message": "我们可以再引入一个像素来连接外部线段，但由于2个像素形成了45°对角线，这最终看起来更像八边形。",
+  "PixelArtAcademy.Tutorials.Drawing.PixelArtFundamentals.Jaggies.Curves.Circles.Sizes10To14|||message": "为了打破对角线，我们可以将像素延长到2的长度。",
+  "PixelArtAcademy.Tutorials.Drawing.PixelArtFundamentals.Jaggies.Curves.Circles.Sizes13To16|||message": "有足够的空间后，我们现在可以在倾斜的线段之间引入一个像素。",
+  "PixelArtAcademy.Tutorials.Drawing.PixelArtFundamentals.Jaggies.Curves.Circles.Size16Alternative|||message": "最后，16像素的圆在对角线上可以有两个中间像素。",
+  "PixelArtAcademy.Tutorials.Drawing.PixelArtFundamentals.Jaggies.Curves.Circles.Complete|||message": "更大的圆用椭圆工具更容易绘制，但对于较小的尺寸，手动绘制通常比算法生成的形状产生更美观的结果。",
+  "PixelArtAcademy.Tutorials.Drawing.Design.ShapeLanguage.ShapesInNature.Completed|||message": "这就是形状如何直观地传达意义和情感。",
+  "PixelArtAcademy.Tutorials.Drawing.PixelArtFundamentals.Size.SmallestRecognizableSize.Completed|||message": "由于我们先看到了更大的精灵图，我们可以将较小的精灵图与较大的对应起来。\n但例如老鼠的两个像素，自己是无法辨认的。"
 }

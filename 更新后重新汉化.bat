@@ -19,6 +19,7 @@ if exist "%~dp0backup" (
     del /q "%~dp0backup\cache.json.bak" 2>nul
     del /q "%~dp0backup\app.js.bak" 2>nul
     del /q "%~dp0backup\merged-stylesheets.css.bak" 2>nul
+    if exist "%~dp0backup\packages_bak" rmdir /s /q "%~dp0backup\packages_bak" 2>nul
     echo.
 )
 

@@ -1,5 +1,9 @@
 # Local backup of user's game files
 backup/
 
+# Python cache
+__pycache__/
+
 # Temp working files
 my_translations.json
+待翻译汇总_zh.json

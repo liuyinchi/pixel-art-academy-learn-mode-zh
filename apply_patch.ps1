@@ -157,6 +157,32 @@ function Do-Install {
     $PackagesDir = Join-Path $MeteorExtracted "packages"
     if (Test-Path $HardcodedZh) {
         Write-Status "Step 3/5: Patching hardcoded strings in JS files ..."
+
+        # Restore JS backups first to ensure we patch clean English files
+        # This prevents double-patching when user runs install twice
+        $JsBackupDir = Join-Path $BackupDir "packages_bak"
+        if (Test-Path $JsBackupDir) {
+            Get-ChildItem $JsBackupDir -Filter "*.js" | ForEach-Object {
+                Copy-Item $_.FullName (Join-Path $PackagesDir $_.Name) -Force
+            }
+            Write-OK "JS files restored from backup before patching"
+        } else {
+            # First time: backup the original JS files
+            New-Item -ItemType Directory -Path $JsBackupDir -Force | Out-Null
+            $PatchHardcodedScript = Join-Path $PatchDir "patch_hardcoded.py"
+            $targetPkgs = & $pythonCmd -c "import json;d=json.load(open('$($HardcodedZh.Replace('\','\\'))','r',encoding='utf-8'));print('\n'.join(set(k.split('|||')[0] for k in d)))" 2>$null
+            if ($targetPkgs) {
+                foreach ($pkg in ($targetPkgs -split "`n")) {
+                    $pkg = $pkg.Trim()
+                    $srcFile = Join-Path $PackagesDir $pkg
+                    if ((Test-Path $srcFile) -and $pkg) {
+                        Copy-Item $srcFile (Join-Path $JsBackupDir $pkg) -Force
+                    }
+                }
+            }
+            Write-OK "Original JS files backed up"
+        }
+
         $PatchHardcodedScript = Join-Path $PatchDir "patch_hardcoded.py"
         & $pythonCmd $PatchHardcodedScript $PackagesDir $HardcodedZh
         if ($LASTEXITCODE -ne 0) {
@@ -281,6 +307,17 @@ function Do-Uninstall {
     if (Test-Path $CssBackup) {
         Copy-Item $CssBackup $CssFile -Force
         Write-OK "merged-stylesheets.css restored"
+        $restored++
+    }
+
+    # Restore JS file backups
+    $JsBackupDir = Join-Path $BackupDir "packages_bak"
+    if (Test-Path $JsBackupDir) {
+        $PackagesDir = Join-Path $MeteorExtracted "packages"
+        Get-ChildItem $JsBackupDir -Filter "*.js" | ForEach-Object {
+            Copy-Item $_.FullName (Join-Path $PackagesDir $_.Name) -Force
+        }
+        Write-OK "JS files restored"
         $restored++
     }
 

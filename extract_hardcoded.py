@@ -55,6 +55,10 @@ PAT_TEMPLATE = re.compile(
     r'return\s+"\\n\s+((?:[^"\\]|\\[^u"]|\\u[0-9a-fA-F]{4})*)\\n\s*"\s*;'
 )
 
+# Pattern 3: HTML.Raw('...') - visible text between HTML tags
+PAT_HTML_RAW = re.compile(r"HTML\.Raw\('((?:[^'\\]|\\.)*)'\)")
+TAG_TEXT_RE = re.compile(r'>([^<]+)<')
+
 
 def extract(packages_dir):
     script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -92,6 +96,20 @@ def extract(packages_dir):
             cleaned = raw_text.replace('\\n', '\n').strip()
             if len(cleaned) >= 5 and re.search(r'[a-zA-Z]{3}', cleaned):
                 found[raw_text] = cleaned
+
+        # Pattern 3: HTML.Raw('...') - text between HTML tags
+        for m in PAT_HTML_RAW.finditer(content):
+            html_content = m.group(1)
+            for tm in TAG_TEXT_RE.finditer(html_content):
+                raw_in_file = tm.group(1)
+                cleaned = raw_in_file.replace('\\n', ' ').replace("\\'", "'").strip()
+                if len(cleaned) < 2:
+                    continue
+                if not re.search(r'[a-zA-Z]{2}', cleaned):
+                    continue
+                if re.search(r'[{};=]', cleaned):
+                    continue
+                found[cleaned] = cleaned
 
         if found:
             all_strings[pkg] = found
