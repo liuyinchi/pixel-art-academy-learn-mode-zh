@@ -12,4 +12,3 @@ my_translations.json
 build/
 dist/
 *.spec
-*.exe

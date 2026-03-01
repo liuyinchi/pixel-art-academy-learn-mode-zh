@@ -8,7 +8,7 @@
 
 ### 方式一：一键安装器（推荐，无需任何环境）
 
-1. 从 [Releases](https://github.com/liuyinchi/pixel-art-academy-learn-mode-zh/releases) 页面下载 **`Pixel Art Academy 汉化补丁.exe`**
+1. 从本仓库下载 **`Pixel Art Academy 汉化补丁.exe`**（点击文件名 → 右上角 Download 按钮）
 2. 将 `.exe` 文件放到**游戏根目录**下：
 
 ```
