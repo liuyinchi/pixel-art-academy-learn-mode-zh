@@ -34,11 +34,11 @@ Pixel Art Academy Learn Mode\
 
 #### 操作步骤
 
-1. 将 `汉化补丁` 文件夹放到游戏根目录下，双击 **`安装汉化.bat`**。
+1. 将本仓库克隆或下载到**游戏根目录**下，双击 **`安装汉化.bat`**。
 
 ```
 Pixel Art Academy Learn Mode\
-├── 汉化补丁\        ← 放在这里
+├── pixel-art-academy-learn-mode-zh\    ← 本仓库（克隆或下载到这里）
 ├── resources\
 └── Pixel Art Academy Learn Mode.exe
 ```
@@ -64,6 +64,45 @@ Pixel Art Academy Learn Mode\
 
 所有修改均可通过 `卸载汉化.bat` 一键还原。
 
+## 补充翻译（还有英文没汉化？）
+
+如果你发现游戏中仍有英文没有翻译，有两种方式补充：
+
+### 方式 A：一键补翻译（推荐）
+
+双击 **`补充翻译.bat`**，脚本会自动引导你完成 提取 → 翻译 → 合并 → 安装 全流程。
+
+### 方式 B：手动操作
+
+#### 第 1 步：翻译
+
+打开项目文件夹中的 `hardcoded_to_translate.json`，把内容复制给翻译工具（ChatGPT / DeepL / Claude 等），告诉它：
+
+> "请把每个 JSON 条目的 value（右边的值）翻译成简体中文，key（左边）不要动。直接输出完整 JSON。"
+
+把翻译结果 **覆盖保存** 回 `hardcoded_to_translate.json`。
+
+> **注意**：翻译后的中文文本中不能出现 ASCII 双引号 `"`，请用 `「」` 替代，否则 JSON 格式会损坏。
+
+#### 第 2 步：合并
+
+在项目文件夹中打开命令行，运行：
+
+```bash
+python merge_hardcoded.py
+```
+
+它会自动把翻译好的中文合并进 `hardcoded_zh.json`，跳过还没翻译的英文条目。
+
+#### 第 3 步：重新安装补丁
+
+双击 `安装汉化.bat` 或运行 `Pixel Art Academy 汉化补丁.exe`，重新打补丁即可。
+
+> **提示**：如果游戏更新后出现新的未翻译内容，先运行 `更新后重新汉化.bat` 重新解包，
+> 然后运行 `python extract_hardcoded.py` 重新提取待翻译字符串，再重复上面 3 步。
+
+---
+
 ## 开发者参考
 
 ### 翻译文件
@@ -72,16 +111,23 @@ Pixel Art Academy Learn Mode\
 |------|------|
 | `translations_zh.json` | 已翻译条目（Babel cache 类型） |
 | `hardcoded_zh.json` | 已翻译条目（JS 硬编码类型） |
-| `待翻译汇总.json` | 所有未翻译条目（直接在此文件上翻译） |
+| `hardcoded_to_translate.json` | 硬编码中未翻译条目（翻译后用 `merge_hardcoded.py` 合并） |
+| `hardcoded_skipped.json` | 不需要翻译的条目（人名、游戏名、鸣谢等，仅供参考） |
+| `待翻译汇总.json` | 所有未翻译条目汇总（cache + 硬编码） |
 
-### 手动补翻译流程
+### 工具脚本
 
-```bash
-python extract_all_missing.py              # 提取所有未翻译 → 待翻译汇总.json
-# 翻译 待翻译汇总.json 中的英文 value
-python merge_all_translations.py 待翻译汇总.json   # 合并（自动跳过未翻译的英文）
-# 双击 安装汉化.bat 重新应用
-```
+| 脚本 | 用途 |
+|------|------|
+| `extract_hardcoded.py` | 从 JS 文件中提取硬编码英文字符串 |
+| `extract_strings.py` | 从 cache.json 中提取未翻译条目 |
+| `extract_all_missing.py` | 一键提取所有未翻译条目 |
+| `merge_hardcoded.py` | 将翻译好的硬编码条目合并到 `hardcoded_zh.json` |
+| `merge_translations.py` | 将翻译好的 cache 条目合并到 `translations_zh.json` |
+| `merge_all_translations.py` | 合并汇总翻译文件（cache + 硬编码） |
+| `patch_hardcoded.py` | 在 JS 文件中替换英文为中文（安装时自动调用） |
+| `inject_translations.py` | 将翻译注入 cache.json（安装时自动调用） |
+| `extract_asar.py` | 解包 Electron asar 文件 |
 
 ### 构建 .exe 安装器
 

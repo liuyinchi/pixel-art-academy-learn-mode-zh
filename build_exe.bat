@@ -1,4 +1,4 @@
-@echo off
+﻿@echo off
 chcp 65001 > nul
 title 构建汉化补丁 .exe
 
@@ -35,7 +35,7 @@ echo.
 echo [*] 正在构建 .exe 文件，请稍候...
 echo.
 
-pyinstaller --onefile --windowed ^
+python -m PyInstaller --onefile --windowed ^
     --name "Pixel Art Academy 汉化补丁" ^
     --add-data "translations_zh.json;." ^
     --add-data "hardcoded_zh.json;." ^

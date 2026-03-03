@@ -23,18 +23,43 @@ import sys
 
 # Packages that contain user-facing hardcoded strings
 TARGET_PACKAGES = [
+    # --- learnmode core ---
     'retronator_pixelartacademy-learnmode.js',
+    'retronator_pixelartacademy-learnmode-app.js',
     'retronator_pixelartacademy-learnmode-intro.js',
     'retronator_pixelartacademy-learnmode-design.js',
     'retronator_pixelartacademy-learnmode-pixelartfundamentals.js',
+    # --- pixelpad ---
     'retronator_pixelartacademy-pixelpad.js',
     'retronator_pixelartacademy-pixelpad-drawing.js',
+    'retronator_pixelartacademy-pixelpad-instructions.js',
     'retronator_pixelartacademy-pixelpad-music.js',
     'retronator_pixelartacademy-pixelpad-notifications.js',
     'retronator_pixelartacademy-pixelpad-pico8.js',
     'retronator_pixelartacademy-pixelpad-pixeltosh.js',
     'retronator_pixelartacademy-pixelpad-todo.js',
     'retronator_pixelartacademy-pixelpad-studyplan.js',
+    # --- tutorials (large) ---
+    'retronator_pixelartacademy-tutorials.js',
+    # --- challenges ---
+    'retronator_pixelartacademy-challenges.js',
+    # --- pixeltosh apps ---
+    'retronator_pixelartacademy-pixeltosh.js',
+    'retronator_pixelartacademy-pixeltosh-pinball.js',
+    'retronator_pixelartacademy-pixeltosh-drawquickly.js',
+    'retronator_pixelartacademy-pixeltosh-writer.js',
+    # --- pico8 ---
+    'retronator_pixelartacademy-pico8.js',
+    'retronator_pixelartacademy-pico8-invasion.js',
+    'retronator_pixelartacademy-pico8-jungle.js',
+    'retronator_pixelartacademy-pico8-snake.js',
+    # --- other ---
+    'retronator_pixelartacademy.js',
+    'retronator_pixelartacademy-practice.js',
+    'retronator_pixelartacademy-studyguide.js',
+    'retronator_pixelartacademy-learning.js',
+    'retronator_pixelartacademy-music.js',
+    'retronator_pixelartacademy-publication.js',
 ]
 
 # Method names that contain user-facing text
