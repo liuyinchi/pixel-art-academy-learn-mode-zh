@@ -8,6 +8,9 @@ __pycache__/
 my_translations.json
 待翻译汇总_zh.json
 
+# AI translation working files
+ai_chunks/
+
 # PyInstaller build artifacts
 build/
 dist/

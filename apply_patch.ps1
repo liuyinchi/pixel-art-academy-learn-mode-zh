@@ -152,11 +152,15 @@ function Do-Install {
     }
     Write-OK "Translations injected successfully"
 
-    # ---- Step 3: Patch hardcoded strings in JS files ----
+    # ---- Step 3: Patch JS files (hardcoded strings + manual patches) ----
     $HardcodedZh = Join-Path $PatchDir "hardcoded_zh.json"
+    $ManualPatchesJson = Join-Path $PatchDir "manual_patches.json"
     $PackagesDir = Join-Path $MeteorExtracted "packages"
-    if (Test-Path $HardcodedZh) {
-        Write-Status "Step 3/5: Patching hardcoded strings in JS files ..."
+    $hasHardcoded = Test-Path $HardcodedZh
+    $hasManual = Test-Path $ManualPatchesJson
+
+    if ($hasHardcoded -or $hasManual) {
+        Write-Status "Step 3/5: Patching JS files ..."
 
         # Restore JS backups first to ensure we patch clean English files
         # This prevents double-patching when user runs install twice
@@ -169,29 +173,53 @@ function Do-Install {
         } else {
             # First time: backup the original JS files
             New-Item -ItemType Directory -Path $JsBackupDir -Force | Out-Null
-            $PatchHardcodedScript = Join-Path $PatchDir "patch_hardcoded.py"
-            $targetPkgs = & $pythonCmd -c "import json;d=json.load(open('$($HardcodedZh.Replace('\','\\'))','r',encoding='utf-8'));print('\n'.join(set(k.split('|||')[0] for k in d)))" 2>$null
-            if ($targetPkgs) {
-                foreach ($pkg in ($targetPkgs -split "`n")) {
-                    $pkg = $pkg.Trim()
-                    $srcFile = Join-Path $PackagesDir $pkg
-                    if ((Test-Path $srcFile) -and $pkg) {
-                        Copy-Item $srcFile (Join-Path $JsBackupDir $pkg) -Force
-                    }
+
+            # Collect target filenames from hardcoded_zh.json
+            $allTargetPkgs = @()
+            if ($hasHardcoded) {
+                $hcPkgs = & $pythonCmd -c "import json;d=json.load(open('$($HardcodedZh.Replace('\','\\'))','r',encoding='utf-8'));print('\n'.join(set(k.split('|||')[0] for k in d)))" 2>$null
+                if ($hcPkgs) { $allTargetPkgs += ($hcPkgs -split "`n") }
+            }
+            # Collect target filenames from manual_patches.json
+            if ($hasManual) {
+                $mpPkgs = & $pythonCmd -c "import json;d=json.load(open('$($ManualPatchesJson.Replace('\','\\'))','r',encoding='utf-8'));print('\n'.join(set(p['file'] for p in d)))" 2>$null
+                if ($mpPkgs) { $allTargetPkgs += ($mpPkgs -split "`n") }
+            }
+
+            # De-duplicate and backup
+            $allTargetPkgs = $allTargetPkgs | ForEach-Object { $_.Trim() } | Where-Object { $_ } | Sort-Object -Unique
+            foreach ($pkg in $allTargetPkgs) {
+                $srcFile = Join-Path $PackagesDir $pkg
+                if (Test-Path $srcFile) {
+                    Copy-Item $srcFile (Join-Path $JsBackupDir $pkg) -Force
                 }
             }
             Write-OK "Original JS files backed up"
         }
 
-        $PatchHardcodedScript = Join-Path $PatchDir "patch_hardcoded.py"
-        & $pythonCmd $PatchHardcodedScript $PackagesDir $HardcodedZh
-        if ($LASTEXITCODE -ne 0) {
-            Write-Err "Hardcoded string patching failed (non-critical, continuing)."
-        } else {
-            Write-OK "Hardcoded strings patched"
+        # 3a. Patch hardcoded strings (auto-extracted patterns)
+        if ($hasHardcoded) {
+            $PatchHardcodedScript = Join-Path $PatchDir "patch_hardcoded.py"
+            & $pythonCmd $PatchHardcodedScript $PackagesDir $HardcodedZh
+            if ($LASTEXITCODE -ne 0) {
+                Write-Err "Hardcoded string patching failed (non-critical, continuing)."
+            } else {
+                Write-OK "Hardcoded strings patched"
+            }
+        }
+
+        # 3b. Apply manual patches (strings not caught by auto-extraction)
+        if ($hasManual) {
+            $PatchManualScript = Join-Path $PatchDir "patch_manual.py"
+            & $pythonCmd $PatchManualScript $PackagesDir $ManualPatchesJson
+            if ($LASTEXITCODE -ne 0) {
+                Write-Err "Manual patching failed (non-critical, continuing)."
+            } else {
+                Write-OK "Manual patches applied"
+            }
         }
     } else {
-        Write-Status "Step 3/5: No hardcoded_zh.json found, skipping JS string patching"
+        Write-Status "Step 3/5: No JS patch files found, skipping"
     }
 
     # ---- Step 4: Patch fonts in CSS ----

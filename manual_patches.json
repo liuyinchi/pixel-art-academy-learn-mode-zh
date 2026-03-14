@@ -1,0 +1,64 @@
+[
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "\"\\n          Audio:\\n          \"",
+    "replace": "\"\\n          音频：\\n          \"",
+    "comment": "Audio menu label"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "return \"on\";",
+    "replace": "return \"开启\";",
+    "comment": "Audio: on"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "return \"when fullscreen\";",
+    "replace": "return \"全屏时\";",
+    "comment": "Audio: when fullscreen"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "return \"off\";",
+    "replace": "return \"关闭\";",
+    "replace_all": true,
+    "comment": "Audio / Music effects: off (2 occurrences, same translation)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "\"\\n          Music effects:\\n          \"",
+    "replace": "\"\\n          音乐效果：\\n          \"",
+    "comment": "Music effects menu label"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "return \"automatic\";",
+    "replace": "return \"自动\";",
+    "comment": "Music effects: automatic"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "return \"radio\";",
+    "replace": "return \"收音机\";",
+    "comment": "Music effects: radio"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "\"\\n          Radio effect volume decrease: \"",
+    "replace": "\"\\n          收音机效果音量降低：\"",
+    "comment": "Music effects settings: volume decrease label"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "\"\\n          Radio effect frequency decrease: \"",
+    "replace": "\"\\n          收音机效果频率降低：\"",
+    "comment": "Music effects settings: frequency decrease label"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": ">Back<",
+    "replace": ">返回<",
+    "replace_all": true,
+    "comment": "All Back buttons in settings submenus (5 occurrences)"
+  }
+]
