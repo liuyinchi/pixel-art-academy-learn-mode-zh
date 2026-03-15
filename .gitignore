@@ -7,6 +7,10 @@ __pycache__/
 # Temp working files
 my_translations.json
 待翻译汇总_zh.json
+待翻译汇总.json
+to_translate.json
+hardcoded_to_translate.json
+hardcoded_skipped.json
 
 # AI translation working files
 ai_chunks/
@@ -15,3 +19,4 @@ ai_chunks/
 build/
 dist/
 *.spec
+*.exe

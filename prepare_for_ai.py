@@ -4,9 +4,10 @@
 将 JS 文件切分成小块，附带提示词，方便喂给 AI 进行翻译。
 
 用法:
-  python prepare_for_ai.py                        # 处理所有目标文件
+  python prepare_for_ai.py                        # 处理所有目标文件(pixelartacademy + landsofillusions)
   python prepare_for_ai.py <filename.js>           # 只处理指定文件
   python prepare_for_ai.py <filename.js> 300       # 自定义每块行数(默认500)
+  python prepare_for_ai.py --all                   # 处理 packages 目录下所有 retronator_*.js 文件
 
 输出:
   ai_chunks/ 目录下生成编号的 .txt 文件，每个文件可以直接粘贴给 AI。
@@ -51,6 +52,8 @@ TARGET_PACKAGES = [
     'retronator_pixelartacademy-learning.js',
     'retronator_pixelartacademy-music.js',
     'retronator_pixelartacademy-publication.js',
+    # --- Lands of Illusions UI (游戏引擎 UI 组件) ---
+    'retronator_landsofillusions-ui.js',
 ]
 
 # AI 提示词模板
@@ -84,6 +87,12 @@ PROMPT_TEMPLATE = """你是一位游戏汉化专家。以下是游戏 "Pixel Art
 
 **重要规则**:
 - "find" 必须是文件中的**原样文本**，直接复制代码中的字符串
+- **⚠ find 绝对不能只是一个单词！** 必须包含足够的上下文（如引号、冒号、空格），否则会替换到变量名/方法名中导致代码崩溃
+  - ❌ 错误: "find": "Music"  （太短，会匹配到 MusicEffectsSettings 等变量名）
+  - ✅ 正确: "find": "\"\\n    Music: \""  （包含引号和冒号，只匹配 UI 标签）
+  - ❌ 错误: "find": "Ambient"
+  - ✅ 正确: "find": "\"\\n    Ambient: \""
+  - ✅ 正确: "find": "return \"on\";"  （包含 return 和分号，足够具体）
 - 如果 find 中包含 \\n（反斜杠+n），JSON 里要写成 \\\\n
 - 如果 find 中包含双引号，JSON 里要写成 \\"
 - 如果同一文本出现多次且翻译相同，添加 "replace_all": true
@@ -215,15 +224,26 @@ def split_fixed(lines, chunk_size=500):
 def main():
     # 解析参数
     target_file = None
+    scan_all = False
     chunk_size = 500
 
-    if len(sys.argv) >= 2:
-        target_file = sys.argv[1]
-    if len(sys.argv) >= 3:
-        chunk_size = int(sys.argv[2])
+    for arg in sys.argv[1:]:
+        if arg == '--all':
+            scan_all = True
+        elif arg.isdigit():
+            chunk_size = int(arg)
+        else:
+            target_file = arg
 
     # 确定要处理的文件
-    if target_file:
+    if scan_all:
+        # 扫描 packages 目录下所有 retronator_*.js
+        files_to_process = sorted([
+            f for f in os.listdir(PACKAGES_DIR)
+            if f.startswith('retronator_') and f.endswith('.js')
+        ])
+        print(f"  --all 模式: 找到 {len(files_to_process)} 个 retronator_*.js 文件")
+    elif target_file:
         files_to_process = [target_file]
     else:
         files_to_process = TARGET_PACKAGES

@@ -18,6 +18,11 @@ import json
 import os
 import sys
 
+# Fix Windows console encoding for Chinese + special characters
+if sys.stdout.encoding and sys.stdout.encoding.lower() in ('gbk', 'gb2312', 'cp936'):
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+    sys.stderr.reconfigure(encoding='utf-8', errors='replace')
+
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 

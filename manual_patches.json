@@ -60,5 +60,2041 @@
     "replace": ">返回<",
     "replace_all": true,
     "comment": "All Back buttons in settings submenus (5 occurrences)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "return LOI.adventure.showDialogMessage(\"New tutorial lessons have been added since you last played the game. If anything in the game seems missing,\\ncomplete the new lessons first to get back to where you were.\\n\\nUse the Progress screen in the Menu to see which tutorials you're missing.\", () => {",
+    "replace": "return LOI.adventure.showDialogMessage(\"自你上次游玩以来，新增了教程课程。如果游戏中有任何内容看起来缺失，\\n请先完成新增的课程以恢复之前的进度。\\n\\n使用菜单中的进度屏幕查看你还缺少哪些教程。\", () => {",
+    "comment": "New lessons notification message (chunk_001)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "displayName: \"Free\",\n    description: \"This course is available for free as the game's demo.\"",
+    "replace": "displayName: \"免费\",\n    description: \"此课程作为游戏演示免费提供。\"",
+    "comment": "Free tag (chunk_003)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "displayName: \"Base game\",\n    description: \"This course is included in the base version of the game.\"",
+    "replace": "displayName: \"基础游戏\",\n    description: \"此课程包含在游戏基础版本中。\"",
+    "comment": "BaseGame tag (chunk_003)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "displayName: \"DLC\",\n    description: \"This course can be purchased as downloadable content.\"",
+    "replace": "displayName: \"DLC\",\n    description: \"此课程可作为下载内容购买。\"",
+    "comment": "DLC tag (chunk_003)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "displayName: \"DLC\",\n    description: \"This course can be purchased as an in-app purchase.\"",
+    "replace": "displayName: \"DLC\",\n    description: \"此课程可作为应用内购买。\"",
+    "comment": "DLC AppStore tag (chunk_003)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "displayName: \"WIP\",\n    description: \"This content is currently work in progress. Players with alpha access can play it in its unfinished state.\"",
+    "replace": "displayName: \"开发中\",\n    description: \"此内容目前正在开发中。拥有 alpha 访问权限的玩家可以在未完成状态下体验。\"",
+    "comment": "WIP tag (chunk_003)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "displayName: \"Future\",\n    description: \"This content is planned for development in the future. Its design will change as work progresses.\"",
+    "replace": "displayName: \"未来\",\n    description: \"此内容计划在未来开发。其设计将随工作进展而变化。\"",
+    "comment": "Future tag (chunk_003)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "message: \"You will lose your current game progress if you quit without saving.\",\n          buttons: [{\n            text: \"Quit\",\n            value: true\n          }, {\n            text: \"Cancel\"\n          }]",
+    "replace": "message: \"如果不保存就退出，你将失去当前的游戏进度。\",\n          buttons: [{\n            text: \"退出\",\n            value: true\n          }, {\n            text: \"取消\"\n          }]",
+    "comment": "Quit without saving dialog (chunk_003)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "<li class=\"menu-item\"><span class=\"back-to-settings actionable\">Back</span></li>",
+    "replace": "<li class=\"menu-item\"><span class=\"back-to-settings actionable\">返回</span></li>",
+    "replace_all": true,
+    "comment": "Back button in Display/Audio/Controls settings (chunk_004)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "<li class=\"menu-item\"><span class=\"back-to-audio actionable\">Back</span></li>",
+    "replace": "<li class=\"menu-item\"><span class=\"back-to-audio actionable\">返回</span></li>",
+    "comment": "Back button in Music effects settings (chunk_004)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "<li class=\"menu-item\"><span class=\"back-to-menu actionable\">Back</span></li>",
+    "replace": "<li class=\"menu-item\"><span class=\"back-to-menu actionable\">返回</span></li>",
+    "comment": "Back button in Extras menu (chunk_004)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "This is an overview of released courses and an approximate roadmap of future courses.\\n                  The design will change over time as development proceeds.",
+    "replace": "这是已发布课程的概览以及未来课程的大致路线图。\\n                  设计将随着开发进展而变化。",
+    "comment": "Preview description paragraph 1"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "No time estimates are given since\\n                  development of new content is highly unpredictable. The game is mainly developed by one person,\\n                  so expect slow, but steady progress.",
+    "replace": "由于新内容的开发高度不可预测，因此不提供时间估计。\\n                  本游戏主要由一人开发，\\n                  所以请期待缓慢但稳定的进展。",
+    "comment": "Preview description paragraph 2"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "<h1 class=\"title\">Settings</h1>",
+    "replace": "<h1 class=\"title\">设置</h1>",
+    "comment": "Settings title in progress page (chunk_004)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "title: \"Show progress towards the elusive 100%.\"",
+    "replace": "title: \"显示向难以捉摸的100%迈进的进度。\"",
+    "comment": "Completionist mode tooltip (chunk_004)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "DaVinciKnowing: \"Da Vinci once said, \\\"Knowing is not enough; we must apply. Being willing is not enough; we must do.\\\"\"",
+    "replace": "DaVinciKnowing: \"达芬奇曾说：\\\"光知道是不够的，我们必须应用。光愿意是不够的，我们必须行动。\\\"\"",
+    "comment": "Da Vinci quote - Knowing (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "DaVinciBlackCanvas: \"Da Vinci once said, \\\"A painter should begin every canvas with a wash of black, because all things in nature are dark except where exposed by the light.\\\"\"",
+    "replace": "DaVinciBlackCanvas: \"达芬奇曾说：\\\"画家应该用黑色洗刷每一块画布，因为自然界的一切都是黑暗的，除非被光线照亮。\\\"\"",
+    "comment": "Da Vinci quote - Black canvas (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "DaVinciNoDesire: \"Da Vinci once said, \\\"Study without desire spoils the memory, and it retains nothing that it takes in.\\\"\"",
+    "replace": "DaVinciNoDesire: \"达芬奇曾说：\\\"没有欲望的学习会破坏记忆，它什么也留不住。\\\"\"",
+    "comment": "Da Vinci quote - No desire (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "DaVinciNeverFinished: \"Da Vinci once said, \\\"Art is never finished, only abandoned.\\\"\"",
+    "replace": "DaVinciNeverFinished: \"达芬奇曾说：\\\"艺术永远不会完成，只会被放弃。\\\"\"",
+    "comment": "Da Vinci quote - Never finished (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "DaVinciScienceArt: \"Da Vinci once said, \\\"Study the science of art. Study the art of science. Develop your senses—especially learn how to see. Realize that everything connects to everything else.\\\"\"",
+    "replace": "DaVinciScienceArt: \"达芬奇曾说：\\\"学习艺术的科学。学习科学的艺术。发展你的感官——特别是学会如何观察。认识到一切都相互关联。\\\"\"",
+    "comment": "Da Vinci quote - Science art (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "ConfuciusDontStop: \"Confucius once said, \\\"It does not matter how slowly you go as long as you do not stop.\\\"\"",
+    "replace": "ConfuciusDontStop: \"孔子曾说：\\\"不怕慢，就怕站。\\\"\"",
+    "comment": "Confucius quote (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "PicassoEveryChild: \"Picasso once said, \\\"Every child is an artist. The problem is how to remain an artist once you grow up.\\\"\"",
+    "replace": "PicassoEveryChild: \"毕加索曾说：\\\"每个孩子都是艺术家。问题是如何在长大后仍然保持艺术家的心。\\\"\"",
+    "comment": "Picasso quote - Every child (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "PicassoWhyNot: \"Picasso once said, \\\"Others have seen what is and asked why. I have seen what could be and asked why not.\\\"\"",
+    "replace": "PicassoWhyNot: \"毕加索曾说：\\\"别人看到事物的本来面目，问为什么。我看到事物可能的样子，问为什么不。\\\"\"",
+    "comment": "Picasso quote - Why not (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "PicassoLearnRules: \"Picasso once said, \\\"Learn the rules like a pro, so you can break them like an artist.\\\"\"",
+    "replace": "PicassoLearnRules: \"毕加索曾说：\\\"像专业人士一样学习规则，这样你才能像艺术家一样打破它们。\\\"\"",
+    "comment": "Picasso quote - Learn rules (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "PicassoTomorrow: \"Picasso once said, \\\"Only put off until tomorrow what you are willing to die having left undone.\\\"\"",
+    "replace": "PicassoTomorrow: \"毕加索曾说：\\\"只有那些你愿意死时仍未完成的事，才值得推迟到明天。\\\"\"",
+    "comment": "Picasso quote - Tomorrow (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "PicassoYoung: \"Picasso once said, \\\"It takes a very long time to become young.\\\"\"",
+    "replace": "PicassoYoung: \"毕加索曾说：\\\"变年轻需要很长很长的时间。\\\"\"",
+    "comment": "Picasso quote - Young (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "PicassoDoing: \"Picasso once said, \\\"I am always doing that which I can not do, in order that I may learn how to do it.\\\"\"",
+    "replace": "PicassoDoing: \"毕加索曾说：\\\"我总是在做我不会做的事，这样我才能学会如何去做。\\\"\"",
+    "comment": "Picasso quote - Doing (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "PicassoMeaning: \"Picasso once said, \\\"The meaning of life is to find your gift. The purpose of life is to give it away.\\\"\"",
+    "replace": "PicassoMeaning: \"毕加索曾说：\\\"生命的意义在于发现你的天赋。生命的目的在于将其奉献出去。\\\"\"",
+    "comment": "Picasso quote - Meaning (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "AntoineDeSaintExuperyPerfeection: \"Antoine de Saint-Exupéry once said, \\\"Perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away.\\\"\"",
+    "replace": "AntoineDeSaintExuperyPerfeection: \"圣埃克苏佩里曾说：\\\"完美不是无可添加，而是无可删减。\\\"\"",
+    "comment": "Saint-Exupéry quote (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "JessicaHischeProcrastinate: \"Jessica Hische once said, \\\"The work you do while you procrastinate is probably the work you should be doing for the rest of your life.\\\"\"",
+    "replace": "JessicaHischeProcrastinate: \"杰西卡·希谢曾说：\\\"你在拖延时做的工作，可能就是你余生应该做的工作。\\\"\"",
+    "comment": "Jessica Hische quote (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "DaliInspires: \"Dali once said, \\\"A true artist is not one who is inspired, but one who inspires others.\\\"\"",
+    "replace": "DaliInspires: \"达利曾说：\\\"真正的艺术家不是被启发的人，而是启发他人的人。\\\"\"",
+    "comment": "Dali quote (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "EinsteinImaginationEncirclesTheWorld: \"Einstein once said, \\\"I am enough of an artist to draw freely upon my imagination. Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world.\\\"\"",
+    "replace": "EinsteinImaginationEncirclesTheWorld: \"爱因斯坦曾说：\\\"我足够成为一位艺术家，可以自由地运用我的想象力。想象力比知识更重要。知识是有限的。想象力环绕世界。\\\"\"",
+    "comment": "Einstein quote - Imagination world (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "EinsteinImaginationWillGetYouEverywhere: \"Einstein once said, \\\"Logic will get you from A to Z; imagination will get you everywhere.\\\"\"",
+    "replace": "EinsteinImaginationWillGetYouEverywhere: \"爱因斯坦曾说：\\\"逻辑会带你从A到Z；想象力会带你去任何地方。\\\"\"",
+    "comment": "Einstein quote - Imagination everywhere (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "EinsteinKeepMoving: \"Einstein once said, \\\"Life is like riding a bicycle. To keep your balance, you must keep moving.\\\"\"",
+    "replace": "EinsteinKeepMoving: \"爱因斯坦曾说：\\\"人生就像骑自行车。要保持平衡，就必须不断前进。\\\"\"",
+    "comment": "Einstein quote - Keep moving (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "EinsteinMistake: \"Einstein once said, \\\"Anyone who has never made a mistake has never tried anything new.\\\"\"",
+    "replace": "EinsteinMistake: \"爱因斯坦曾说：\\\"从未犯过错的人，也从未尝试过新事物。\\\"\"",
+    "comment": "Einstein quote - Mistake (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "EinsteinPassion: \"Einstein once said, \\\"I have no special talents. I am only passionately curious.\\\"\"",
+    "replace": "EinsteinPassion: \"爱因斯坦曾说：\\\"我没有特别的才能。我只是充满好奇。\\\"\"",
+    "comment": "Einstein quote - Passion (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "GandhiLearn: \"Gandhi once said, \\\"Live as if you were to die tomorrow. Learn as if you were to live forever.\\\"\"",
+    "replace": "GandhiLearn: \"甘地曾说：\\\"像明天就会死去那样生活。像会永远活着那样学习。\\\"\"",
+    "comment": "Gandhi quote (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "VanGoghPaint: \"Van Gogh once said, \\\"If you hear a voice within you say you cannot paint, then by all means paint and that voice will be silenced.\\\"\"",
+    "replace": "VanGoghPaint: \"梵高曾说：\\\"如果你听到内心有个声音说你不会画画，那就一定要去画，那个声音就会消失。\\\"\"",
+    "comment": "Van Gogh quote (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "TuringImpossible: \"Turing once said, \\\"Those who can imagine anything, can create the impossible.\\\"\"",
+    "replace": "TuringImpossible: \"图灵曾说：\\\"那些能够想象任何事物的人，能够创造不可能。\\\"\"",
+    "comment": "Turing quote (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "BramStokerFailure: \"Bram Stoker once said, \\\"We learn from failure, not from success!\\\"\"",
+    "replace": "BramStokerFailure: \"布拉姆·斯托克曾说：\\\"我们从失败中学习，而不是从成功中！\\\"\"",
+    "comment": "Bram Stoker quote (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "RichardFeynmannStudy: \"Richard Feynmann once said, \\\"Study hard what interests you the most in the most undisciplined, irreverent and original manner possible.\\\"\"",
+    "replace": "RichardFeynmannStudy: \"理查德·费曼曾说：\\\"以最不守规矩、最不恭敬、最原创的方式，努力学习你最感兴趣的东西。\\\"\"",
+    "comment": "Richard Feynman quote (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "RoyTBennettExperience: \"Roy T. Bennett once said, \\\"Some things cannot be taught; they must be experienced. You never learn the most valuable lessons in life until you go through your own journey.\\\"\"",
+    "replace": "RoyTBennettExperience: \"罗伊·T·贝内特曾说：\\\"有些东西无法被教会；它们必须被体验。只有经历自己的旅程，你才能学到人生中最宝贵的课程。\\\"\"",
+    "comment": "Roy T. Bennett quote (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "SylviaPlathDoubt: \"Sylvia Plath once said, \\\"The worst enemy to creativity is self-doubt.\\\"\"",
+    "replace": "SylviaPlathDoubt: \"西尔维娅·普拉斯曾说：\\\"创造力最大的敌人是自我怀疑。\\\"\"",
+    "comment": "Sylvia Plath quote (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "MayaAngelouCreativity: \"Maya Angelou once said, \\\"You can't use up creativity. The more you use, the more you have.\\\"\"",
+    "replace": "MayaAngelouCreativity: \"玛雅·安杰洛曾说：\\\"创造力是用不完的。你用得越多，拥有的就越多。\\\"\"",
+    "comment": "Maya Angelou quote (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "KenRobinsonCuriosity: \"Ken Robinson once said, \\\"Curiosity is the engine of achievement.\\\"\"",
+    "replace": "KenRobinsonCuriosity: \"肯·罗宾逊曾说：\\\"好奇心是成就的引擎。\\\"\"",
+    "comment": "Ken Robinson quote (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "HenriMatisseInspiration: \"Henri Matisse once said, \\\"Don’t wait for inspiration. It comes while one is working.\\\"\"",
+    "replace": "HenriMatisseInspiration: \"亨利·马蒂斯曾说：\\\"不要等待灵感。它会在工作时到来。\\\"\"",
+    "comment": "Henri Matisse quote (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "WaltDisneyDreams: \"Walt Disney once said, \\\"All our dreams can come true, if we have the courage to pursue them.\\\"\"",
+    "replace": "WaltDisneyDreams: \"华特·迪士尼曾说：\\\"如果我们有勇气去追求，所有的梦想都能成真。\\\"\"",
+    "comment": "Walt Disney quote - Dreams (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "WaltDisneyDoing: \"Walt Disney once said, \\\"The way to get started is to quit talking and begin doing.\\\"\"",
+    "replace": "WaltDisneyDoing: \"华特·迪士尼曾说：\\\"开始的方法就是停止空谈，开始行动。\\\"\"",
+    "comment": "Walt Disney quote - Doing (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "WaltDisneyUnique: \"Walt Disney once said, \\\"The more you like yourself, the less you are like anyone else, which makes you unique.\\\"\"",
+    "replace": "WaltDisneyUnique: \"华特·迪士尼曾说：\\\"你越喜欢自己，就越不像其他人，这让你变得独一无二。\\\"\"",
+    "comment": "Walt Disney quote - Unique (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "JohnDeweyReflecting: \"John Dewey once said, \\\"We do not learn from experience... we learn from reflecting on experience.\\\"\"",
+    "replace": "JohnDeweyReflecting: \"约翰·杜威曾说：\\\"我们不是从经验中学习……我们是从对经验的反思中学习。\\\"\"",
+    "comment": "John Dewey quote - Reflecting (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "JohnDeweyArt: \"John Dewey once said, \\\"Art is the most effective mode of communications that exists.\\\"\"",
+    "replace": "JohnDeweyArt: \"约翰·杜威曾说：\\\"艺术是现存最有效的沟通方式。\\\"\"",
+    "comment": "John Dewey quote - Art (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "EdCatmullPerfect: \"Ed Catmull once said, \\\"Don’t wait for things to be perfect before you share them with others. Show early and show often. It’ll be pretty when we get there, but it won’t be pretty along the way.\\\"\"",
+    "replace": "EdCatmullPerfect: \"艾德·卡特姆曾说：\\\"不要等到完美才与他人分享。尽早展示，经常展示。到达终点时会很美，但沿途不会很美。\\\"\"",
+    "comment": "Ed Catmull quote - Perfect (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "EdCatmullFailure: \"Ed Catmull once said, \\\"If you aren’t experiencing failure, then you are making a far worse mistake: You are being driven by the desire to avoid it.\\\"\"",
+    "replace": "EdCatmullFailure: \"艾德·卡特姆曾说：\\\"如果你没有经历失败，那你正在犯一个更严重的错误：你被避免失败的欲望所驱使。\\\"\"",
+    "comment": "Ed Catmull quote - Failure (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "EdCatmullUnexpected: \"Ed Catmull once said, \\\"You’ll never stumble upon the unexpected if you stick only to the familiar.\\\"\"",
+    "replace": "EdCatmullUnexpected: \"艾德·卡特姆曾说：\\\"如果你只坚持熟悉的事物，就永远不会偶然发现意外。\\\"\"",
+    "comment": "Ed Catmull quote - Unexpected (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "EdCatmullCreativity: \"Ed Catmull once said, \\\"We humans like to know where we are headed, but creativity demands that we travel paths that lead to who-knows-where.\\\"\"",
+    "replace": "EdCatmullCreativity: \"艾德·卡特姆曾说：\\\"我们人类喜欢知道我们要去哪里，但创造力要求我们走那些通向未知之地的道路。\\\"\"",
+    "comment": "Ed Catmull quote - Creativity (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "AlanKayFuture: \"Alan Kay once said, \\\"The best way to predict the future is to invent it.\\\"\"",
+    "replace": "AlanKayFuture: \"艾伦·凯曾说：\\\"预测未来最好的方式就是创造它。\\\"\"",
+    "comment": "Alan Kay quote (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "AlanWattsEngaged: \"Alan Watts once said, \\\"This is the real secret of life—to be completely engaged with what you are doing in the here and now. And instead of calling it work, realize it is play.\\\"\"",
+    "replace": "AlanWattsEngaged: \"艾伦·瓦兹曾说：\\\"生活的真正秘诀在于——完全投入到你此时此刻正在做的事情中。不要称之为工作，要意识到它是游戏。\\\"\"",
+    "comment": "Alan Watts quote (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "RoaldDahlPlay: \"Roald Dahl once said, \\\"Life is more fun if you play games.\\\"\"",
+    "replace": "RoaldDahlPlay: \"罗尔德·达尔曾说：\\\"如果你玩游戏，生活会更有趣。\\\"\"",
+    "comment": "Roald Dahl quote (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "GeorgeBernardShawPlaying: \"George Bernard Shaw once said, \\\"We don't stop playing because we grow old; we grow old because we stop playing.\\\"\"",
+    "replace": "GeorgeBernardShawPlaying: \"萧伯纳曾说：\\\"我们不是因为变老才停止玩耍；我们是因为停止玩耍才变老。\\\"\"",
+    "comment": "George Bernard Shaw quote (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "BobRossMistakes: \"Bob Ross once said, \\\"We don't make mistakes, just happy little accidents.\\\"\"",
+    "replace": "BobRossMistakes: \"鲍勃·罗斯曾说：\\\"我们不犯错误，只是有一些快乐的小意外。\\\"\"",
+    "comment": "Bob Ross quote - Mistakes (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "BobRossTalent: \"Bob Ross once said, \\\"Talent is a pursued interest. Anything that you're willing to practice, you can do.\\\"\"",
+    "replace": "BobRossTalent: \"鲍勃·罗斯曾说：\\\"天赋就是追求的兴趣。任何你愿意练习的事情，你都能做到。\\\"\"",
+    "comment": "Bob Ross quote - Talent (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "BobRossBelieving: \"Bob Ross once said, \\\"The secret to doing anything is believing that you can do it. Anything that you believe you can do strong enough, you can do. Anything. As long as you believe.\\\"\"",
+    "replace": "BobRossBelieving: \"鲍勃·罗斯曾说：\\\"做任何事的秘诀就是相信你能做到。任何你足够相信你能做到的事，你都能做到。任何事。只要你相信。\\\"\"",
+    "comment": "Bob Ross quote - Believing (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "ThichNhatHanhReflecting: \"Thich Nhat Hanh once said, \\\"If learning is not followed by reflecting and practicing, it is not true learning.\\\"\"",
+    "replace": "ThichNhatHanhReflecting: \"一行禅师曾说：\\\"如果学习之后没有反思和实践，那就不是真正的学习。\\\"\"",
+    "comment": "Thich Nhat Hanh quote (chunk_006)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-intro.js",
+    "find": "static displayName() {\n      return \"To-do tasks\";\n    }",
+    "replace": "static displayName() {\n      return \"待办任务\";\n    }",
+    "comment": "ToDoTasks goal display name (chunk_009)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-intro.js",
+    "find": "static interests() {\n        return ['to-do tasks'];\n      }",
+    "replace": "static interests() {\n        return ['待办任务'];\n      }",
+    "comment": "OpenInstructions task interests (chunk_009)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-intro.js",
+    "find": "static displayName() {\n      return \"Pixel art software\";\n    }",
+    "replace": "static displayName() {\n      return \"像素画软件\";\n    }",
+    "comment": "PixelArtSoftware goal display name (chunk_009)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-intro.js",
+    "find": "static requiredInterests() {\n        return ['to-do tasks'];\n      }",
+    "replace": "static requiredInterests() {\n        return ['待办任务'];\n      }",
+    "comment": "Basics task required interests (chunk_009)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-intro.js",
+    "find": "static displayName() {\n      return \"Snake game\";\n    }",
+    "replace": "static displayName() {\n      return \"贪吃蛇游戏\";\n    }",
+    "comment": "Snake goal display name (chunk_010)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-intro.js",
+    "find": "static displayName() {\n      return \"Pixel art tools\";\n    }",
+    "replace": "static displayName() {\n      return \"像素画工具\";\n    }",
+    "comment": "Course display name (chunk_010)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-intro.js",
+    "find": "static displayName() {\n      return \"Apps\";\n    }",
+    "replace": "static displayName() {\n      return \"应用\";\n    }",
+    "comment": "Apps content display name (chunk_010)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-intro.js",
+    "find": "static unlockInstructions() {\n      return \"Learn how to use to-do tasks to unlock apps.\";\n    }",
+    "replace": "static unlockInstructions() {\n      return \"学习如何使用待办任务来解锁应用。\";\n    }",
+    "comment": "Apps unlock instructions (chunk_010)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-intro.js",
+    "find": "static unlockInstructions() {\n        return \"Complete the Pixel art software challenge to unlock the PICO-8 app.\";\n      }",
+    "replace": "static unlockInstructions() {\n        return \"完成像素画软件挑战以解锁 PICO-8 应用。\";\n      }",
+    "comment": "Pico8 unlock instructions (chunk_010)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-intro.js",
+    "find": "static displayName() {\n      return \"Study goals\";\n    }",
+    "replace": "static displayName() {\n      return \"学习目标\";\n    }",
+    "comment": "Goals content display name (chunk_010)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-intro.js",
+    "find": "static unlockInstructions() {\n      return \"Learn how to use to-do tasks to unlock study goals.\";\n    }",
+    "replace": "static unlockInstructions() {\n      return \"学习如何使用待办任务来解锁学习目标。\";\n    }",
+    "comment": "Goals unlock instructions (chunk_010)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-intro.js",
+    "find": "static unlockInstructions() {\n        return \"Complete the Pixel art software challenge to unlock the Snake game study goal.\";\n      }",
+    "replace": "static unlockInstructions() {\n        return \"完成像素画软件挑战以解锁贪吃蛇游戏学习目标。\";\n      }",
+    "comment": "Snake goal unlock instructions (chunk_010)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-intro.js",
+    "find": "static displayName() {\n      return \"Drawing tutorials\";\n    }",
+    "replace": "static displayName() {\n      return \"绘画教程\";\n    }",
+    "comment": "DrawingTutorials display name (chunk_010)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-intro.js",
+    "find": "static unlockInstructions() {\n      return \"Learn how to use to-do tasks to unlock drawing tutorials.\";\n    }",
+    "replace": "static unlockInstructions() {\n      return \"学习如何使用待办任务来解锁绘画教程。\";\n    }",
+    "comment": "DrawingTutorials unlock instructions (chunk_010)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-intro.js",
+    "find": "static unlockInstructions() {\n        return \"Complete the Basics tutorial to unlock the Colors tutorial.\";\n      }",
+    "replace": "static unlockInstructions() {\n        return \"完成基础教程以解锁颜色教程。\";\n      }",
+    "comment": "Colors tutorial unlock instructions (chunk_010)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-intro.js",
+    "find": "static unlockInstructions() {\n        return \"Complete the Basics tutorial to unlock the Helpers tutorial.\";\n      }",
+    "replace": "static unlockInstructions() {\n        return \"完成基础教程以解锁辅助工具教程。\";\n      }",
+    "comment": "Helpers tutorial unlock instructions (chunk_010)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-intro.js",
+    "find": "static displayName() {\n      return \"Drawing challenges\";\n    }",
+    "replace": "static displayName() {\n      return \"绘画挑战\";\n    }",
+    "comment": "DrawingChallenges display name (chunk_010)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-intro.js",
+    "find": "static unlockInstructions() {\n      return \"Complete the Pixel art tools: basics tutorial to unlock drawing challenges.\";\n    }",
+    "replace": "static unlockInstructions() {\n      return \"完成像素画工具：基础教程以解锁绘画挑战。\";\n    }",
+    "comment": "DrawingChallenges unlock instructions (chunk_010)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-intro.js",
+    "find": "static displayName() {\n        return \"Copy a reference\";\n      }",
+    "replace": "static displayName() {\n        return \"临摹参考图\";\n      }",
+    "comment": "CopyReference display name (chunk_010)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-intro.js",
+    "find": "static displayName() {\n          return \"Small monochrome sprites\";\n        }",
+    "replace": "static displayName() {\n          return \"小型单色精灵图\";\n        }",
+    "comment": "SmallMonochrome display name (chunk_011)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-intro.js",
+    "find": "static displayName() {\n          return \"Small colored sprites\";\n        }",
+    "replace": "static displayName() {\n          return \"小型彩色精灵图\";\n        }",
+    "comment": "SmallColored display name (chunk_011)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-intro.js",
+    "find": "static unlockInstructions() {\n          return \"Complete the Colors tutorial to unlock colored sprites.\";\n        }",
+    "replace": "static unlockInstructions() {\n          return \"完成颜色教程以解锁彩色精灵图。\";\n        }",
+    "comment": "SmallColored unlock instructions (chunk_011)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-intro.js",
+    "find": "static displayName() {\n          return \"Big monochrome sprites\";\n        }",
+    "replace": "static displayName() {\n          return \"大型单色精灵图\";\n        }",
+    "comment": "BigMonochrome display name (chunk_011)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-intro.js",
+    "find": "static unlockInstructions() {\n          return \"Complete the Helpers tutorial to unlock big sprites.\";\n        }",
+    "replace": "static unlockInstructions() {\n          return \"完成辅助工具教程以解锁大型精灵图。\";\n        }",
+    "comment": "BigMonochrome unlock instructions (chunk_011)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-intro.js",
+    "find": "static displayName() {\n          return \"Big colored sprites\";\n        }",
+    "replace": "static displayName() {\n          return \"大型彩色精灵图\";\n        }",
+    "comment": "BigColored display name (chunk_011)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-intro.js",
+    "find": "static unlockInstructions() {\n          return \"Complete the Colors and Helpers tutorials to unlock big colored sprites.\";\n        }",
+    "replace": "static unlockInstructions() {\n          return \"完成颜色和辅助工具教程以解锁大型彩色精灵图。\";\n        }",
+    "comment": "BigColored unlock instructions (chunk_011)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-intro.js",
+    "find": "static displayName() {\n      return \"Projects\";\n    }",
+    "replace": "static displayName() {\n      return \"项目\";\n    }",
+    "comment": "Projects display name (chunk_011)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-intro.js",
+    "find": "static unlockInstructions() {\n      return \"Unlock the PICO-8 app to get access to projects.\";\n    }",
+    "replace": "static unlockInstructions() {\n      return \"解锁 PICO-8 应用以获取项目访问权限。\";\n    }",
+    "comment": "Projects unlock instructions (chunk_011)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-intro.js",
+    "find": "static displayName() {\n        return \"Snake\";\n      }",
+    "replace": "static displayName() {\n        return \"贪吃蛇\";\n      }",
+    "comment": "Snake project display name (chunk_011)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-intro.js",
+    "find": "static unlockInstructions() {\n        return \"Score some points in the Snake game on PICO-8 to unlock the Snake project.\";\n      }",
+    "replace": "static unlockInstructions() {\n        return \"在 PICO-8 上的贪吃蛇游戏中获得一些分数以解锁贪吃蛇项目。\";\n      }",
+    "comment": "Snake project unlock instructions (chunk_011)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-design.js",
+    "find": "static displayName() {\n      return \"Shape language\";\n    }",
+    "replace": "static displayName() {\n      return \"形状语言\";\n    }",
+    "comment": "ShapeLanguage goal display name (chunk_012)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-design.js",
+    "find": "static displayName() {\n      return \"Invasion game\";\n    }",
+    "replace": "static displayName() {\n      return \"入侵游戏\";\n    }",
+    "comment": "Invasion goal display name (chunk_012)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-design.js",
+    "find": "static displayName() {\n      return \"Design fundamentals\";\n    }",
+    "replace": "static displayName() {\n      return \"设计基础\";\n    }",
+    "comment": "Design fundamentals course display name (chunk_013)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-design.js",
+    "find": "static displayName() {\n      return \"Study goals\";\n    }",
+    "replace": "static displayName() {\n      return \"学习目标\";\n    }",
+    "comment": "Goals display name in design (chunk_013)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-design.js",
+    "find": "static unlockInstructions() {\n        return \"Complete the Elements of art: shape tutorial to unlock the Shape language study goal.\";\n      }",
+    "replace": "static unlockInstructions() {\n        return \"完成艺术元素：形状教程以解锁形状语言学习目标。\";\n      }",
+    "comment": "ShapeLanguage unlock instructions (chunk_013)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-design.js",
+    "find": "static unlockInstructions() {\n        return \"Complete the Shape language tutorial to start working on the Invasion game.\";\n      }",
+    "replace": "static unlockInstructions() {\n        return \"完成形状语言教程以开始制作入侵游戏。\";\n      }",
+    "comment": "Invasion unlock instructions (chunk_013)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-design.js",
+    "find": "static displayName() {\n      return \"Drawing tutorials\";\n    }",
+    "replace": "static displayName() {\n      return \"绘画教程\";\n    }",
+    "comment": "DrawingTutorials display name in design (chunk_013)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-design.js",
+    "find": "static displayName() {\n        return \"Color schemes\";\n      }",
+    "replace": "static displayName() {\n        return \"配色方案\";\n      }",
+    "comment": "ColorSchemes display name (chunk_013)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-design.js",
+    "find": "static displayName() {\n        return \"Composition\";\n      }",
+    "replace": "static displayName() {\n        return \"构图\";\n      }",
+    "comment": "Composition display name (chunk_013)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-design.js",
+    "find": "static displayName() {\n      return \"Projects\";\n    }",
+    "replace": "static displayName() {\n      return \"项目\";\n    }",
+    "comment": "Projects display name in design (chunk_013)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-design.js",
+    "find": "static displayName() {\n        return \"Invasion\";\n      }",
+    "replace": "static displayName() {\n        return \"入侵\";\n      }",
+    "comment": "Invasion project display name (chunk_013)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-design.js",
+    "find": "static unlockInstructions() {\n        return \"Run the Invasion PICO-8 cartridge to unlock the Invasion project.\";\n      }",
+    "replace": "static unlockInstructions() {\n        return \"运行入侵 PICO-8 卡带以解锁入侵项目。\";\n      }",
+    "comment": "Invasion project unlock instructions (chunk_013)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-design.js",
+    "find": "static unlockInstructions() {\n          return \"Add the Defender entity in the Invasion Design Document to unlock the defender sprite.\";\n        }",
+    "replace": "static unlockInstructions() {\n          return \"在入侵设计文档中添加防御者实体以解锁防御者精灵图。\";\n        }",
+    "comment": "Defender unlock instructions (chunk_013)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-design.js",
+    "find": "static unlockInstructions() {\n          return \"Add the Invader entity in the Invasion Design Document to unlock the invader sprite.\";\n        }",
+    "replace": "static unlockInstructions() {\n          return \"在入侵设计文档中添加入侵者实体以解锁入侵者精灵图。\";\n        }",
+    "comment": "Invader unlock instructions (chunk_013)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-design.js",
+    "find": "static unlockInstructions() {\n          return \"Add the Defender projectile entity in the Invasion Design Document to unlock the defender projectile sprite.\";\n        }",
+    "replace": "static unlockInstructions() {\n          return \"在入侵设计文档中添加防御者弹丸实体以解锁防御者弹丸精灵图。\";\n        }",
+    "comment": "DefenderProjectile unlock instructions (chunk_013)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-design.js",
+    "find": "static unlockInstructions() {\n          return \"Add the Invader projectile entity in the Invasion Design Document to unlock the invader projectile sprite.\";\n        }",
+    "replace": "static unlockInstructions() {\n          return \"在入侵设计文档中添加入侵者弹丸实体以解锁入侵者弹丸精灵图。\";\n        }",
+    "comment": "InvaderProjectile unlock instructions (chunk_013)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-design.js",
+    "find": "static unlockInstructions() {\n          return \"Add the Defender projectile entity in the Invasion Design Document to unlock the defender projectile explosion sprite.\";\n        }",
+    "replace": "static unlockInstructions() {\n          return \"在入侵设计文档中添加防御者弹丸实体以解锁防御者弹丸爆炸精灵图。\";\n        }",
+    "comment": "DefenderProjectileExplosion unlock instructions (chunk_013)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-design.js",
+    "find": "static unlockInstructions() {\n          return \"Add the Invader projectile entity in the Invasion Design Document to unlock the invader projectile explosion sprite.\";\n        }",
+    "replace": "static unlockInstructions() {\n          return \"在入侵设计文档中添加入侵者弹丸实体以解锁入侵者弹丸爆炸精灵图。\";\n        }",
+    "comment": "InvaderProjectileExplosion unlock instructions (chunk_013)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-design.js",
+    "find": "static unlockInstructions() {\n          return \"Add the Shield entity in the Invasion Design Document to unlock the shield sprite.\";\n        }",
+    "replace": "static unlockInstructions() {\n          return \"在入侵设计文档中添加护盾实体以解锁护盾精灵图。\";\n        }",
+    "comment": "Shield unlock instructions (chunk_013)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-design.js",
+    "find": "static displayName() {\n        return \"Maze\";\n      }",
+    "replace": "static displayName() {\n        return \"迷宫\";\n      }",
+    "comment": "Maze display name (chunk_013)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static fullName() {\n      return \"Pixel art fundamentals\";\n    }",
+    "replace": "static fullName() {\n      return \"像素艺术基础\";\n    }",
+    "comment": "PixelArtFundamentals full name (chunk_015)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n      return \"Apps\";\n    }",
+    "replace": "static displayName() {\n      return \"应用\";\n    }",
+    "comment": "Apps display name (chunk_019)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n        return \"Study Plan\";\n      }",
+    "replace": "static displayName() {\n        return \"学习计划\";\n      }",
+    "comment": "StudyPlan display name (chunk_019)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static unlockInstructions() {\n        return \"Complete the Element of art: line tutorial to unlock the Pixeltosh app.\";\n      }",
+    "replace": "static unlockInstructions() {\n        return \"完成艺术元素：线条教程以解锁 Pixeltosh 应用。\";\n      }",
+    "comment": "Pixeltosh unlock instructions (chunk_019)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n        return \"Pixelvision\";\n      }",
+    "replace": "static displayName() {\n        return \"Pixelvision\";\n      }",
+    "comment": "Pixelvision display name - keep as is (chunk_019)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n        return \"Pixel Kid\";\n      }",
+    "replace": "static displayName() {\n        return \"Pixel Kid\";\n      }",
+    "comment": "PixelKid display name - keep as is (chunk_019)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n        return \"Pixel Friend\";\n      }",
+    "replace": "static displayName() {\n        return \"Pixel Friend\";\n      }",
+    "comment": "PixelFriend display name - keep as is (chunk_019)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static unlockInstructions() {\n        return \"Complete the Pixel Art Tools course to unlock the Music app.\";\n      }",
+    "replace": "static unlockInstructions() {\n        return \"完成像素画工具课程以解锁音乐应用。\";\n      }",
+    "comment": "Music app unlock instructions (chunk_019)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n      return \"Study goals\";\n    }",
+    "replace": "static displayName() {\n      return \"学习目标\";\n    }",
+    "comment": "Goals display name (chunk_019)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static unlockInstructions() {\n        return \"Complete the Elements of art: line tutorial to learn about pixel art lines.\";\n      }",
+    "replace": "static unlockInstructions() {\n        return \"完成艺术元素：线条教程以学习像素画线条。\";\n      }",
+    "comment": "Jaggies unlock instructions (chunk_019)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static unlockInstructions() {\n        return \"Complete the Smooth curves challenge to start creating your own pinball machine.\";\n      }",
+    "replace": "static unlockInstructions() {\n        return \"完成平滑曲线挑战以开始创建你自己的弹珠台。\";\n      }",
+    "comment": "Pinball goal unlock instructions (chunk_019)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static unlockInstructions() {\n        return \"Complete the Elements of art: shape tutorial to unlock the Simplification study goal.\";\n      }",
+    "replace": "static unlockInstructions() {\n        return \"完成艺术元素：形状教程以解锁简化学习目标。\";\n      }",
+    "comment": "Simplification unlock instructions (chunk_019)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n      return \"Drawing tutorials\";\n    }",
+    "replace": "static displayName() {\n      return \"绘画教程\";\n    }",
+    "comment": "DrawingTutorials display name (chunk_019)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n        return \"Elements of art\";\n      }",
+    "replace": "static displayName() {\n        return \"艺术元素\";\n      }",
+    "comment": "ElementsOfArt display name (chunk_019)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n          return \"Elements of art: form\";\n        }",
+    "replace": "static displayName() {\n          return \"艺术元素：形态\";\n        }",
+    "comment": "Form display name (chunk_019)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n          return \"Elements of art: space\";\n        }",
+    "replace": "static displayName() {\n          return \"艺术元素：空间\";\n        }",
+    "comment": "Space display name (chunk_019)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n          return \"Elements of art: value\";\n        }",
+    "replace": "static displayName() {\n          return \"艺术元素：明暗\";\n        }",
+    "comment": "Value display name (chunk_019)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n          return \"Elements of art: color\";\n        }",
+    "replace": "static displayName() {\n          return \"艺术元素：色彩\";\n        }",
+    "comment": "Color display name (chunk_019)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n          return \"Elements of art: texture\";\n        }",
+    "replace": "static displayName() {\n          return \"艺术元素：纹理\";\n        }",
+    "comment": "Texture display name (chunk_019)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n        return \"Pixel art\";\n      }",
+    "replace": "static displayName() {\n        return \"像素画\";\n      }",
+    "comment": "PixelArt display name (chunk_019)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n          return \"Pixel art shapes\";\n        }",
+    "replace": "static displayName() {\n          return \"像素画形状\";\n        }",
+    "comment": "Shapes display name (chunk_019)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n          return \"Pixel art rotation\";\n        }",
+    "replace": "static displayName() {\n          return \"像素画旋转\";\n        }",
+    "comment": "Rotation display name (chunk_019)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n          return \"Limited palettes\";\n        }",
+    "replace": "static displayName() {\n          return \"有限调色板\";\n        }",
+    "comment": "LimitedPalettes display name (chunk_019)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n          return \"Technical limitations\";\n        }",
+    "replace": "static displayName() {\n          return \"技术限制\";\n        }",
+    "comment": "TechnicalLimitations display name (chunk_019)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n          return \"Aliasing\";\n        }",
+    "replace": "static displayName() {\n          return \"锯齿\";\n        }",
+    "comment": "Aliasing display name (chunk_019)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n          return \"Dithering\";\n        }",
+    "replace": "static displayName() {\n          return \"抖动\";\n        }",
+    "comment": "Dithering display name (chunk_019)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n        return \"Graphical projections\";\n      }",
+    "replace": "static displayName() {\n        return \"图形投影\";\n      }",
+    "comment": "GraphicalProjections display name (chunk_019)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n          return \"Multiview\";\n        }",
+    "replace": "static displayName() {\n          return \"多视图\";\n        }",
+    "comment": "Multiview display name (chunk_019)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n          return \"Pixel isometric\";\n        }",
+    "replace": "static displayName() {\n          return \"像素等距\";\n        }",
+    "comment": "PixelIsometric display name (chunk_019)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n      return \"Drawing challenges\";\n    }",
+    "replace": "static displayName() {\n      return \"绘画挑战\";\n    }",
+    "comment": "DrawingChallenges display name (chunk_020)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n        return \"Pixel art line art\";\n      }",
+    "replace": "static displayName() {\n        return \"像素画线稿\";\n      }",
+    "comment": "PixelArtLineArt display name (chunk_020)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n          return \"Pixel-perfect lines\";\n        }",
+    "replace": "static displayName() {\n          return \"完美像素线条\";\n        }",
+    "comment": "PixelPerfectLines display name (chunk_020)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static unlockInstructions() {\n          return \"Complete the Pixel art lines tutorial to unlock Pixel-perfect lines evaluation.\";\n        }",
+    "replace": "static unlockInstructions() {\n          return \"完成像素画线条教程以解锁完美像素线条评估。\";\n        }",
+    "comment": "PixelPerfectLines unlock instructions (chunk_020)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n          return \"Even diagonals\";\n        }",
+    "replace": "static displayName() {\n          return \"均匀对角线\";\n        }",
+    "comment": "EvenDiagonals display name (chunk_020)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static unlockInstructions() {\n          return \"Complete the Pixel art diagonals tutorial to unlock Even diagonals evaluation.\";\n        }",
+    "replace": "static unlockInstructions() {\n          return \"完成像素画对角线教程以解锁均匀对角线评估。\";\n        }",
+    "comment": "EvenDiagonals unlock instructions (chunk_020)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n          return \"Smooth curves\";\n        }",
+    "replace": "static displayName() {\n          return \"平滑曲线\";\n        }",
+    "comment": "SmoothCurves display name (chunk_020)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static unlockInstructions() {\n          return \"Complete the Pixel art curves tutorial to unlock Smooth curves evaluation.\";\n        }",
+    "replace": "static unlockInstructions() {\n          return \"完成像素画曲线教程以解锁平滑曲线评估。\";\n        }",
+    "comment": "SmoothCurves unlock instructions (chunk_020)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n          return \"Consistent line width\";\n        }",
+    "replace": "static displayName() {\n          return \"一致的线条宽度\";\n        }",
+    "comment": "ConsistentLineWidth display name (chunk_020)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static unlockInstructions() {\n          return \"Complete the Pixel art line width tutorial to unlock Consistent line width evaluation.\";\n        }",
+    "replace": "static unlockInstructions() {\n          return \"完成像素画线条宽度教程以解锁一致的线条宽度评估。\";\n        }",
+    "comment": "ConsistentLineWidth unlock instructions (chunk_020)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n        return \"Draw quickly\";\n      }",
+    "replace": "static displayName() {\n        return \"快速绘画\";\n      }",
+    "comment": "DrawQuickly display name (chunk_020)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static unlockInstructions() {\n        return \"Complete the Simplification tutorial to unlock the Draw Quickly game on the Pixeltosh.\";\n      }",
+    "replace": "static unlockInstructions() {\n        return \"完成简化教程以解锁 Pixeltosh 上的快速绘画游戏。\";\n      }",
+    "comment": "DrawQuickly unlock instructions (chunk_020)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n          return \"Symbolic drawing\";\n        }",
+    "replace": "static displayName() {\n          return \"符号绘画\";\n        }",
+    "comment": "SymbolicDrawing display name (chunk_020)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n            return \"Easy\";\n          }",
+    "replace": "static displayName() {\n            return \"简单\";\n          }",
+    "comment": "Easy difficulty display name (chunk_020)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n            return \"Medium\";\n          }",
+    "replace": "static displayName() {\n            return \"中等\";\n          }",
+    "replace_all": true,
+    "comment": "Medium difficulty display name (2 occurrences) (chunk_020)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n            return \"Hard\";\n          }",
+    "replace": "static displayName() {\n            return \"困难\";\n          }",
+    "comment": "Hard difficulty display name (chunk_020)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n          return \"Realistic drawing\";\n        }",
+    "replace": "static displayName() {\n          return \"写实绘画\";\n        }",
+    "comment": "RealisticDrawing display name (chunk_020)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n            return \"Simple\";\n          }",
+    "replace": "static displayName() {\n            return \"简单\";\n          }",
+    "comment": "Simple complexity display name (chunk_020)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n            return \"Complex\";\n          }",
+    "replace": "static displayName() {\n            return \"复杂\";\n          }",
+    "comment": "Complex complexity display name (chunk_020)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n        return \"Pixel art readability\";\n      }",
+    "replace": "static displayName() {\n        return \"像素画可读性\";\n      }",
+    "comment": "PixelArtReadability display name (chunk_020)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static unlockInstructions() {\n        return \"Complete the Pixel art size tutorial to unlock the Pixel art readability challenge.\";\n      }",
+    "replace": "static unlockInstructions() {\n        return \"完成像素画尺寸教程以解锁像素画可读性挑战。\";\n      }",
+    "comment": "PixelArtReadability unlock instructions (chunk_020)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n      return \"Projects\";\n    }",
+    "replace": "static displayName() {\n      return \"项目\";\n    }",
+    "comment": "Projects display name (chunk_020)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n        return \"Pinball\";\n      }",
+    "replace": "static displayName() {\n        return \"弹珠台\";\n      }",
+    "comment": "Pinball project display name (chunk_020)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static unlockInstructions() {\n        return \"Complete the Smooth curves challenge to start the Pinball project.\";\n      }",
+    "replace": "static unlockInstructions() {\n        return \"完成平滑曲线挑战以开始弹珠台项目。\";\n      }",
+    "comment": "Pinball project unlock instructions (chunk_020)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n        return \"Block breaker\";\n      }",
+    "replace": "static displayName() {\n        return \"打砖块\";\n      }",
+    "comment": "BlockBreaker display name (chunk_020)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n        return \"Chess\";\n      }",
+    "replace": "static displayName() {\n        return \"国际象棋\";\n      }",
+    "comment": "Chess display name (chunk_020)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n        return \"PixelPaint\";\n      }",
+    "replace": "static displayName() {\n        return \"PixelPaint\";\n      }",
+    "comment": "PixelPaint display name - keep as is (chunk_020)"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "static displayName() {\n        return \"City builder\";\n      }",
+    "replace": "static displayName() {\n        return \"城市建设\";\n      }",
+    "comment": "CityBuilder display name (chunk_020)"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "\"Retropolis Academy of Art Study Guide\"",
+    "replace": "\"Retropolis艺术学院学习指南\"",
+    "comment": "Study guide title (chunk_123)"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "\"Activities\", \"PixelArtAcademy.StudyGuide.Pages.Home\"",
+    "replace": "\"活动\", \"PixelArtAcademy.StudyGuide.Pages.Home\"",
+    "comment": "Activities navigation label (chunk_123)"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "\"Study plan\", \"PixelArtAcademy.StudyGuide.Pages.Home\"",
+    "replace": "\"学习计划\", \"PixelArtAcademy.StudyGuide.Pages.Home\"",
+    "comment": "Study plan navigation label (chunk_123)"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "\"About\", \"PixelArtAcademy.StudyGuide.Pages.Home\"",
+    "replace": "\"关于\", \"PixelArtAcademy.StudyGuide.Pages.Home\"",
+    "comment": "About navigation label (chunk_123)"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "title: \"Select whether to track your own progress or one of your characters.\"",
+    "replace": "title: \"选择追踪您自己的进度还是您的一个角色。\"",
+    "comment": "User selection tooltip (chunk_123)"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "\"\\n            User:\\n            \"",
+    "replace": "\"\\n            用户：\\n            \"",
+    "comment": "User label in menu (chunk_123)"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "\"\\n        Fullscreen:\\n        \"",
+    "replace": "\"\\n        全屏：\\n        \"",
+    "comment": "Fullscreen label in menu (chunk_123)"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "\"\\n          on\\n        \"",
+    "replace": "\"\\n          开启\\n        \"",
+    "comment": "Fullscreen on state (chunk_123)"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "\"\\n          off\\n        \"",
+    "replace": "\"\\n          关闭\\n        \"",
+    "comment": "Fullscreen off state (chunk_123)"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "\"\\n          Smallprint\\n        \"",
+    "replace": "\"\\n          小字条款\\n        \"",
+    "comment": "Smallprint link text (chunk_123)"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "\"\\n        Save settings: \"",
+    "replace": "\"\\n        保存设置：\"",
+    "comment": "Save settings label (chunk_123)"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "\"\\n        Save game state: \"",
+    "replace": "\"\\n        保存游戏状态：\"",
+    "comment": "Save game state label (chunk_123)"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "\"\\n        Remember signed-in user: \"",
+    "replace": "\"\\n        记住已登录用户：\"",
+    "comment": "Remember signed-in user label (chunk_123)"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "\"\\n          Task:\\n          \"",
+    "replace": "\"\\n          任务：\\n          \"",
+    "comment": "Task label in submissions (chunk_124)"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "return name || 'Anonymous';",
+    "replace": "return name || '匿名';",
+    "comment": "Anonymous user name (chunk_124)"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "\"\\n          The Study Guide offers freely-available learning materials we developed at the\\n          \"",
+    "replace": "\"\\n          学习指南提供了我们在\\n          \"",
+    "comment": "About page text part 1 (chunk_124)"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "\"\\n        <p>\\n          It incorporates other online resources and provides practical activities\\n          in the field of art, including game development. It is a work in progress with\\n          more volumes and activities on the way.\\n        </p>\\n      \"",
+    "replace": "\"\\n        <p>\\n          它整合了其他在线资源，并提供艺术领域的实践活动，包括游戏开发。这是一个正在进行中的工作，将会有更多卷册和活动推出。\\n        </p>\\n      \"",
+    "comment": "About page text part 2 (chunk_124)"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "<h2>Table of Contents</h2>",
+    "replace": "<h2>目录</h2>",
+    "comment": "Table of contents heading (chunk_125)"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "title=\"You\\'ve completed all available activities.\"></span>",
+    "replace": "title=\"你已完成所有可用活动。\"></span>",
+    "comment": "All tasks completed indicator tooltip (chunk_125)"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "title=\"You\\'ve completed all required activities. There are some optional ones left.\"></span>",
+    "replace": "title=\"你已完成所有必修活动。还有一些可选活动。\"></span>",
+    "comment": "Completed indicator tooltip (chunk_125)"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "title=\"You\\'ve completed some of the activities. More are required to complete the chapter.\"></span>",
+    "replace": "title=\"你已完成部分活动。需要完成更多活动以完成本章节。\"></span>",
+    "comment": "Started indicator tooltip (chunk_125)"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "<h1>Study Guide Administration</h1>",
+    "replace": "<h1>学习指南管理</h1>",
+    "comment": "Admin page title (chunk_125)"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "<p>Tools:</p>",
+    "replace": "<p>工具：</p>",
+    "comment": "Tools label (chunk_125)"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "\"Activities\")), \":\\n        Edit activity goals and tasks.\")",
+    "replace": "\"Activities\")), \":\\n        编辑活动目标和任务。\")",
+    "comment": "Activities admin link description (chunk_125)"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "\"Books\")), \":\\n        Edit books of activities.\")",
+    "replace": "\"Books\")), \":\\n        编辑活动书籍。\")",
+    "comment": "Books admin link description (chunk_125)"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "<h1>Study Guide activities</h1>",
+    "replace": "<h1>学习指南活动</h1>",
+    "comment": "Activities admin page title (chunk_126)"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "if (!(newGoalId = prompt(\"Rename goal to\", activity.goalId))) {",
+    "replace": "if (!(newGoalId = prompt(\"重命名目标为\", activity.goalId))) {",
+    "comment": "Rename goal prompt (chunk_126)"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "if (!confirm(\"Remove activity \".concat(activity.goalId, \"?\"))) {",
+    "replace": "if (!confirm(\"移除活动 \".concat(activity.goalId, \"？\"))) {",
+    "comment": "Remove activity confirmation (chunk_126)"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "if (!(id = prompt('Insert task with ID'))) {",
+    "replace": "if (!(id = prompt('插入任务ID'))) {",
+    "replace_all": true,
+    "comment": "Insert task ID prompt (2 occurrences) (chunk_127)"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "\"Title: \"",
+    "replace": "\"标题：\"",
+    "comment": "Title label in book admin (chunk_127)"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "\"Design:\\n      \"",
+    "replace": "\"设计：\\n      \"",
+    "comment": "Design label in book admin (chunk_127)"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "\"Size:\\n        \"",
+    "replace": "\"尺寸：\\n        \"",
+    "comment": "Size label in book admin (chunk_127)"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "\"Width: \"",
+    "replace": "\"宽度：\"",
+    "comment": "Width label in book admin (chunk_127)"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "\"px (≤ 320)\"",
+    "replace": "\"像素 (≤ 320)\"",
+    "comment": "Pixel unit with constraint (chunk_127)"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "\"Height: \"",
+    "replace": "\"高度：\"",
+    "comment": "Height label in book admin (chunk_127)"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "\"Thickness: \"",
+    "replace": "\"厚度：\"",
+    "comment": "Thickness label in book admin (chunk_127)"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "\"px (≥ 25)\"",
+    "replace": "\"像素 (≥ 25)\"",
+    "comment": "Pixel unit with constraint (chunk_127)"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "\"Class: \"",
+    "replace": "\"类：\"",
+    "comment": "Class label in book admin (chunk_127)"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "\"Contents:\\n      \"",
+    "replace": "\"内容：\\n      \"",
+    "comment": "Contents label in book admin (chunk_127)"
+  },
+  {
+    "file": "retronator_landsofillusions-ui.js",
+    "find": "Main volume",
+    "replace": "主音量",
+    "comment": "Main volume setting"
+  },
+  {
+    "file": "retronator_landsofillusions-ui.js",
+    "find": "Sounds",
+    "replace": "音效",
+    "comment": "Sounds volume setting"
+  },
+  {
+    "file": "retronator_landsofillusions-ui.js",
+    "find": "\"\\n    Ambient: \"",
+    "replace": "\"\\n    环境音: \"",
+    "comment": "Ambient sounds volume setting"
+  },
+  {
+    "file": "retronator_landsofillusions-ui.js",
+    "find": "\"\\n    Music: \"",
+    "replace": "\"\\n    音乐: \"",
+    "comment": "Music volume setting"
+  },
+  {
+    "file": "retronator_landsofillusions-ui.js",
+    "find": "Right click",
+    "replace": "右键点击",
+    "comment": "Right click action setting"
+  },
+  {
+    "file": "retronator_landsofillusions-ui.js",
+    "find": "none",
+    "replace": "无",
+    "comment": "None option for right click action"
+  },
+  {
+    "file": "retronator_landsofillusions-ui.js",
+    "find": "Eraser",
+    "replace": "橡皮擦",
+    "comment": "Eraser tool for right click action"
+  },
+  {
+    "file": "retronator_landsofillusions-ui.js",
+    "find": "Back button",
+    "replace": "返回按钮",
+    "comment": "Back button setting"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "PixelPerfectLines: \"Pixel-perfect lines\"",
+    "replace": "PixelPerfectLines: \"完美像素线条\"",
+    "comment": "评估标准: Pixel-perfect lines"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "EvenDiagonals: \"Even diagonals\"",
+    "replace": "EvenDiagonals: \"均匀对角线\"",
+    "comment": "评估标准: Even diagonals"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "SmoothCurves: \"Smooth curves\"",
+    "replace": "SmoothCurves: \"平滑曲线\"",
+    "comment": "评估标准: Smooth curves"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "ConsistentLineWidth: \"Consistent line width\"",
+    "replace": "ConsistentLineWidth: \"一致线条宽度\"",
+    "comment": "评估标准: Consistent line width"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "<th>Criteria</th>",
+    "replace": "<th>标准</th>",
+    "replace_all": true,
+    "comment": "评估表头: Criteria"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "<th>Score</th>",
+    "replace": "<th>分数</th>",
+    "replace_all": true,
+    "comment": "评估表头: Score"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "<th>Count</th>",
+    "replace": "<th>数量</th>",
+    "comment": "评估表头: Count"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "<th>Req.</th>",
+    "replace": "<th>必需</th>",
+    "replace_all": true,
+    "comment": "评估表头: Req."
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "Doubles: \"Doubles\"",
+    "replace": "Doubles: \"重叠像素\"",
+    "comment": "像素完美子标准: Doubles"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "Corners: \"Corners\"",
+    "replace": "Corners: \"拐角\"",
+    "comment": "像素完美子标准: Corners"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "SegmentLengths: \"Segment lengths\"",
+    "replace": "SegmentLengths: \"线段长度\"",
+    "comment": "对角线子标准: Segment lengths"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "EndSegments: \"End segments\"",
+    "replace": "EndSegments: \"端点线段\"",
+    "comment": "对角线子标准: End segments"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "Even: \"Even (A)\"",
+    "replace": "Even: \"均匀 (A)\"",
+    "comment": "对角线分类: Even"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "Alternating: \"Alternating (A–C)\"",
+    "replace": "Alternating: \"交替 (A–C)\"",
+    "comment": "对角线分类: Alternating"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "Broken: \"Broken (C–F)\"",
+    "replace": "Broken: \"不规则 (C–F)\"",
+    "comment": "对角线分类: Broken"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "Matching: \"Matching (A)\"",
+    "replace": "Matching: \"匹配 (A)\"",
+    "comment": "对角线分类: Matching"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "Shorter: \"Shorter (A–F)\"",
+    "replace": "Shorter: \"较短 (A–F)\"",
+    "comment": "对角线分类: Shorter"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "AbruptSegmentLengthChanges: 'Abrupt length changes'",
+    "replace": "AbruptSegmentLengthChanges: '突变长度变化'",
+    "comment": "曲线子标准: Abrupt length changes"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "StraightParts: 'Straight parts'",
+    "replace": "StraightParts: '直线部分'",
+    "comment": "曲线子标准: Straight parts"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "InflectionPoints: 'Inflection points'",
+    "replace": "InflectionPoints: '拐点'",
+    "comment": "曲线子标准: Inflection points"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "Minor: 'Minor (B–D)'",
+    "replace": "Minor: '轻微 (B–D)'",
+    "comment": "曲线分类: Minor"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "Major: 'Major (F)'",
+    "replace": "Major: '严重 (F)'",
+    "comment": "曲线分类: Major"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "End: 'At the ends (A-C)'",
+    "replace": "End: '端部 (A-C)'",
+    "comment": "曲线分类: At the ends"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "Middle: 'In the middle (A-F)'",
+    "replace": "Middle: '中部 (A-F)'",
+    "comment": "曲线分类: In the middle"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "Isolated: 'Isolated (A)'",
+    "replace": "Isolated: '孤立 (A)'",
+    "comment": "曲线分类: Isolated"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "Sparse: 'Sparse (B–D)'",
+    "replace": "Sparse: '稀疏 (B–D)'",
+    "comment": "曲线分类: Sparse"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "Dense: 'Dense (F)'",
+    "replace": "Dense: '密集 (F)'",
+    "comment": "曲线分类: Dense"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "IndividualConsistency: 'Individual line width'",
+    "replace": "IndividualConsistency: '单线宽度'",
+    "comment": "线宽子标准: Individual line width"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "GlobalConsistency: 'Uniform line type'",
+    "replace": "GlobalConsistency: '统一线条类型'",
+    "comment": "线宽子标准: Uniform line type"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "Consistent: \"Consistent (A)\"",
+    "replace": "Consistent: \"一致 (A)\"",
+    "comment": "线宽分类: Consistent"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "Varying: \"Varying (B–F)\"",
+    "replace": "Varying: \"不一致 (B–F)\"",
+    "comment": "线宽分类: Varying (B-F)"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "Thin: 'Thin'",
+    "replace": "Thin: '细线'",
+    "comment": "线宽分类: Thin"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "Thick: 'Thick'",
+    "replace": "Thick: '粗线'",
+    "comment": "线宽分类: Thick"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "Wide: 'Wide'",
+    "replace": "Wide: '宽线'",
+    "comment": "线宽分类: Wide"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "Varying: 'Varying'",
+    "replace": "Varying: '不一致'",
+    "comment": "线宽分类: Varying"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-studyplan.js",
+    "find": "\"\\n      Active goals\\n      \"",
+    "replace": "\"\\n      活跃目标\\n      \"",
+    "comment": "学习计划: Active goals 标题"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-studyplan.js",
+    "find": "\"\\n      Gained interests (\"",
+    "replace": "\"\\n      已获得兴趣 (\"",
+    "comment": "学习计划: Gained interests 标题"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-studyplan.js",
+    "find": "<span class=\"checkmark\"></span> Completed",
+    "replace": "<span class=\"checkmark\"></span> 已完成",
+    "comment": "学习计划: Completed 状态"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-studyplan.js",
+    "find": "flagText = \"Click on the flagpole\\nto mark this goal complete\"",
+    "replace": "flagText = \"点击旗杆\\n将此目标标记为已完成\"",
+    "comment": "学习计划: 标记目标完成提示"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-studyplan.js",
+    "find": "flagText = \"Click on the flag\\nto show tutorials again\"",
+    "replace": "flagText = \"点击旗帜\\n重新显示教程\"",
+    "comment": "学习计划: 重新显示教程提示"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-studyplan.js",
+    "find": "flagText = \"Click on the flagpole\\nto hide optional tutorials\"",
+    "replace": "flagText = \"点击旗杆\\n隐藏可选教程\"",
+    "comment": "学习计划: 隐藏可选教程提示"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-studyplan.js",
+    "find": "value: \"Complete optional tutorials\"",
+    "replace": "value: \"完成可选教程\"",
+    "comment": "学习计划: 完成可选教程"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-studyplan.js",
+    "find": "value: \"Click on the arrow\\nto continue to a new goal\"",
+    "replace": "value: \"点击箭头\\n继续下一个目标\"",
+    "comment": "学习计划: 继续新目标提示"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-studyplan.js",
+    "find": "value: \"Add a new goal\\nto continue to\"",
+    "replace": "value: \"添加新目标\\n以继续\"",
+    "comment": "学习计划: 添加新目标提示"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "Before you continue, you should complete\\n      ",
+    "replace": "在继续之前，您应该完成\\n      ",
+    "comment": "学习指南: 前置任务提示1"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "Before you can mark that you've read this section,\\n          you need to complete ",
+    "replace": "在标记已阅读此部分之前，\\n          您需要完成",
+    "comment": "学习指南: 前置任务提示2"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "Before you can submit this task,\\n          you need to complete ",
+    "replace": "在提交此任务之前，\\n          您需要完成",
+    "comment": "学习指南: 前置任务提示3"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": " the previous tasks:",
+    "replace": "之前的任务：",
+    "replace_all": true,
+    "comment": "学习指南: the previous tasks (多处)"
+  },
+  {
+    "file": "retronator_pixelartacademy-practice.js",
+    "find": "    }, function() {\n      return \"Edit\";\n    }, function() {\n      return \"Start\";\n    })",
+    "replace": "    }, function() {\n      return \"编辑\";\n    }, function() {\n      return \"开始\";\n    })",
+    "comment": "练习: Edit/Start 按钮"
+  },
+  {
+    "file": "retronator_pixelartacademy-practice.js",
+    "find": "        }, \"Download\")",
+    "replace": "        }, \"下载\")",
+    "comment": "练习: Download 按钮"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Pencil\";",
+    "replace": "    static displayName() {\n      return \"铅笔\";",
+    "comment": "教程: Pencil"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Eraser\";",
+    "replace": "    static displayName() {\n      return \"橡皮擦\";",
+    "comment": "教程: Eraser"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Color fill\";",
+    "replace": "    static displayName() {\n      return \"颜色填充\";",
+    "comment": "教程: Color fill"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Color fill 2\";",
+    "replace": "    static displayName() {\n      return \"颜色填充 2\";",
+    "comment": "教程: Color fill 2"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Color fill 3\";",
+    "replace": "    static displayName() {\n      return \"颜色填充 3\";",
+    "comment": "教程: Color fill 3"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Basic tools\";",
+    "replace": "    static displayName() {\n      return \"基础工具\";",
+    "comment": "教程: Basic tools"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Shortcuts\";",
+    "replace": "    static displayName() {\n      return \"快捷键\";",
+    "comment": "教程: Shortcuts"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"References\";",
+    "replace": "    static displayName() {\n      return \"参考图\";",
+    "comment": "教程: References"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Color swatches\";",
+    "replace": "    static displayName() {\n      return \"色板\";",
+    "comment": "教程: Color swatches"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Color picking\";",
+    "replace": "    static displayName() {\n      return \"取色\";",
+    "comment": "教程: Color picking"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Quick color picking\";",
+    "replace": "    static displayName() {\n      return \"快速取色\";",
+    "comment": "教程: Quick color picking"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Zoom\";",
+    "replace": "    static displayName() {\n      return \"缩放\";",
+    "comment": "教程: Zoom"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Move image\";",
+    "replace": "    static displayName() {\n      return \"移动图像\";",
+    "comment": "教程: Move image"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Undo/redo\";",
+    "replace": "    static displayName() {\n      return \"撤销/重做\";",
+    "comment": "教程: Undo/redo"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Lines\";",
+    "replace": "    static displayName() {\n      return \"线条\";",
+    "comment": "教程: Lines"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Straight lines\";",
+    "replace": "    static displayName() {\n      return \"直线\";",
+    "comment": "教程: Straight lines"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Curved lines\";",
+    "replace": "    static displayName() {\n      return \"曲线\";",
+    "comment": "教程: Curved lines"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Broken lines\";",
+    "replace": "    static displayName() {\n      return \"折线\";",
+    "comment": "教程: Broken lines"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Broken lines 2\";",
+    "replace": "    static displayName() {\n      return \"折线 2\";",
+    "comment": "教程: Broken lines 2"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Outlines\";",
+    "replace": "    static displayName() {\n      return \"轮廓线\";",
+    "comment": "教程: Outlines"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Outlines 2\";",
+    "replace": "    static displayName() {\n      return \"轮廓线 2\";",
+    "comment": "教程: Outlines 2"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Edges\";",
+    "replace": "    static displayName() {\n      return \"边缘\";",
+    "comment": "教程: Edges"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Patterns\";",
+    "replace": "    static displayName() {\n      return \"图案\";",
+    "comment": "教程: Patterns"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Basic shapes\";",
+    "replace": "    static displayName() {\n      return \"基础形状\";",
+    "comment": "教程: Basic shapes"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Combining basic shapes\";",
+    "replace": "    static displayName() {\n      return \"组合基础形状\";",
+    "comment": "教程: Combining basic shapes"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Transformed basic shapes\";",
+    "replace": "    static displayName() {\n      return \"变换基础形状\";",
+    "comment": "教程: Transformed basic shapes"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Basic shapes breakdown\";",
+    "replace": "    static displayName() {\n      return \"基础形状分解\";",
+    "comment": "教程: Basic shapes breakdown"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Solid shapes\";",
+    "replace": "    static displayName() {\n      return \"实心形状\";",
+    "comment": "教程: Solid shapes"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Organic shapes\";",
+    "replace": "    static displayName() {\n      return \"有机形状\";",
+    "comment": "教程: Organic shapes"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Organic shapes 2\";",
+    "replace": "    static displayName() {\n      return \"有机形状 2\";",
+    "comment": "教程: Organic shapes 2"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Detailing\";",
+    "replace": "    static displayName() {\n      return \"细节处理\";",
+    "comment": "教程: Detailing"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Intended and perceived lines\";",
+    "replace": "    static displayName() {\n      return \"预期线条与感知线条\";",
+    "comment": "教程: Intended and perceived lines"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Jaggies\";",
+    "replace": "    static displayName() {\n      return \"锯齿\";",
+    "comment": "教程: Jaggies"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Corners\";",
+    "replace": "    static displayName() {\n      return \"拐角\";",
+    "comment": "教程: Corners"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Line art cleanup\";\n    }\n    static description() {\n      return \"练习清理重复像素和角落。\";",
+    "replace": "    static displayName() {\n      return \"线稿清理\";\n    }\n    static description() {\n      return \"练习清理重复像素和角落。\";",
+    "comment": "教程: Line art cleanup (线条章节)"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Jaggies 2\";",
+    "replace": "    static displayName() {\n      return \"锯齿 2\";",
+    "comment": "教程: Jaggies 2"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Even diagonals\";",
+    "replace": "    static displayName() {\n      return \"均匀对角线\";",
+    "comment": "教程: Even diagonals"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Constraining line angles\";",
+    "replace": "    static displayName() {\n      return \"约束线条角度\";",
+    "comment": "教程: Constraining line angles"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Uneven diagonals\";",
+    "replace": "    static displayName() {\n      return \"不均匀对角线\";",
+    "comment": "教程: Uneven diagonals"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Uneven diagonals as an art style\";",
+    "replace": "    static displayName() {\n      return \"不均匀对角线作为艺术风格\";",
+    "comment": "教程: Uneven diagonals as an art style"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Alternating and broken segment lengths\";",
+    "replace": "    static displayName() {\n      return \"交替和不规则线段长度\";",
+    "comment": "教程: Alternating and broken segment lengths"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Matching end segments\";",
+    "replace": "    static displayName() {\n      return \"匹配端点线段\";",
+    "comment": "教程: Matching end segments"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Smooth curves\";",
+    "replace": "    static displayName() {\n      return \"平滑曲线\";",
+    "comment": "教程: Smooth curves"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Circles\";",
+    "replace": "    static displayName() {\n      return \"圆形\";",
+    "comment": "教程: Circles"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Long curves\";",
+    "replace": "    static displayName() {\n      return \"长曲线\";",
+    "comment": "教程: Long curves"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Abrupt segment length changes\";",
+    "replace": "    static displayName() {\n      return \"突变线段长度变化\";",
+    "comment": "教程: Abrupt segment length changes"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Straight parts\";",
+    "replace": "    static displayName() {\n      return \"直线部分\";",
+    "comment": "教程: Straight parts"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Inflection points\";",
+    "replace": "    static displayName() {\n      return \"拐点\";",
+    "comment": "教程: Inflection points"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Line art cleanup\";\n    }\n    static description() {\n      return \"练习平滑你的曲线。\";",
+    "replace": "    static displayName() {\n      return \"线稿清理\";\n    }\n    static description() {\n      return \"练习平滑你的曲线。\";",
+    "comment": "教程: Line art cleanup (曲线章节)"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Line width\";",
+    "replace": "    static displayName() {\n      return \"线条宽度\";",
+    "comment": "教程: Line width"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Thin lines\";",
+    "replace": "    static displayName() {\n      return \"细线\";",
+    "comment": "教程: Thin lines"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Thick lines\";",
+    "replace": "    static displayName() {\n      return \"粗线\";",
+    "comment": "教程: Thick lines"
+  },
+  {
+    "file": "retronator_pixelartacademy-tutorials.js",
+    "find": "    static displayName() {\n      return \"Wide lines\";",
+    "replace": "    static displayName() {\n      return \"宽线\";",
+    "comment": "教程: Wide lines"
+  },
+  {
+    "file": "retronator_pixelartacademy-studyguide.js",
+    "find": "return \"one of\"",
+    "replace": "return \"其中一个\"",
+    "replace_all": true,
+    "comment": "学习指南: one of (前置任务条件)"
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
+    "find": "prompt: \"One color or more?\"",
+    "replace": "prompt: \"单色还是多色？\"",
+    "comment": "挑战选择: One color or more?"
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
+    "find": "prompt: \"Big or small?\"",
+    "replace": "prompt: \"大还是小？\"",
+    "comment": "挑战选择: Big or small?"
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
+    "find": "prompt: \"What would you like to draw?\"",
+    "replace": "prompt: \"你想画什么？\"",
+    "comment": "挑战选择: What would you like to draw?"
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
+    "find": "prompt: \"Good or bad?\"",
+    "replace": "prompt: \"好人还是坏人？\"",
+    "comment": "挑战选择: Good or bad?"
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
+    "find": "prompt: \"Vehicles or other objects?\"",
+    "replace": "prompt: \"载具还是其他物体？\"",
+    "comment": "挑战选择: Vehicles or other objects?"
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
+    "find": "name: \"Monochrome\"",
+    "replace": "name: \"单色\"",
+    "comment": "挑战选项: Monochrome"
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
+    "find": "name: \"Multiple\"",
+    "replace": "name: \"多色\"",
+    "comment": "挑战选项: Multiple"
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
+    "find": "name: \"Small\"",
+    "replace": "name: \"小\"",
+    "comment": "挑战选项: Small"
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
+    "find": "name: \"Big\"",
+    "replace": "name: \"大\"",
+    "comment": "挑战选项: Big"
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
+    "find": "name: \"Character\"",
+    "replace": "name: \"角色\"",
+    "comment": "挑战选项: Character"
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
+    "find": "name: \"Something else\"",
+    "replace": "name: \"其他东西\"",
+    "comment": "挑战选项: Something else"
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
+    "find": "name: \"Hero\"",
+    "replace": "name: \"英雄\"",
+    "comment": "挑战选项: Hero"
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
+    "find": "name: \"Enemy\"",
+    "replace": "name: \"敌人\"",
+    "comment": "挑战选项: Enemy"
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
+    "find": "name: \"Vehicle\"",
+    "replace": "name: \"载具\"",
+    "comment": "挑战选项: Vehicle"
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
+    "find": "name: \"Other\"",
+    "replace": "name: \"其他\"",
+    "comment": "挑战选项: Other"
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
+    "find": "return \"Complete the Colors tutorial to unlock colored sprites.\";",
+    "replace": "return \"完成颜色教程以解锁彩色精灵。\";",
+    "comment": "挑战: unlock colored sprites"
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
+    "find": "return \"Complete the Helpers tutorial to unlock big sprites.\";",
+    "replace": "return \"完成辅助工具教程以解锁大尺寸精灵。\";",
+    "comment": "挑战: unlock big sprites"
   }
 ]
