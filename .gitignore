@@ -18,5 +18,3 @@ ai_chunks/
 # PyInstaller build artifacts
 build/
 dist/
-*.spec
-*.exe
