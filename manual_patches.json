@@ -2096,5 +2096,132 @@
     "find": "return \"Complete the Helpers tutorial to unlock big sprites.\";",
     "replace": "return \"完成辅助工具教程以解锁大尺寸精灵。\";",
     "comment": "挑战: unlock big sprites"
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
+    "find": "name: _.titleCase(label),",
+    "replace": "name: this.constructor.translatedLabels && this.constructor.translatedLabels[label] || _.titleCase(label),",
+    "comment": "Use translated icon names without changing classifier labels"
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
+    "find": "title: 'Transport'",
+    "replace": "title: '交通'",
+    "comment": "Icon book part title: Transport"
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
+    "find": "title: 'Buildings'",
+    "replace": "title: '建筑'",
+    "comment": "Icon book part title: Buildings"
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
+    "find": "title: 'Tools and Weapons'",
+    "replace": "title: '工具与武器'",
+    "comment": "Icon book part title: Tools and Weapons"
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
+    "find": "title: 'Furniture'",
+    "replace": "title: '家具'",
+    "comment": "Icon book part title: Furniture"
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
+    "find": "title: 'Musical Instruments'",
+    "replace": "title: '乐器'",
+    "comment": "Icon book part title: Musical Instruments"
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
+    "find": "title: 'Household Items'",
+    "replace": "title: '家居用品'",
+    "comment": "Icon book part title: Household Items"
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
+    "find": "title: 'Food'",
+    "replace": "title: '食物'",
+    "comment": "Icon book part title: Food"
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
+    "find": "title: \"Down on the farm\"",
+    "replace": "title: \"农场里\"",
+    "comment": "Icon book part title: Down on the farm"
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
+    "find": "title: \"Among the trees\"",
+    "replace": "title: \"林间\"",
+    "comment": "Icon book part title: Among the trees"
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
+    "find": "title: \"In the air\"",
+    "replace": "title: \"空中\"",
+    "comment": "Icon book part title: In the air"
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
+    "find": "title: \"By the water\"",
+    "replace": "title: \"水边\"",
+    "comment": "Icon book part title: By the water"
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
+    "find": "title: \"Wilderness\"",
+    "replace": "title: \"荒野\"",
+    "comment": "Icon book part title: Wilderness"
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
+    "find": "title: \"On the ground\"",
+    "replace": "title: \"地面上\"",
+    "comment": "Icon book part title: On the ground"
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
+    "find": "title: \"Fruit\"",
+    "replace": "title: \"水果\"",
+    "comment": "Icon book part title: Fruit"
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
+    "find": "title: \"Plants\"",
+    "replace": "title: \"植物\"",
+    "comment": "Icon book part title: Plants"
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
+    "find": "Volume1.labels = {\n    transport: ['airplane', 'bicycle', 'car', 'helicopter', 'hot air balloon', 'pickup truck', 'sailboat'],\n    buildings: ['castle', 'church', 'skyscraper', 'windmill'],\n    toolsAndWeapons: ['axe', 'cannon', 'hammer', 'knife', 'rifle', 'saw', 'scissors', 'sword'],\n    furniture: ['bench', 'chair', 'couch', 'door', 'table'],\n    musicalInstruments: ['guitar', 'harp', 'piano', 'saxophone', 'trumpet', 'violin'],\n    householdItems: ['alarm clock', 'bottle', 'candle', 'cup', 'eyeglasses', 'fan', 'hat', 'hourglass', 'shoe', 'spoon', 'teapot', 'teddy bear', 'umbrella'],\n    food: ['bread', 'hamburger', 'pizza']\n  };",
+    "replace": "Volume1.labels = {\n    transport: ['airplane', 'bicycle', 'car', 'helicopter', 'hot air balloon', 'pickup truck', 'sailboat'],\n    buildings: ['castle', 'church', 'skyscraper', 'windmill'],\n    toolsAndWeapons: ['axe', 'cannon', 'hammer', 'knife', 'rifle', 'saw', 'scissors', 'sword'],\n    furniture: ['bench', 'chair', 'couch', 'door', 'table'],\n    musicalInstruments: ['guitar', 'harp', 'piano', 'saxophone', 'trumpet', 'violin'],\n    householdItems: ['alarm clock', 'bottle', 'candle', 'cup', 'eyeglasses', 'fan', 'hat', 'hourglass', 'shoe', 'spoon', 'teapot', 'teddy bear', 'umbrella'],\n    food: ['bread', 'hamburger', 'pizza']\n  };\n  Volume1.translatedLabels = {\n    airplane: '飞机',\n    bicycle: '自行车',\n    car: '汽车',\n    helicopter: '直升机',\n    'hot air balloon': '热气球',\n    'pickup truck': '皮卡车',\n    sailboat: '帆船',\n    castle: '城堡',\n    church: '教堂',\n    skyscraper: '摩天楼',\n    windmill: '风车',\n    axe: '斧头',\n    cannon: '大炮',\n    hammer: '锤子',\n    knife: '刀',\n    rifle: '步枪',\n    saw: '锯子',\n    scissors: '剪刀',\n    sword: '剑',\n    bench: '长椅',\n    chair: '椅子',\n    couch: '沙发',\n    door: '门',\n    table: '桌子',\n    guitar: '吉他',\n    harp: '竖琴',\n    piano: '钢琴',\n    saxophone: '萨克斯',\n    trumpet: '小号',\n    violin: '小提琴',\n    'alarm clock': '闹钟',\n    bottle: '瓶子',\n    candle: '蜡烛',\n    cup: '杯子',\n    eyeglasses: '眼镜',\n    fan: '风扇',\n    hat: '帽子',\n    hourglass: '沙漏',\n    shoe: '鞋子',\n    spoon: '勺子',\n    teapot: '茶壶',\n    'teddy bear': '泰迪熊',\n    umbrella: '雨伞',\n    bread: '面包',\n    hamburger: '汉堡',\n    pizza: '披萨'\n  };",
+    "comment": "Translated display names for icon book volume 1"
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
+    "find": "Volume2.labels = {\n    farmAndPets: ['cat', 'cow', 'dog', 'duck', 'horse', 'mouse', 'pig', 'rabbit', 'sheep'],\n    forest: ['bear', 'hedgehog', 'raccoon', 'squirrel'],\n    air: ['bat', 'bee', 'butterfly', 'owl', 'parrot'],\n    water: ['crab', 'dolphin', 'fish', 'frog', 'lobster', 'penguin', 'shark', 'swan', 'turtle'],\n    wilderness: ['camel', 'elephant', 'giraffe', 'kangaroo', 'lion', 'rhinoceros', 'tiger', 'zebra'],\n    ground: ['ant', 'scorpion', 'snail', 'snake', 'spider'],\n    fruit: ['apple', 'banana', 'pear', 'pineapple', 'strawberry'],\n    plants: ['flower', 'mushroom', 'tree']\n  };",
+    "replace": "Volume2.labels = {\n    farmAndPets: ['cat', 'cow', 'dog', 'duck', 'horse', 'mouse', 'pig', 'rabbit', 'sheep'],\n    forest: ['bear', 'hedgehog', 'raccoon', 'squirrel'],\n    air: ['bat', 'bee', 'butterfly', 'owl', 'parrot'],\n    water: ['crab', 'dolphin', 'fish', 'frog', 'lobster', 'penguin', 'shark', 'swan', 'turtle'],\n    wilderness: ['camel', 'elephant', 'giraffe', 'kangaroo', 'lion', 'rhinoceros', 'tiger', 'zebra'],\n    ground: ['ant', 'scorpion', 'snail', 'snake', 'spider'],\n    fruit: ['apple', 'banana', 'pear', 'pineapple', 'strawberry'],\n    plants: ['flower', 'mushroom', 'tree']\n  };\n  Volume2.translatedLabels = {\n    cat: '猫',\n    cow: '奶牛',\n    dog: '狗',\n    duck: '鸭子',\n    horse: '马',\n    mouse: '老鼠',\n    pig: '猪',\n    rabbit: '兔子',\n    sheep: '绵羊',\n    bear: '熊',\n    hedgehog: '刺猬',\n    raccoon: '浣熊',\n    squirrel: '松鼠',\n    bat: '蝙蝠',\n    bee: '蜜蜂',\n    butterfly: '蝴蝶',\n    owl: '猫头鹰',\n    parrot: '鹦鹉',\n    crab: '螃蟹',\n    dolphin: '海豚',\n    fish: '鱼',\n    frog: '青蛙',\n    lobster: '龙虾',\n    penguin: '企鹅',\n    shark: '鲨鱼',\n    swan: '天鹅',\n    turtle: '乌龟',\n    camel: '骆驼',\n    elephant: '大象',\n    giraffe: '长颈鹿',\n    kangaroo: '袋鼠',\n    lion: '狮子',\n    rhinoceros: '犀牛',\n    tiger: '老虎',\n    zebra: '斑马',\n    ant: '蚂蚁',\n    scorpion: '蝎子',\n    snail: '蜗牛',\n    snake: '蛇',\n    spider: '蜘蛛',\n    apple: '苹果',\n    banana: '香蕉',\n    pear: '梨',\n    pineapple: '菠萝',\n    strawberry: '草莓',\n    flower: '花',\n    mushroom: '蘑菇',\n    tree: '树'\n  };",
+    "comment": "Translated display names for icon book volume 2"
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
+    "find": "}, \"Part \", Blaze.View(\"lookup:number\", function() {",
+    "replace": "}, \"第\", Blaze.View(\"lookup:number\", function() {",
+    "comment": "Icon book table of contents part prefix",
+    "replace_all": true
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
+    "find": "}), \" - \", Blaze.View(\"lookup:title\", function() {",
+    "replace": "}), \"部分 - \", Blaze.View(\"lookup:title\", function() {",
+    "comment": "Icon book table of contents part suffix"
+  },
+  {
+    "file": "retronator_pixelartacademy.js",
+    "find": "<h2>Pixel Image Classification</h2>",
+    "replace": "<h2>像素图像分类</h2>",
+    "comment": "Image classification page subtitle"
   }
 ]

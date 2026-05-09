@@ -43,23 +43,20 @@ def try_replace_html_raw(content, en_text, zh_text):
     escaped_en = re.escape(en_in_file)
     tag_pattern = re.compile(r'(>' + ws + r')' + escaped_en + r'(' + ws + r'<)')
 
-    found = [False]
+    total_count = [0]
 
     def replace_in_raw(m):
-        if found[0]:
-            return m.group(0)
         raw_content = m.group(1)
         new_raw, count = tag_pattern.subn(
-            lambda mm: mm.group(1) + zh_text + mm.group(2),
-            raw_content, count=1
+            lambda mm: mm.group(1) + zh_text + mm.group(2), raw_content
         )
         if count > 0:
-            found[0] = True
+            total_count[0] += count
             return "HTML.Raw('" + new_raw + "')"
         return m.group(0)
 
     new_content = PAT_HTML_RAW.sub(replace_in_raw, content)
-    return new_content, found[0]
+    return new_content, total_count[0]
 
 
 def patch(packages_dir, translations_path):
@@ -128,9 +125,9 @@ def patch(packages_dir, translations_path):
                 zh_html = zh_text.replace("'", "\\'")
                 zh_html = zh_html.replace('\n', '\\n')
                 zh_html = zh_html.replace('\r', '')
-                content, replaced = try_replace_html_raw(content, raw_en, zh_html)
-                if replaced:
-                    patched += 1
+                content, replaced_count = try_replace_html_raw(content, raw_en, zh_html)
+                if replaced_count:
+                    patched += replaced_count
                     done = True
 
         if patched > 0:

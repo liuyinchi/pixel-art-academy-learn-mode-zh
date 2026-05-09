@@ -85,16 +85,29 @@ PAT_HTML_RAW = re.compile(r"HTML\.Raw\('((?:[^'\\]|\\.)*)'\)")
 TAG_TEXT_RE = re.compile(r'>([^<]+)<')
 
 
+def has_cjk(text):
+    """Return True when text already contains Chinese/Japanese/Korean characters."""
+    return any('\u4e00' <= ch <= '\u9fff' for ch in str(text))
+
+
 def extract(packages_dir):
     script_dir = os.path.dirname(os.path.abspath(__file__))
 
-    # Load existing hardcoded translations to exclude already-translated
+    # Load existing hardcoded translations and explicit skips to exclude
+    # entries intentionally left in English, such as credits and asset names.
     hz_path = os.path.join(script_dir, 'hardcoded_zh.json')
     existing_keys = set()
     if os.path.exists(hz_path):
         with open(hz_path, 'r', encoding='utf-8') as f:
             existing_keys = set(json.load(f).keys())
         print(f"  Already translated (hardcoded): {len(existing_keys)}")
+
+    skipped_path = os.path.join(script_dir, 'hardcoded_skipped.json')
+    skipped_keys = set()
+    if os.path.exists(skipped_path):
+        with open(skipped_path, 'r', encoding='utf-8') as f:
+            skipped_keys = set(json.load(f).keys())
+        print(f"  Explicitly skipped: {len(skipped_keys)}")
 
     all_strings = {}
 
@@ -112,6 +125,8 @@ def extract(packages_dir):
         for m in PAT_STATIC.finditer(content):
             raw_text = m.group(2)
             cleaned = raw_text.replace('\\n', '\n').strip()
+            if has_cjk(cleaned):
+                continue
             if len(cleaned) >= 3 and re.search(r'[a-zA-Z]{2}', cleaned):
                 found[raw_text] = cleaned
 
@@ -119,6 +134,8 @@ def extract(packages_dir):
         for m in PAT_TEMPLATE.finditer(content):
             raw_text = m.group(1).strip()
             cleaned = raw_text.replace('\\n', '\n').strip()
+            if has_cjk(cleaned):
+                continue
             if len(cleaned) >= 5 and re.search(r'[a-zA-Z]{3}', cleaned):
                 found[raw_text] = cleaned
 
@@ -128,6 +145,8 @@ def extract(packages_dir):
             for tm in TAG_TEXT_RE.finditer(html_content):
                 raw_in_file = tm.group(1)
                 cleaned = raw_in_file.replace('\\n', ' ').replace("\\'", "'").strip()
+                if has_cjk(cleaned):
+                    continue
                 if len(cleaned) < 2:
                     continue
                 if not re.search(r'[a-zA-Z]{2}', cleaned):
@@ -138,15 +157,19 @@ def extract(packages_dir):
 
         if found:
             all_strings[pkg] = found
-            print(f"  {pkg}: {len(found)} strings")
 
     # Build output, excluding already translated
     output = {}
+    output_counts = {}
     for pkg, items in all_strings.items():
         for raw, cleaned in items.items():
             key = f"{pkg}|||{raw}"
-            if key not in existing_keys:
+            if key not in existing_keys and key not in skipped_keys:
                 output[key] = cleaned
+                output_counts[pkg] = output_counts.get(pkg, 0) + 1
+
+    for pkg, count in output_counts.items():
+        print(f"  {pkg}: {count} strings")
 
     # Write
     out_path = os.path.join(script_dir, 'hardcoded_to_translate.json')

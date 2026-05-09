@@ -63,14 +63,15 @@ echo.
 echo  【翻译方法 - 推荐用 AI】
 echo    1. 全选文件内容，复制
 echo    2. 打开 ChatGPT / Claude / DeepSeek 等 AI
-echo    3. 发送：请把以下 JSON 中的英文 value 翻译成简体中文，
+echo    3. 发送：请筛选并翻译以下 JSON 中玩家可见的英文 value，
 echo       key 不要改，只改 value，保持 JSON 格式不变
 echo    4. 把 AI 返回的结果粘贴覆盖回文件，保存
 echo.
 echo  【注意事项】
 echo    - 不要修改 key（冒号左边的内容）
 echo    - 已经是中文的条目不用管
-echo    - 人名、游戏名等专有名词保持英文即可
+echo    - 人名、游戏名、曲名、素材名等专有名词保持英文即可
+echo    - 非玩家可见文本可以保持英文，合并时会自动跳过
 echo    - 保存时确保文件编码为 UTF-8
 echo.
 echo  准备好后按任意键打开文件...

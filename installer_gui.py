@@ -142,23 +142,20 @@ def _try_replace_html_raw(content, en_text, zh_text):
     escaped_en = re.escape(en_in_file)
     tag_pattern = re.compile(r'(>' + ws + r')' + escaped_en + r'(' + ws + r'<)')
 
-    found = [False]
+    total_count = [0]
 
     def replace_in_raw(m):
-        if found[0]:
-            return m.group(0)
         raw_content = m.group(1)
         new_raw, count = tag_pattern.subn(
-            lambda mm: mm.group(1) + zh_text + mm.group(2),
-            raw_content, count=1
+            lambda mm: mm.group(1) + zh_text + mm.group(2), raw_content
         )
         if count > 0:
-            found[0] = True
+            total_count[0] += count
             return "HTML.Raw('" + new_raw + "')"
         return m.group(0)
 
     new_content = PAT_HTML_RAW.sub(replace_in_raw, content)
-    return new_content, found[0]
+    return new_content, total_count[0]
 
 
 def patch_hardcoded(packages_dir, translations, log_fn=print):
@@ -213,9 +210,9 @@ def patch_hardcoded(packages_dir, translations, log_fn=print):
                 zh_html = (zh_text.replace("'", "\\'")
                            .replace('\n', '\\n')
                            .replace('\r', ''))
-                content, replaced = _try_replace_html_raw(content, raw_en, zh_html)
-                if replaced:
-                    patched += 1
+                content, replaced_count = _try_replace_html_raw(content, raw_en, zh_html)
+                if replaced_count:
+                    patched += replaced_count
 
         if patched > 0:
             with open(filepath, 'w', encoding='utf-8') as f:
@@ -224,6 +221,75 @@ def patch_hardcoded(packages_dir, translations, log_fn=print):
             total_patched += patched
 
     log_fn(f"  共计: {total_patched} 个字符串已替换")
+    return total_patched
+
+
+# ============================================================
+# Manual JS Patching
+# ============================================================
+
+def _is_safe_replacement(content, find_str):
+    pos = 0
+    while True:
+        pos = content.find(find_str, pos)
+        if pos < 0:
+            return True
+        if pos > 0:
+            before = content[pos - 1]
+            if before.isalnum() or before == '_':
+                return False
+        after_pos = pos + len(find_str)
+        if after_pos < len(content):
+            after = content[after_pos]
+            if after.isalnum() or after == '_':
+                return False
+        pos += 1
+
+
+def patch_manual(packages_dir, patches, log_fn=print):
+    log_fn(f"  手动补丁: {len(patches)} 条")
+
+    by_file = {}
+    for patch in patches:
+        filename = patch.get('file')
+        if filename:
+            by_file.setdefault(filename, []).append(patch)
+
+    total_patched = 0
+
+    for filename, file_patches in by_file.items():
+        filepath = os.path.join(packages_dir, filename)
+        if not os.path.exists(filepath):
+            log_fn(f"  警告: {filename} 未找到，跳过")
+            continue
+
+        with open(filepath, 'r', encoding='utf-8') as f:
+            content = f.read()
+
+        patched = 0
+        for patch in file_patches:
+            find_str = patch.get('find', '')
+            replace_str = patch.get('replace', '')
+            if not find_str or find_str not in content:
+                continue
+            if not _is_safe_replacement(content, find_str):
+                log_fn(f"  警告: 手动补丁上下文不安全，已跳过: {patch.get('comment', find_str[:40])}")
+                continue
+            if patch.get('replace_all', False):
+                count = content.count(find_str)
+                content = content.replace(find_str, replace_str)
+            else:
+                content = content.replace(find_str, replace_str, 1)
+                count = 1
+            patched += count
+
+        if patched > 0:
+            with open(filepath, 'w', encoding='utf-8') as f:
+                f.write(content)
+            log_fn(f"  {filename}: {patched} 个手动补丁已应用")
+            total_patched += patched
+
+    log_fn(f"  共计: {total_patched} 个手动补丁已应用")
     return total_patched
 
 
@@ -300,6 +366,7 @@ class PatchInstaller:
 
         self.trans_file = resource_path("translations_zh.json")
         self.hardcoded_file = resource_path("hardcoded_zh.json")
+        self.manual_patches_file = resource_path("manual_patches.json")
         self.fonts_dir = resource_path("fonts")
 
     # ---- INSTALL ----
@@ -391,12 +458,20 @@ class PatchInstaller:
         injected = inject_translations(self.cache_json, self.trans_file, self.log)
         self.log(f"[OK] 翻译注入完成 ({injected} 条)")
 
-        # Step 3: Patch hardcoded strings in JS files
-        if os.path.exists(self.hardcoded_file):
-            self.log("[*] 步骤 3/4: 替换 JS 中的硬编码字符串 ...")
+        # Step 3: Patch hardcoded strings and manual JS patches
+        has_hardcoded = os.path.exists(self.hardcoded_file)
+        has_manual = os.path.exists(self.manual_patches_file)
+        if has_hardcoded or has_manual:
+            self.log("[*] 步骤 3/4: 替换 JS 中的硬编码和手动补丁文本 ...")
 
-            with open(self.hardcoded_file, 'r', encoding='utf-8') as f:
-                hardcoded_trans = json.load(f)
+            hardcoded_trans = {}
+            manual_patches = []
+            if has_hardcoded:
+                with open(self.hardcoded_file, 'r', encoding='utf-8') as f:
+                    hardcoded_trans = json.load(f)
+            if has_manual:
+                with open(self.manual_patches_file, 'r', encoding='utf-8') as f:
+                    manual_patches = json.load(f)
 
             js_backup_dir = os.path.join(self.backup_dir, "packages_bak")
             if os.path.exists(js_backup_dir):
@@ -412,16 +487,23 @@ class PatchInstaller:
                 target_files = set(
                     k.split('|||')[0] for k in hardcoded_trans if '|||' in k
                 )
+                target_files.update(
+                    patch.get('file') for patch in manual_patches if patch.get('file')
+                )
                 for pkg in target_files:
                     src = os.path.join(self.packages_dir, pkg)
                     if os.path.exists(src) and pkg:
                         shutil.copy2(src, os.path.join(js_backup_dir, pkg))
                 self.log("[OK] 原始 JS 文件已备份")
 
-            patch_hardcoded(self.packages_dir, hardcoded_trans, self.log)
-            self.log("[OK] 硬编码字符串替换完成")
+            if has_hardcoded:
+                patch_hardcoded(self.packages_dir, hardcoded_trans, self.log)
+                self.log("[OK] 硬编码字符串替换完成")
+            if has_manual:
+                patch_manual(self.packages_dir, manual_patches, self.log)
+                self.log("[OK] 手动补丁应用完成")
         else:
-            self.log("[*] 步骤 3/4: 未找到 hardcoded_zh.json，跳过")
+            self.log("[*] 步骤 3/4: 未找到 JS 补丁文件，跳过")
 
         # Step 4: Patch fonts in CSS
         self.log("[*] 步骤 4/4: 替换字体以支持中文显示 ...")

@@ -39,6 +39,7 @@ python -m PyInstaller --onefile --windowed ^
     --name "Pixel Art Academy 汉化补丁" ^
     --add-data "translations_zh.json;." ^
     --add-data "hardcoded_zh.json;." ^
+    --add-data "manual_patches.json;." ^
     --add-data "fonts;fonts" ^
     --distpath "." ^
     --clean ^

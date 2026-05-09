@@ -58,6 +58,12 @@ def main():
             continue
         if '|||' not in key:
             continue
+        # Hardcoded extraction can be run on already-patched JS files. In that
+        # case the source side is Chinese, which should not become a new
+        # English-to-Chinese replacement key.
+        raw_source = key.split('|||', 1)[1]
+        if has_chinese(raw_source):
+            continue
         if not has_chinese(value):
             continue
         existing_trans[key] = value
