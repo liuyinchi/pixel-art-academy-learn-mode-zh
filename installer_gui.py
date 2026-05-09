@@ -591,6 +591,26 @@ class PatchInstaller:
             self.log("[错误] 未找到翻译文件 translations_zh.json")
             return False
 
+        # Steam verification/reinstall restores package.json to app.asar, but
+        # it does not remove our old extracted folders. Reusing those stale
+        # folders can reapply broken or outdated patched JS files.
+        with open(self.package_json, 'r', encoding='utf-8') as f:
+            pkg_content = f.read()
+        if re.search(r'"main"\s*:\s*"app\.asar"', pkg_content):
+            stale_paths = [
+                (self.app_extracted, "旧 app_extracted"),
+                (self.meteor_extracted, "旧 meteor_extracted"),
+                (self.backup_dir, "旧备份"),
+            ]
+            removed = 0
+            for path, label in stale_paths:
+                if os.path.exists(path):
+                    self.log(f"[*] 检测到原版入口，清理{label} ...")
+                    shutil.rmtree(path)
+                    removed += 1
+            if removed:
+                self.log("[OK] 已清理旧解包/备份，将从当前游戏文件重新安装")
+
         # Step 0: Extract asar
         if not os.path.exists(self.app_js):
             self.log("[*] 步骤 0: 解包 app.asar (首次安装) ...")

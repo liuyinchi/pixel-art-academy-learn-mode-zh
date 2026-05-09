@@ -74,6 +74,29 @@ function Do-Install {
         return $false
     }
 
+    # Steam verification/reinstall restores package.json to app.asar, but it
+    # can leave our old extracted folders behind. Never reuse stale patched JS
+    # when the game entry point has been reset to the original archive.
+    $pkgBeforeExtract = Get-Content $PackageJson -Raw -Encoding UTF8
+    if ($pkgBeforeExtract -match '"main"\s*:\s*"app\.asar"') {
+        $stalePaths = @(
+            @{ Path = $AppExtracted; Label = "old app_extracted" },
+            @{ Path = $MeteorExtracted; Label = "old meteor_extracted" },
+            @{ Path = $BackupDir; Label = "old backup" }
+        )
+        $removedStale = 0
+        foreach ($item in $stalePaths) {
+            if (Test-Path $item.Path) {
+                Write-Status "Original entry detected; removing $($item.Label) ..."
+                Remove-Item -LiteralPath $item.Path -Recurse -Force
+                $removedStale += 1
+            }
+        }
+        if ($removedStale -gt 0) {
+            Write-OK "Stale extracted files/backups removed; reinstalling from current game archives"
+        }
+    }
+
     # ---- Step 0: Extract asar files if needed ----
     $ExtractScript = Join-Path $PatchDir "extract_asar.py"
     if (-not (Test-Path $AppJs)) {
