@@ -984,11 +984,14 @@ class InstallerApp:
     BG_LOG = "#1e1e1e"
     FG_LIGHT = "#e0e0e0"
     FG_DIM = "#aaaaaa"
+    WINDOW_WIDTH = 760
+    WINDOW_HEIGHT_NORMAL = 570
+    WINDOW_HEIGHT_MAINTAINER = 660
 
     def __init__(self):
         self.root = tk.Tk()
         self.root.title("Pixel Art Academy Learn Mode - 简体中文汉化补丁")
-        self.root.geometry("760x660")
+        self._set_window_height(self.WINDOW_HEIGHT_NORMAL)
         self.root.resizable(False, False)
         self.root.configure(bg="#f0f0f0")
 
@@ -998,12 +1001,17 @@ class InstallerApp:
         self.api_key_var = tk.StringVar()
         self.base_url_var = tk.StringVar(value="https://api.openai.com/v1")
         self.model_var = tk.StringVar(value="gpt-4o-mini")
+        self.maintainer_tools_visible = False
+        self.api_key_visible = False
 
         self._build_ui()
         self._detect_game()
         self._poll_log_queue()
 
     # ---- UI Construction ----
+
+    def _set_window_height(self, height):
+        self.root.geometry(f"{self.WINDOW_WIDTH}x{height}")
 
     def _build_ui(self):
         # Title banner
@@ -1039,40 +1047,6 @@ class InstallerApp:
         )
         self.browse_btn.pack(side=tk.RIGHT)
 
-        # AI translation settings
-        api_frame = tk.LabelFrame(
-            self.root, text="AI 自动补翻译（OpenAI 兼容接口）",
-            padx=12, pady=8, font=("Microsoft YaHei UI", 9)
-        )
-        api_frame.pack(fill=tk.X, padx=15, pady=(0, 8))
-
-        tk.Label(api_frame, text="API Key:", font=("Microsoft YaHei UI", 9)).grid(
-            row=0, column=0, sticky="w"
-        )
-        self.api_key_entry = tk.Entry(
-            api_frame, textvariable=self.api_key_var, show="*",
-            font=("Consolas", 9)
-        )
-        self.api_key_entry.grid(row=0, column=1, sticky="ew", padx=(6, 10))
-
-        tk.Label(api_frame, text="模型:", font=("Microsoft YaHei UI", 9)).grid(
-            row=0, column=2, sticky="w"
-        )
-        self.model_entry = tk.Entry(
-            api_frame, textvariable=self.model_var, font=("Consolas", 9), width=18
-        )
-        self.model_entry.grid(row=0, column=3, sticky="ew", padx=(6, 0))
-
-        tk.Label(api_frame, text="Base URL:", font=("Microsoft YaHei UI", 9)).grid(
-            row=1, column=0, sticky="w", pady=(6, 0)
-        )
-        self.base_url_entry = tk.Entry(
-            api_frame, textvariable=self.base_url_var, font=("Consolas", 9)
-        )
-        self.base_url_entry.grid(row=1, column=1, columnspan=3, sticky="ew", padx=(6, 0), pady=(6, 0))
-        api_frame.columnconfigure(1, weight=1)
-        api_frame.columnconfigure(3, weight=0)
-
         # Action buttons
         btn_frame = tk.Frame(self.root, padx=15, pady=5)
         btn_frame.pack(fill=tk.X)
@@ -1100,11 +1074,63 @@ class InstallerApp:
         )
         self.update_btn.pack(side=tk.LEFT, padx=(6, 0), fill=tk.X, expand=True)
 
-        auto_frame = tk.Frame(self.root, padx=15)
-        auto_frame.pack(fill=tk.X, pady=(0, 5))
+        maintainer_toggle_frame = tk.Frame(self.root, padx=15)
+        maintainer_toggle_frame.pack(fill=tk.X, pady=(0, 5))
+
+        self.maintainer_toggle_btn = tk.Button(
+            maintainer_toggle_frame, text="显示维护者工具",
+            font=("Microsoft YaHei UI", 9), command=self._toggle_maintainer_tools
+        )
+        self.maintainer_toggle_btn.pack(side=tk.RIGHT)
+
+        self.maintainer_container = tk.Frame(self.root, bg="#f0f0f0")
+        self.maintainer_container.pack(fill=tk.X)
+
+        self.api_frame = tk.LabelFrame(
+            self.maintainer_container, text="AI 自动补翻译（维护者工具）",
+            padx=12, pady=8, font=("Microsoft YaHei UI", 9)
+        )
+
+        tk.Label(self.api_frame, text="API Key:", font=("Microsoft YaHei UI", 9)).grid(
+            row=0, column=0, sticky="w"
+        )
+        self.api_key_entry = tk.Entry(
+            self.api_frame, textvariable=self.api_key_var, show="*",
+            font=("Consolas", 9)
+        )
+        self.api_key_entry.grid(row=0, column=1, sticky="ew", padx=(6, 6))
+
+        self.api_key_toggle_btn = tk.Button(
+            self.api_frame, text="显示", width=6,
+            font=("Microsoft YaHei UI", 9), command=self._toggle_api_key_visibility
+        )
+        self.api_key_toggle_btn.grid(row=0, column=2, sticky="ew", padx=(0, 10))
+
+        tk.Label(self.api_frame, text="模型:", font=("Microsoft YaHei UI", 9)).grid(
+            row=0, column=3, sticky="w"
+        )
+        self.model_entry = tk.Entry(
+            self.api_frame, textvariable=self.model_var, font=("Consolas", 9), width=18
+        )
+        self.model_entry.grid(row=0, column=4, sticky="ew", padx=(6, 0))
+
+        tk.Label(self.api_frame, text="Base URL:", font=("Microsoft YaHei UI", 9)).grid(
+            row=1, column=0, sticky="w", pady=(6, 0)
+        )
+        self.base_url_entry = tk.Entry(
+            self.api_frame, textvariable=self.base_url_var, font=("Consolas", 9)
+        )
+        self.base_url_entry.grid(
+            row=1, column=1, columnspan=4, sticky="ew",
+            padx=(6, 0), pady=(6, 0)
+        )
+        self.api_frame.columnconfigure(1, weight=1)
+        self.api_frame.columnconfigure(4, weight=0)
+
+        self.auto_frame = tk.Frame(self.maintainer_container, padx=15)
 
         self.auto_translate_btn = tk.Button(
-            auto_frame, text="  自动补翻译并安装  ", bg="#673AB7", fg="white",
+            self.auto_frame, text="  自动补翻译并安装  ", bg="#673AB7", fg="white",
             activebackground="#5E35B1",
             command=lambda: self._run_task("auto_translate"), **common
         )
@@ -1164,6 +1190,30 @@ class InstallerApp:
                 "请选择包含 resources 文件夹的目录。"
             )
 
+    def _toggle_maintainer_tools(self):
+        if self.maintainer_tools_visible:
+            self.api_frame.pack_forget()
+            self.auto_frame.pack_forget()
+            self.maintainer_toggle_btn.configure(text="显示维护者工具")
+            self.maintainer_tools_visible = False
+            self._set_window_height(self.WINDOW_HEIGHT_NORMAL)
+        else:
+            self.api_frame.pack(fill=tk.X, padx=15, pady=(0, 8))
+            self.auto_frame.pack(fill=tk.X, pady=(0, 5))
+            self.maintainer_toggle_btn.configure(text="隐藏维护者工具")
+            self.maintainer_tools_visible = True
+            self._set_window_height(self.WINDOW_HEIGHT_MAINTAINER)
+        self.root.update_idletasks()
+
+    def _toggle_api_key_visibility(self):
+        self.api_key_visible = not self.api_key_visible
+        if self.api_key_visible:
+            self.api_key_entry.configure(show="")
+            self.api_key_toggle_btn.configure(text="隐藏")
+        else:
+            self.api_key_entry.configure(show="*")
+            self.api_key_toggle_btn.configure(text="显示")
+
     # ---- Thread-safe Logging ----
 
     def _enqueue_log(self, message):
@@ -1202,7 +1252,8 @@ class InstallerApp:
 
     def _set_buttons_state(self, state):
         for btn in (self.install_btn, self.uninstall_btn,
-                    self.update_btn, self.auto_translate_btn, self.browse_btn):
+                    self.update_btn, self.auto_translate_btn, self.browse_btn,
+                    self.maintainer_toggle_btn, self.api_key_toggle_btn):
             btn.configure(state=state)
         for entry in (self.api_key_entry, self.base_url_entry, self.model_entry):
             entry.configure(state=state)
