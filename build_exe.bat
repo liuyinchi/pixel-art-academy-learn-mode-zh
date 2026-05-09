@@ -36,7 +36,7 @@ echo [*] 正在构建 .exe 文件，请稍候...
 echo.
 
 python -m PyInstaller --onefile --windowed ^
-    --name "Pixel Art Academy 汉化补丁" ^
+    --name "paa_zh_installer" ^
     --add-data "translations_zh.json;." ^
     --add-data "hardcoded_zh.json;." ^
     --add-data "hardcoded_skipped.json;." ^
@@ -53,6 +53,14 @@ if errorlevel 1 (
     exit /b 1
 )
 
+move /Y "paa_zh_installer.exe" "Pixel Art Academy 汉化补丁.exe" > nul
+if errorlevel 1 (
+    echo.
+    echo [错误] 重命名输出文件失败
+    pause
+    exit /b 1
+)
+
 echo.
 echo ========================================
 echo  构建成功！
@@ -65,6 +73,7 @@ echo.
 
 :: Clean up build artifacts
 if exist build rmdir /s /q build
+if exist "paa_zh_installer.spec" del "paa_zh_installer.spec"
 if exist "Pixel Art Academy 汉化补丁.spec" del "Pixel Art Academy 汉化补丁.spec"
 
 pause

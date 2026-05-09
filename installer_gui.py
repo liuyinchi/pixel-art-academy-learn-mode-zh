@@ -1100,8 +1100,8 @@ class InstallerApp:
         )
         self.update_btn.pack(side=tk.LEFT, padx=(6, 0), fill=tk.X, expand=True)
 
-        auto_frame = tk.Frame(self.root, padx=15, pady=(0, 5))
-        auto_frame.pack(fill=tk.X)
+        auto_frame = tk.Frame(self.root, padx=15)
+        auto_frame.pack(fill=tk.X, pady=(0, 5))
 
         self.auto_translate_btn = tk.Button(
             auto_frame, text="  自动补翻译并安装  ", bg="#673AB7", fg="white",
