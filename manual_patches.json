@@ -1,6 +1,18 @@
 [
   {
     "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "    displayName() {\n      return AB.translate(this._translationSubscription, 'displayName').text;\n    }",
+    "replace": "    displayName() {\n      var translated;\n      translated = AB.translate(this._translationSubscription, 'displayName');\n      if (translated.text === 'DISPLAYNAME' || translated.text === 'displayName') {\n        return null;\n      }\n      return translated.text;\n    }",
+    "comment": "Hide missing content displayName placeholders"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "    description() {\n      var translated;\n      translated = AB.translate(this._translationSubscription, 'description');\n      if (translated.language) {\n        return translated.text;\n      } else {\n        return null;\n      }\n    }",
+    "replace": "    description() {\n      var translated;\n      translated = AB.translate(this._translationSubscription, 'description');\n      if (!translated.language || translated.text === 'description') {\n        return null;\n      }\n      return translated.text;\n    }",
+    "comment": "Hide missing content description placeholders"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
     "find": "\"\\n          Audio:\\n          \"",
     "replace": "\"\\n          音频：\\n          \"",
     "comment": "Audio menu label"

@@ -3,6 +3,27 @@
 """Inject Chinese translations into cache.json"""
 import json, sys, os
 
+PLACEHOLDER_KEYS = {
+    'message', 'description', 'displayName', 'shortName', 'fullName',
+    'unlockInstructions', 'directive', 'instructions', 'name',
+    'title', 'hint', 'text', 'label',
+}
+
+
+def english_text(trans_obj):
+    en_data = trans_obj.get('en')
+    if not isinstance(en_data, dict):
+        return None
+    for region in ('best', 'us'):
+        region_data = en_data.get(region)
+        if isinstance(region_data, dict) and region_data.get('text'):
+            return region_data['text']
+    return None
+
+
+def is_placeholder_entry(key, trans_obj):
+    return key in PLACEHOLDER_KEYS and key == english_text(trans_obj)
+
 def inject(cache_path, trans_path):
     print(f"  Reading translations: {trans_path}")
     with open(trans_path, 'r', encoding='utf-8') as f:
@@ -14,6 +35,19 @@ def inject(cache_path, trans_path):
 
     injected = 0
     skipped = 0
+    cleaned = 0
+
+    for _ns, keys in cache.items():
+        if not isinstance(keys, dict):
+            continue
+        for key, entry in keys.items():
+            if not isinstance(entry, list) or len(entry) < 2:
+                continue
+            trans_obj = entry[1]
+            if isinstance(trans_obj, dict) and is_placeholder_entry(key, trans_obj):
+                if 'zh' in trans_obj:
+                    del trans_obj['zh']
+                    cleaned += 1
 
     for full_key, zh_text in translations.items():
         parts = full_key.split('|||', 1)
@@ -35,7 +69,7 @@ def inject(cache_path, trans_path):
         }
         injected += 1
 
-    print(f"  Writing cache: {injected} injected, {skipped} skipped")
+    print(f"  Writing cache: {injected} injected, {skipped} skipped, {cleaned} placeholder translations removed")
     with open(cache_path, 'w', encoding='utf-8') as f:
         json.dump(cache, f, ensure_ascii=False, separators=(',', ':'))
 

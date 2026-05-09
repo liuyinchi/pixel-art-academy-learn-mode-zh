@@ -98,6 +98,28 @@ def extract_asar(asar_path, dest_dir, log_fn=print):
 # Translation Injection
 # ============================================================
 
+PLACEHOLDER_TRANSLATION_KEYS = {
+    'message', 'description', 'displayName', 'shortName', 'fullName',
+    'unlockInstructions', 'directive', 'instructions', 'name',
+    'title', 'hint', 'text', 'label',
+}
+
+
+def _english_text(trans_obj):
+    en_data = trans_obj.get('en') if isinstance(trans_obj, dict) else None
+    if not isinstance(en_data, dict):
+        return None
+    for region in ('best', 'us'):
+        region_data = en_data.get(region)
+        if isinstance(region_data, dict) and region_data.get('text'):
+            return region_data['text']
+    return None
+
+
+def _is_placeholder_translation(key, trans_obj):
+    return key in PLACEHOLDER_TRANSLATION_KEYS and key == _english_text(trans_obj)
+
+
 def inject_translations(cache_path, trans_path, log_fn=print):
     log_fn(f"  读取翻译文件: {os.path.basename(trans_path)}")
     with open(trans_path, 'r', encoding='utf-8') as f:
@@ -109,6 +131,18 @@ def inject_translations(cache_path, trans_path, log_fn=print):
 
     injected = 0
     skipped = 0
+    cleaned = 0
+
+    for _ns, keys in cache.items():
+        if not isinstance(keys, dict):
+            continue
+        for key, entry in keys.items():
+            if not isinstance(entry, list) or len(entry) < 2:
+                continue
+            trans_obj = entry[1]
+            if _is_placeholder_translation(key, trans_obj) and 'zh' in trans_obj:
+                del trans_obj['zh']
+                cleaned += 1
 
     for full_key, zh_text in translations.items():
         parts = full_key.split('|||', 1)
@@ -126,7 +160,7 @@ def inject_translations(cache_path, trans_path, log_fn=print):
         }
         injected += 1
 
-    log_fn(f"  写入缓存: {injected} 条已注入, {skipped} 条跳过")
+    log_fn(f"  写入缓存: {injected} 条已注入, {skipped} 条跳过, {cleaned} 条占位翻译已清理")
     with open(cache_path, 'w', encoding='utf-8') as f:
         json.dump(cache, f, ensure_ascii=False, separators=(',', ':'))
 
@@ -819,7 +853,11 @@ class PatchInstaller:
                 if 'Parser' in ns:
                     skipped['parser'] += 1
                     continue
-                if en_text == 'message':
+                # Skip auto-inserted placeholder entries where the cached English
+                # text is just the literal property name (e.g. key='description',
+                # en='description'). These come from the game's t10e auto-insert
+                # behavior and translating them leaks the property name into the UI.
+                if key == en_text and key in PLACEHOLDER_TRANSLATION_KEYS:
                     skipped['placeholder'] += 1
                     continue
                 missing[full_key] = en_text
@@ -1011,7 +1049,12 @@ class InstallerApp:
     # ---- UI Construction ----
 
     def _set_window_height(self, height):
+        # Temporarily allow resize: on Windows, geometry() cannot shrink a
+        # window whose resizable flag is False — it only enlarges.
+        self.root.resizable(True, True)
         self.root.geometry(f"{self.WINDOW_WIDTH}x{height}")
+        self.root.update_idletasks()
+        self.root.resizable(False, False)
 
     def _build_ui(self):
         # Title banner
@@ -1196,14 +1239,17 @@ class InstallerApp:
             self.auto_frame.pack_forget()
             self.maintainer_toggle_btn.configure(text="显示维护者工具")
             self.maintainer_tools_visible = False
-            self._set_window_height(self.WINDOW_HEIGHT_NORMAL)
+            target_height = self.WINDOW_HEIGHT_NORMAL
         else:
             self.api_frame.pack(fill=tk.X, padx=15, pady=(0, 8))
             self.auto_frame.pack(fill=tk.X, pady=(0, 5))
             self.maintainer_toggle_btn.configure(text="隐藏维护者工具")
             self.maintainer_tools_visible = True
-            self._set_window_height(self.WINDOW_HEIGHT_MAINTAINER)
+            target_height = self.WINDOW_HEIGHT_MAINTAINER
+        # Flush layout changes (pack/pack_forget) before resizing the window,
+        # so geometry() applies on top of the up-to-date child layout.
         self.root.update_idletasks()
+        self._set_window_height(target_height)
 
     def _toggle_api_key_visibility(self):
         self.api_key_visible = not self.api_key_visible

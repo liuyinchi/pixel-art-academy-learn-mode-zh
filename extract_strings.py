@@ -20,6 +20,17 @@ import sys
 import os
 import re
 
+PLACEHOLDER_KEYS = {
+    'message', 'description', 'displayName', 'shortName', 'fullName',
+    'unlockInstructions', 'directive', 'instructions', 'name',
+    'title', 'hint', 'text', 'label',
+}
+
+
+def is_placeholder_entry(key, en_text):
+    return key == en_text and key in PLACEHOLDER_KEYS
+
+
 def extract(cache_path):
     script_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -83,8 +94,11 @@ def extract(cache_path):
                 skipped['parser'] += 1
                 continue
 
-            # Skip placeholder "message" text
-            if en_text == 'message':
+            # Skip auto-inserted placeholder entries where the cached English
+            # text is just the literal property name (for example
+            # key='description', en='description'). Translating these leaks
+            # field names such as DISPLAYNAME/description into the UI.
+            if is_placeholder_entry(key, en_text):
                 skipped['placeholder'] += 1
                 continue
 
