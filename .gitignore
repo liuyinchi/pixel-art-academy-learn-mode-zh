@@ -18,6 +18,7 @@ ai_chunks/
 # PyInstaller build artifacts
 build/
 dist/
+*.spec
 
 # Packaged archives
 *.zip
