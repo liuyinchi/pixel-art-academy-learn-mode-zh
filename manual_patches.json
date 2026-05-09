@@ -2,36 +2,64 @@
   {
     "file": "retronator_pixelartacademy-learnmode.js",
     "find": "    displayName() {\n      return AB.translate(this._translationSubscription, 'displayName').text;\n    }",
-    "replace": "    displayName() {\n      var translated;\n      translated = AB.translate(this._translationSubscription, 'displayName');\n      if (translated.text === 'DISPLAYNAME' || translated.text === 'displayName') {\n        return null;\n      }\n      return translated.text;\n    }",
+    "replace": "    displayName() {\n      var fallback, translated;\n      translated = AB.translate(this._translationSubscription, 'displayName');\n      if (translated.text === 'DISPLAYNAME' || translated.text === 'displayName') {\n        try {\n          fallback = this.constructor.displayName();\n        } catch (error) {\n          fallback = null;\n        }\n        if (fallback === 'DISPLAYNAME' || fallback === 'displayName') {\n          return null;\n        }\n        return fallback;\n      }\n      return translated.text;\n    }",
     "replace_all": true,
-    "comment": "Hide missing content displayName placeholders"
+    "comment": "Fallback missing content displayName placeholders"
   },
   {
     "file": "retronator_pixelartacademy-learnmode.js",
     "find": "    description() {\n      var translated;\n      translated = AB.translate(this._translationSubscription, 'description');\n      if (translated.language) {\n        return translated.text;\n      } else {\n        return null;\n      }\n    }",
-    "replace": "    description() {\n      var translated;\n      translated = AB.translate(this._translationSubscription, 'description');\n      if (!translated.language || translated.text === 'description') {\n        return null;\n      }\n      return translated.text;\n    }",
-    "comment": "Hide missing content description placeholders"
+    "replace": "    description() {\n      var fallback, translated;\n      translated = AB.translate(this._translationSubscription, 'description');\n      if (!translated.language || translated.text === 'description') {\n        try {\n          fallback = this.constructor.description();\n        } catch (error) {\n          fallback = null;\n        }\n        if (fallback === 'description') {\n          return null;\n        }\n        return fallback;\n      }\n      return translated.text;\n    }",
+    "comment": "Fallback missing content description placeholders"
   },
   {
     "file": "retronator_pixelartacademy-learnmode.js",
     "find": "    description() {\n      return AB.translate(this._translationSubscription, 'description').text;\n    }",
-    "replace": "    description() {\n      var translated;\n      translated = AB.translate(this._translationSubscription, 'description');\n      if (!translated.language || translated.text === 'description') {\n        return null;\n      }\n      return translated.text;\n    }",
+    "replace": "    description() {\n      var fallback, translated;\n      translated = AB.translate(this._translationSubscription, 'description');\n      if (!translated.language || translated.text === 'description') {\n        try {\n          fallback = this.constructor.description();\n        } catch (error) {\n          fallback = null;\n        }\n        if (fallback === 'description') {\n          return null;\n        }\n        return fallback;\n      }\n      return translated.text;\n    }",
     "replace_all": true,
-    "comment": "Hide missing course description placeholders"
+    "comment": "Fallback missing course description placeholders"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "    displayName() {\n      var translated;\n      translated = AB.translate(this._translationSubscription, 'displayName');\n      if (translated.text === 'DISPLAYNAME' || translated.text === 'displayName') {\n        return null;\n      }\n      return translated.text;\n    }",
+    "replace": "    displayName() {\n      var fallback, translated;\n      translated = AB.translate(this._translationSubscription, 'displayName');\n      if (translated.text === 'DISPLAYNAME' || translated.text === 'displayName') {\n        try {\n          fallback = this.constructor.displayName();\n        } catch (error) {\n          fallback = null;\n        }\n        if (fallback === 'DISPLAYNAME' || fallback === 'displayName') {\n          return null;\n        }\n        return fallback;\n      }\n      return translated.text;\n    }",
+    "replace_all": true,
+    "comment": "Upgrade hidden content displayName placeholders to static fallback"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "    description() {\n      var translated;\n      translated = AB.translate(this._translationSubscription, 'description');\n      if (!translated.language || translated.text === 'description') {\n        return null;\n      }\n      return translated.text;\n    }",
+    "replace": "    description() {\n      var fallback, translated;\n      translated = AB.translate(this._translationSubscription, 'description');\n      if (!translated.language || translated.text === 'description') {\n        try {\n          fallback = this.constructor.description();\n        } catch (error) {\n          fallback = null;\n        }\n        if (fallback === 'description') {\n          return null;\n        }\n        return fallback;\n      }\n      return translated.text;\n    }",
+    "replace_all": true,
+    "comment": "Upgrade hidden content description placeholders to static fallback"
   },
   {
     "file": "retronator_pixelartacademy-practice.js",
     "find": "    displayName() {\n      return AB.translate(this._translationSubscription, 'displayName').text;\n    }",
-    "replace": "    displayName() {\n      var translated;\n      translated = AB.translate(this._translationSubscription, 'displayName');\n      if (translated.text === 'DISPLAYNAME' || translated.text === 'displayName') {\n        return null;\n      }\n      return translated.text;\n    }",
+    "replace": "    displayName() {\n      var fallback, translated;\n      translated = AB.translate(this._translationSubscription, 'displayName');\n      if (translated.text === 'DISPLAYNAME' || translated.text === 'displayName') {\n        try {\n          fallback = this.constructor.displayName();\n        } catch (error) {\n          fallback = null;\n        }\n        if (fallback === 'DISPLAYNAME' || fallback === 'displayName') {\n          return null;\n        }\n        return fallback;\n      }\n      return translated.text;\n    }",
     "replace_all": true,
-    "comment": "Hide missing practice asset displayName placeholders"
+    "comment": "Fallback missing practice asset displayName placeholders"
   },
   {
     "file": "retronator_pixelartacademy-practice.js",
     "find": "    description() {\n      return AB.translate(this._translationSubscription, 'description').text;\n    }",
-    "replace": "    description() {\n      var translated;\n      translated = AB.translate(this._translationSubscription, 'description');\n      if (!translated.language || translated.text === 'description') {\n        return null;\n      }\n      return translated.text;\n    }",
+    "replace": "    description() {\n      var fallback, translated;\n      translated = AB.translate(this._translationSubscription, 'description');\n      if (!translated.language || translated.text === 'description') {\n        try {\n          fallback = this.constructor.description();\n        } catch (error) {\n          fallback = null;\n        }\n        if (fallback === 'description') {\n          return null;\n        }\n        return fallback;\n      }\n      return translated.text;\n    }",
     "replace_all": true,
-    "comment": "Hide missing practice asset description placeholders"
+    "comment": "Fallback missing practice asset description placeholders"
+  },
+  {
+    "file": "retronator_pixelartacademy-practice.js",
+    "find": "    displayName() {\n      var translated;\n      translated = AB.translate(this._translationSubscription, 'displayName');\n      if (translated.text === 'DISPLAYNAME' || translated.text === 'displayName') {\n        return null;\n      }\n      return translated.text;\n    }",
+    "replace": "    displayName() {\n      var fallback, translated;\n      translated = AB.translate(this._translationSubscription, 'displayName');\n      if (translated.text === 'DISPLAYNAME' || translated.text === 'displayName') {\n        try {\n          fallback = this.constructor.displayName();\n        } catch (error) {\n          fallback = null;\n        }\n        if (fallback === 'DISPLAYNAME' || fallback === 'displayName') {\n          return null;\n        }\n        return fallback;\n      }\n      return translated.text;\n    }",
+    "replace_all": true,
+    "comment": "Upgrade hidden practice asset displayName placeholders to static fallback"
+  },
+  {
+    "file": "retronator_pixelartacademy-practice.js",
+    "find": "    description() {\n      var translated;\n      translated = AB.translate(this._translationSubscription, 'description');\n      if (!translated.language || translated.text === 'description') {\n        return null;\n      }\n      return translated.text;\n    }",
+    "replace": "    description() {\n      var fallback, translated;\n      translated = AB.translate(this._translationSubscription, 'description');\n      if (!translated.language || translated.text === 'description') {\n        try {\n          fallback = this.constructor.description();\n        } catch (error) {\n          fallback = null;\n        }\n        if (fallback === 'description') {\n          return null;\n        }\n        return fallback;\n      }\n      return translated.text;\n    }",
+    "replace_all": true,
+    "comment": "Upgrade hidden practice asset description placeholders to static fallback"
   },
   {
     "file": "retronator_pixelartacademy-learnmode.js",
