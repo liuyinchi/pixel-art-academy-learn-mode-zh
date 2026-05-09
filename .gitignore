@@ -3,6 +3,7 @@ backup/
 
 # Python cache
 __pycache__/
+*.pyc
 
 # Temp working files
 my_translations.json
@@ -17,3 +18,6 @@ ai_chunks/
 # PyInstaller build artifacts
 build/
 dist/
+
+# Packaged archives
+*.zip
