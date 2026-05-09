@@ -3,6 +3,7 @@
     "file": "retronator_pixelartacademy-learnmode.js",
     "find": "    displayName() {\n      return AB.translate(this._translationSubscription, 'displayName').text;\n    }",
     "replace": "    displayName() {\n      var translated;\n      translated = AB.translate(this._translationSubscription, 'displayName');\n      if (translated.text === 'DISPLAYNAME' || translated.text === 'displayName') {\n        return null;\n      }\n      return translated.text;\n    }",
+    "replace_all": true,
     "comment": "Hide missing content displayName placeholders"
   },
   {
@@ -10,6 +11,27 @@
     "find": "    description() {\n      var translated;\n      translated = AB.translate(this._translationSubscription, 'description');\n      if (translated.language) {\n        return translated.text;\n      } else {\n        return null;\n      }\n    }",
     "replace": "    description() {\n      var translated;\n      translated = AB.translate(this._translationSubscription, 'description');\n      if (!translated.language || translated.text === 'description') {\n        return null;\n      }\n      return translated.text;\n    }",
     "comment": "Hide missing content description placeholders"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode.js",
+    "find": "    description() {\n      return AB.translate(this._translationSubscription, 'description').text;\n    }",
+    "replace": "    description() {\n      var translated;\n      translated = AB.translate(this._translationSubscription, 'description');\n      if (!translated.language || translated.text === 'description') {\n        return null;\n      }\n      return translated.text;\n    }",
+    "replace_all": true,
+    "comment": "Hide missing course description placeholders"
+  },
+  {
+    "file": "retronator_pixelartacademy-practice.js",
+    "find": "    displayName() {\n      return AB.translate(this._translationSubscription, 'displayName').text;\n    }",
+    "replace": "    displayName() {\n      var translated;\n      translated = AB.translate(this._translationSubscription, 'displayName');\n      if (translated.text === 'DISPLAYNAME' || translated.text === 'displayName') {\n        return null;\n      }\n      return translated.text;\n    }",
+    "replace_all": true,
+    "comment": "Hide missing practice asset displayName placeholders"
+  },
+  {
+    "file": "retronator_pixelartacademy-practice.js",
+    "find": "    description() {\n      return AB.translate(this._translationSubscription, 'description').text;\n    }",
+    "replace": "    description() {\n      var translated;\n      translated = AB.translate(this._translationSubscription, 'description');\n      if (!translated.language || translated.text === 'description') {\n        return null;\n      }\n      return translated.text;\n    }",
+    "replace_all": true,
+    "comment": "Hide missing practice asset description placeholders"
   },
   {
     "file": "retronator_pixelartacademy-learnmode.js",
