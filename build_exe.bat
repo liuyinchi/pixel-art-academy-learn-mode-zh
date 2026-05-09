@@ -53,7 +53,7 @@ if errorlevel 1 (
     exit /b 1
 )
 
-move /Y "paa_zh_installer.exe" "Pixel Art Academy 汉化补丁.exe" > nul
+python -c "import os; os.replace('paa_zh_installer.exe', 'Pixel Art Academy \u6c49\u5316\u8865\u4e01.exe')"
 if errorlevel 1 (
     echo.
     echo [错误] 重命名输出文件失败

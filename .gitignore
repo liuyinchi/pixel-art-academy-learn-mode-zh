@@ -19,6 +19,7 @@ ai_chunks/
 build/
 dist/
 *.spec
+paa_zh_installer.exe
 
 # Packaged archives
 *.zip
