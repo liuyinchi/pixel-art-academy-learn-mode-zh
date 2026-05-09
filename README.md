@@ -22,8 +22,11 @@ Pixel Art Academy Learn Mode\
    - **安装汉化** — 安装简体中文补丁
    - **卸载汉化** — 恢复英文原版
    - **更新后重新汉化** — Steam 更新游戏后重新应用补丁
+   - **自动补翻译并安装** — 填入 API Key 后，自动提取新增英文、调用 AI 翻译、合并并安装
 
 > 如果 `.exe` 没有放在正确位置，也可以点击「浏览」手动选择游戏目录。
+
+> 自动补翻译支持 OpenAI 兼容接口。默认 Base URL 是 `https://api.openai.com/v1`，也可以填写 DeepSeek、OpenRouter 等兼容服务地址和模型名。
 
 ### 方式二：脚本安装（需要 Python 3）
 
@@ -47,8 +50,8 @@ Pixel Art Academy Learn Mode\
 3. **游戏更新后**：双击 **`更新后重新汉化.bat`**
 4. **更新后有新增英文？** 双击 **`补充翻译.bat`**，按屏幕提示操作：
    - 脚本自动提取新增的未翻译内容
-   - 自动打开待翻译文件 → 复制内容到 AI（ChatGPT / Claude / DeepSeek）筛选并翻译
-   - 把翻译结果粘贴回来保存 → 脚本自动合并并重新应用汉化
+   - 自动调用 AI 筛选并翻译玩家可见文本
+   - 自动合并翻译并重新应用汉化
 
 ---
 
@@ -65,17 +68,38 @@ Pixel Art Academy Learn Mode\
 
 所有修改均可通过 `卸载汉化.bat` 一键还原。
 
-## 补充翻译（还有英文没汉化？）
+## 自动补充翻译（还有英文没汉化？）
 
-如果你发现游戏中仍有英文没有翻译，有两种方式补充：
+如果你发现游戏中仍有英文没有翻译，默认使用 GUI 的 **自动补翻译并安装**。只需要填入 API Key，点击按钮即可，不需要再手动维护 `待翻译汇总.json`。
 
-### 方式 A：一键补翻译（推荐）
+### GUI 一键补翻译
 
-双击 **`补充翻译.bat`**，脚本会自动引导你完成 提取 → 翻译 → 合并 → 安装 全流程。
+1. 打开 **`Pixel Art Academy 汉化补丁.exe`**
+2. 填入 **API Key**
+3. 按需修改 **Base URL** 和 **模型**
+4. 点击 **自动补翻译并安装**
+
+流程会自动完成：重新应用现有汉化 → 提取仍未翻译的英文 → AI 筛选/翻译 → 合并翻译表 → 再次安装汉化。
+
+API Key 只在本次 GUI 运行中使用，不会写入项目文件。
 
 如果输出显示没有待翻译条目，说明当前游戏文本已经覆盖完成；制作人员、曲名、素材名等保留英文的内容会记录在 `hardcoded_skipped.json` 中，不会反复提示翻译。
 
-### 方式 B：手动操作
+### 批处理备用
+
+如果不使用 GUI，也可以双击 **`补充翻译.bat`**。批处理版会从环境变量读取 OpenAI 兼容接口配置：
+
+```bat
+setx PAA_TRANSLATE_API_KEY "你的 API key"
+setx PAA_TRANSLATE_BASE_URL "https://api.openai.com/v1"
+setx PAA_TRANSLATE_MODEL "gpt-4o-mini"
+```
+
+也可以使用 DeepSeek、OpenRouter 等 OpenAI 兼容接口，只要把 `PAA_TRANSLATE_BASE_URL` 和 `PAA_TRANSLATE_MODEL` 改成对应服务即可。
+
+### 旧版手动兜底流程（调试用）
+
+正常情况下不需要再使用 `待翻译汇总.json`。只有在 AI 接口不可用、或你想手动审校提取结果时，才使用下面的旧流程。
 
 1. 在项目文件夹中打开命令行，运行 `python extract_all_missing.py` 提取所有未翻译条目
 2. 把生成的待翻译文件内容复制给翻译工具（ChatGPT / Claude / DeepSeek 等），告诉它：
@@ -109,6 +133,7 @@ Pixel Art Academy Learn Mode\
 | `patch_manual.py` | 应用 `manual_patches.json` 中的手动补丁（安装时自动调用） |
 | `extract_strings.py` | 从 cache.json 中提取未翻译条目 |
 | `extract_hardcoded.py` | 从 JS 文件中提取硬编码英文字符串，并排除已翻译/已跳过条目 |
+| `auto_translate_missing.py` | 自动提取新增文本、调用 AI 翻译并合并到翻译表 |
 | `extract_all_missing.py` | 一键提取所有未翻译条目 |
 | `merge_all_translations.py` | 合并翻译文件（cache + 硬编码） |
 | `merge_ai_output.py` | 合并 AI 生成的手动补丁输出 |
@@ -122,7 +147,7 @@ Pixel Art Academy Learn Mode\
 | `安装汉化.bat` | 安装汉化补丁 |
 | `卸载汉化.bat` | 卸载汉化补丁，恢复英文 |
 | `更新后重新汉化.bat` | 游戏更新后重新应用补丁 |
-| `补充翻译.bat` | 一键补充翻译流程 |
+| `补充翻译.bat` | 自动提取、AI 翻译、合并并重新应用汉化 |
 | `apply_patch.ps1` | 核心安装/卸载脚本（由 .bat 调用） |
 
 ### 构建 .exe 安装器
@@ -132,7 +157,7 @@ Pixel Art Academy Learn Mode\
 
 # 方法二：手动构建
 pip install pyinstaller
-python -m PyInstaller --onefile --windowed --name "Pixel Art Academy 汉化补丁" --add-data "translations_zh.json;." --add-data "hardcoded_zh.json;." --add-data "manual_patches.json;." --add-data "fonts;fonts" installer_gui.py
+python -m PyInstaller --onefile --windowed --name "Pixel Art Academy 汉化补丁" --add-data "translations_zh.json;." --add-data "hardcoded_zh.json;." --add-data "hardcoded_skipped.json;." --add-data "manual_patches.json;." --add-data "fonts;fonts" installer_gui.py
 ```
 
 ### 注意事项

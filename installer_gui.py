@@ -12,7 +12,10 @@ import re
 import shutil
 import threading
 import queue
+import time
 import tkinter as tk
+import urllib.error
+import urllib.request
 from tkinter import scrolledtext, messagebox, filedialog
 
 
@@ -25,8 +28,21 @@ def resource_path(relative_path):
     return os.path.join(base_path, relative_path)
 
 
+def app_dir_path():
+    return os.path.dirname(os.path.abspath(sys.argv[0]))
+
+
+def data_path(relative_path):
+    external = os.path.join(app_dir_path(), relative_path)
+    return external if os.path.exists(external) else resource_path(relative_path)
+
+
+def writable_data_path(relative_path):
+    return os.path.join(app_dir_path(), relative_path)
+
+
 def find_game_dir():
-    exe_dir = os.path.dirname(os.path.abspath(sys.argv[0]))
+    exe_dir = app_dir_path()
     if os.path.isdir(os.path.join(exe_dir, "resources", "app")):
         return exe_dir
     parent = os.path.dirname(exe_dir)
@@ -134,6 +150,41 @@ PAT_TEMPLATE = re.compile(
     r'return\s+"\\n\s+((?:[^"\\]|\\[^u"]|\\u[0-9a-fA-F]{4})*)\\n\s*"\s*;'
 )
 PAT_HTML_RAW = re.compile(r"HTML\.Raw\('((?:[^'\\]|\\.)*)'\)")
+
+# Keep GUI auto-translation in sync with extract_hardcoded.py. Scanning all
+# retronator_*.js files produces many false positives from libraries/stores.
+HARDCODED_TARGET_PACKAGES = [
+    'retronator_pixelartacademy-learnmode.js',
+    'retronator_pixelartacademy-learnmode-app.js',
+    'retronator_pixelartacademy-learnmode-intro.js',
+    'retronator_pixelartacademy-learnmode-design.js',
+    'retronator_pixelartacademy-learnmode-pixelartfundamentals.js',
+    'retronator_pixelartacademy-pixelpad.js',
+    'retronator_pixelartacademy-pixelpad-drawing.js',
+    'retronator_pixelartacademy-pixelpad-instructions.js',
+    'retronator_pixelartacademy-pixelpad-music.js',
+    'retronator_pixelartacademy-pixelpad-notifications.js',
+    'retronator_pixelartacademy-pixelpad-pico8.js',
+    'retronator_pixelartacademy-pixelpad-pixeltosh.js',
+    'retronator_pixelartacademy-pixelpad-todo.js',
+    'retronator_pixelartacademy-pixelpad-studyplan.js',
+    'retronator_pixelartacademy-tutorials.js',
+    'retronator_pixelartacademy-challenges.js',
+    'retronator_pixelartacademy-pixeltosh.js',
+    'retronator_pixelartacademy-pixeltosh-pinball.js',
+    'retronator_pixelartacademy-pixeltosh-drawquickly.js',
+    'retronator_pixelartacademy-pixeltosh-writer.js',
+    'retronator_pixelartacademy-pico8.js',
+    'retronator_pixelartacademy-pico8-invasion.js',
+    'retronator_pixelartacademy-pico8-jungle.js',
+    'retronator_pixelartacademy-pico8-snake.js',
+    'retronator_pixelartacademy.js',
+    'retronator_pixelartacademy-practice.js',
+    'retronator_pixelartacademy-studyguide.js',
+    'retronator_pixelartacademy-learning.js',
+    'retronator_pixelartacademy-music.js',
+    'retronator_pixelartacademy-publication.js',
+]
 
 
 def _try_replace_html_raw(content, en_text, zh_text):
@@ -294,6 +345,118 @@ def patch_manual(packages_dir, patches, log_fn=print):
 
 
 # ============================================================
+# Automatic AI Translation
+# ============================================================
+
+TAG_TEXT_RE = re.compile(r'>([^<]+)<')
+
+
+def _load_json(path, default):
+    if not os.path.exists(path):
+        return default
+    with open(path, 'r', encoding='utf-8') as f:
+        return json.load(f)
+
+
+def _save_json(path, data):
+    with open(path, 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+        f.write('\n')
+
+
+def _has_chinese(text):
+    return any('\u4e00' <= ch <= '\u9fff' for ch in str(text))
+
+
+def _chunk_entries(data, max_chars=9000):
+    entries = []
+    for section in ('cache', 'hardcoded'):
+        for key, value in data.get(section, {}).items():
+            entries.append((section, key, value))
+
+    chunks = []
+    current = {'cache': {}, 'hardcoded': {}}
+    current_size = 0
+    for section, key, value in entries:
+        item_size = len(key) + len(str(value)) + 16
+        if current_size and current_size + item_size > max_chars:
+            chunks.append(current)
+            current = {'cache': {}, 'hardcoded': {}}
+            current_size = 0
+        current[section][key] = value
+        current_size += item_size
+    if current_size:
+        chunks.append(current)
+    return chunks
+
+
+def _extract_json_object(text):
+    text = text.strip()
+    fence = re.search(r'```(?:json)?\s*(.*?)\s*```', text, re.S | re.I)
+    if fence:
+        text = fence.group(1).strip()
+    start = text.find('{')
+    end = text.rfind('}')
+    if start < 0 or end < start:
+        raise ValueError('AI 返回内容中没有找到 JSON 对象')
+    return json.loads(text[start:end + 1])
+
+
+def _chat_completion(api_key, base_url, model, messages, use_response_format=True):
+    payload = {
+        'model': model,
+        'messages': messages,
+        'temperature': 0.1,
+    }
+    if use_response_format:
+        payload['response_format'] = {'type': 'json_object'}
+
+    request = urllib.request.Request(
+        base_url.rstrip('/') + '/chat/completions',
+        data=json.dumps(payload).encode('utf-8'),
+        headers={
+            'Authorization': f'Bearer {api_key}',
+            'Content-Type': 'application/json',
+        },
+        method='POST',
+    )
+    with urllib.request.urlopen(request, timeout=120) as response:
+        body = json.loads(response.read().decode('utf-8'))
+    return body['choices'][0]['message']['content']
+
+
+def _translate_chunk(chunk, index, total, api_key, base_url, model):
+    system_prompt = (
+        '你是一位游戏汉化专家，负责 Pixel Art Academy Learn Mode 的简体中文本地化。'
+        '只翻译玩家可见的英文文本。人名、游戏名、曲名、素材名、代码标识符、URL、文件路径保持原文。'
+        '如果某条不是玩家可见文本或应保留英文，把 value 设为 null。'
+        '保留 key、换行、占位符、%%name%%、{name}、HTML 实体和专有名词。'
+        '只输出 JSON 对象，不要解释。'
+    )
+    user_prompt = (
+        f'这是第 {index}/{total} 批待处理文本。'
+        '请返回完全相同结构的 JSON：{"cache": {...}, "hardcoded": {...}}。'
+        '每个 key 必须原样保留；value 是简体中文翻译，或 null。\n\n'
+        + json.dumps(chunk, ensure_ascii=False, indent=2)
+    )
+    messages = [
+        {'role': 'system', 'content': system_prompt},
+        {'role': 'user', 'content': user_prompt},
+    ]
+    try:
+        content = _chat_completion(api_key, base_url, model, messages, True)
+    except urllib.error.HTTPError as e:
+        if e.code != 400:
+            raise
+        content = _chat_completion(api_key, base_url, model, messages, False)
+    parsed = _extract_json_object(content)
+    return {
+        'cache': parsed.get('cache', {}),
+        'hardcoded': parsed.get('hardcoded', {}),
+    }
+
+
+# ============================================================
 # Font Patching
 # ============================================================
 
@@ -361,13 +524,18 @@ class PatchInstaller:
         self.css_file = os.path.join(self.meteor_extracted, "merged-stylesheets.css")
         self.packages_dir = os.path.join(self.meteor_extracted, "packages")
 
-        exe_dir = os.path.dirname(os.path.abspath(sys.argv[0]))
+        exe_dir = app_dir_path()
         self.backup_dir = os.path.join(exe_dir, "backup")
 
-        self.trans_file = resource_path("translations_zh.json")
-        self.hardcoded_file = resource_path("hardcoded_zh.json")
-        self.manual_patches_file = resource_path("manual_patches.json")
+        self.trans_file = data_path("translations_zh.json")
+        self.hardcoded_file = data_path("hardcoded_zh.json")
+        self.skipped_file = data_path("hardcoded_skipped.json")
+        self.manual_patches_file = data_path("manual_patches.json")
         self.fonts_dir = resource_path("fonts")
+
+        self.writable_trans_file = writable_data_path("translations_zh.json")
+        self.writable_hardcoded_file = writable_data_path("hardcoded_zh.json")
+        self.writable_skipped_file = writable_data_path("hardcoded_skipped.json")
 
     # ---- INSTALL ----
 
@@ -610,6 +778,202 @@ class PatchInstaller:
         self.log("")
         return self.install()
 
+    # ---- AUTO TRANSLATE ----
+
+    def _extract_cache_missing(self):
+        existing_keys = set(_load_json(self.trans_file, {}).keys())
+        cache = _load_json(self.cache_json, {})
+
+        missing = {}
+        skipped = {'no_en': 0, 'already_translated': 0, 'bitmapInfo': 0, 'parser': 0, 'placeholder': 0}
+
+        for ns, keys in cache.items():
+            if not isinstance(keys, dict):
+                continue
+            for key, entry in keys.items():
+                if not isinstance(entry, list) or len(entry) < 2:
+                    continue
+                full_key = f"{ns}|||{key}"
+                trans_obj = entry[1]
+                if full_key in existing_keys:
+                    skipped['already_translated'] += 1
+                    continue
+                if 'zh' in trans_obj and 'cn' in trans_obj['zh']:
+                    skipped['already_translated'] += 1
+                    continue
+
+                en_text = None
+                if 'en' in trans_obj:
+                    en_data = trans_obj['en']
+                    if isinstance(en_data, dict):
+                        if isinstance(en_data.get('best'), dict):
+                            en_text = en_data['best'].get('text')
+                        elif isinstance(en_data.get('us'), dict):
+                            en_text = en_data['us'].get('text')
+                if not en_text:
+                    skipped['no_en'] += 1
+                    continue
+                if key == 'bitmapInfo':
+                    skipped['bitmapInfo'] += 1
+                    continue
+                if 'Parser' in ns:
+                    skipped['parser'] += 1
+                    continue
+                if en_text == 'message':
+                    skipped['placeholder'] += 1
+                    continue
+                missing[full_key] = en_text
+
+        self.log(f"  cache 新增待翻译: {len(missing)} 条")
+        self.log(f"  cache 跳过: {skipped}")
+        return missing
+
+    def _extract_hardcoded_missing(self):
+        existing_keys = set(_load_json(self.hardcoded_file, {}).keys())
+        skipped_keys = set(_load_json(self.skipped_file, {}).keys())
+        missing = {}
+        counts = {}
+
+        if not os.path.isdir(self.packages_dir):
+            return missing
+
+        for filename in HARDCODED_TARGET_PACKAGES:
+            filepath = os.path.join(self.packages_dir, filename)
+            if not os.path.exists(filepath):
+                continue
+            with open(filepath, 'r', encoding='utf-8') as f:
+                content = f.read()
+
+            found = {}
+            for match in PAT_STATIC.finditer(content):
+                raw_text = match.group(2)
+                cleaned = raw_text.replace('\\n', '\n').strip()
+                if _has_chinese(cleaned):
+                    continue
+                if len(cleaned) >= 3 and re.search(r'[a-zA-Z]{2}', cleaned):
+                    found[raw_text] = cleaned
+
+            for match in PAT_TEMPLATE.finditer(content):
+                raw_text = match.group(1).strip()
+                cleaned = raw_text.replace('\\n', '\n').strip()
+                if _has_chinese(cleaned):
+                    continue
+                if len(cleaned) >= 5 and re.search(r'[a-zA-Z]{3}', cleaned):
+                    found[raw_text] = cleaned
+
+            for match in PAT_HTML_RAW.finditer(content):
+                html_content = match.group(1)
+                for text_match in TAG_TEXT_RE.finditer(html_content):
+                    raw_in_file = text_match.group(1)
+                    cleaned = raw_in_file.replace('\\n', ' ').replace("\\'", "'").strip()
+                    if _has_chinese(cleaned):
+                        continue
+                    if len(cleaned) < 2:
+                        continue
+                    if not re.search(r'[a-zA-Z]{2}', cleaned):
+                        continue
+                    if re.search(r'[{};=]', cleaned):
+                        continue
+                    found[cleaned] = cleaned
+
+            for raw, cleaned in found.items():
+                key = f"{filename}|||{raw}"
+                if key in existing_keys or key in skipped_keys:
+                    continue
+                missing[key] = cleaned
+                counts[filename] = counts.get(filename, 0) + 1
+
+        for filename, count in counts.items():
+            self.log(f"  {filename}: {count} 条")
+        self.log(f"  硬编码新增待翻译: {len(missing)} 条")
+        return missing
+
+    def _merge_ai_translations(self, original, translated):
+        translations = _load_json(self.trans_file, {})
+        hardcoded = _load_json(self.hardcoded_file, {})
+        skipped = _load_json(self.skipped_file, {})
+
+        added_cache = 0
+        added_hardcoded = 0
+        added_skipped = 0
+
+        for key, value in translated.get('cache', {}).items():
+            if key not in original.get('cache', {}):
+                continue
+            if isinstance(value, str) and value.strip() and _has_chinese(value):
+                translations[key] = value
+                added_cache += 1
+
+        for key, value in translated.get('hardcoded', {}).items():
+            if key not in original.get('hardcoded', {}):
+                continue
+            if isinstance(value, str) and value.strip() and _has_chinese(value):
+                hardcoded[key] = value
+                added_hardcoded += 1
+            else:
+                skipped[key] = original['hardcoded'][key]
+                added_skipped += 1
+
+        _save_json(self.writable_trans_file, translations)
+        _save_json(self.writable_hardcoded_file, hardcoded)
+        _save_json(self.writable_skipped_file, skipped)
+
+        self.trans_file = self.writable_trans_file
+        self.hardcoded_file = self.writable_hardcoded_file
+        self.skipped_file = self.writable_skipped_file
+
+        self.log(f"  translations_zh.json 新增/更新: {added_cache} 条")
+        self.log(f"  hardcoded_zh.json 新增/更新: {added_hardcoded} 条")
+        self.log(f"  hardcoded_skipped.json 新增/更新: {added_skipped} 条")
+
+    def auto_translate_and_install(self, api_key, base_url, model):
+        self.log("=" * 45)
+        self.log("  自动补翻译并安装")
+        self.log("=" * 45)
+        self.log("")
+        self.log("[*] 先重新应用现有汉化，确保基于当前游戏版本提取新增文本...")
+        if not self.reinstall_after_update():
+            return False
+
+        self.log("")
+        self.log("[*] 提取新增英文文本...")
+        missing = {
+            'cache': self._extract_cache_missing(),
+            'hardcoded': self._extract_hardcoded_missing(),
+        }
+        total = len(missing['cache']) + len(missing['hardcoded'])
+        self.log(f"  合计待处理: {total} 条")
+        if total == 0:
+            self.log("[OK] 没有需要补充翻译的新增文本。")
+            return True
+
+        chunks = _chunk_entries(missing)
+        translated_all = {'cache': {}, 'hardcoded': {}}
+        self.log("")
+        self.log(f"[*] 调用 AI 翻译，共 {len(chunks)} 批...")
+        for index, chunk in enumerate(chunks, 1):
+            self.log(f"  翻译第 {index}/{len(chunks)} 批...")
+            for attempt in range(1, 4):
+                try:
+                    translated = _translate_chunk(chunk, index, len(chunks), api_key, base_url, model)
+                    translated_all['cache'].update(translated.get('cache', {}))
+                    translated_all['hardcoded'].update(translated.get('hardcoded', {}))
+                    break
+                except Exception as e:
+                    if attempt == 3:
+                        self.log(f"[错误] 第 {index} 批翻译失败: {e}")
+                        return False
+                    self.log(f"    失败，准备重试 {attempt}/2: {e}")
+                    time.sleep(2 * attempt)
+
+        self.log("")
+        self.log("[*] 合并 AI 翻译结果...")
+        self._merge_ai_translations(missing, translated_all)
+
+        self.log("")
+        self.log("[*] 重新应用包含新增翻译的汉化补丁...")
+        return self.install()
+
 
 # ============================================================
 # GUI Application
@@ -624,13 +988,16 @@ class InstallerApp:
     def __init__(self):
         self.root = tk.Tk()
         self.root.title("Pixel Art Academy Learn Mode - 简体中文汉化补丁")
-        self.root.geometry("720x540")
+        self.root.geometry("760x660")
         self.root.resizable(False, False)
         self.root.configure(bg="#f0f0f0")
 
         self.game_dir = None
         self.running = False
         self._log_queue = queue.Queue()
+        self.api_key_var = tk.StringVar()
+        self.base_url_var = tk.StringVar(value="https://api.openai.com/v1")
+        self.model_var = tk.StringVar(value="gpt-4o-mini")
 
         self._build_ui()
         self._detect_game()
@@ -672,6 +1039,40 @@ class InstallerApp:
         )
         self.browse_btn.pack(side=tk.RIGHT)
 
+        # AI translation settings
+        api_frame = tk.LabelFrame(
+            self.root, text="AI 自动补翻译（OpenAI 兼容接口）",
+            padx=12, pady=8, font=("Microsoft YaHei UI", 9)
+        )
+        api_frame.pack(fill=tk.X, padx=15, pady=(0, 8))
+
+        tk.Label(api_frame, text="API Key:", font=("Microsoft YaHei UI", 9)).grid(
+            row=0, column=0, sticky="w"
+        )
+        self.api_key_entry = tk.Entry(
+            api_frame, textvariable=self.api_key_var, show="*",
+            font=("Consolas", 9)
+        )
+        self.api_key_entry.grid(row=0, column=1, sticky="ew", padx=(6, 10))
+
+        tk.Label(api_frame, text="模型:", font=("Microsoft YaHei UI", 9)).grid(
+            row=0, column=2, sticky="w"
+        )
+        self.model_entry = tk.Entry(
+            api_frame, textvariable=self.model_var, font=("Consolas", 9), width=18
+        )
+        self.model_entry.grid(row=0, column=3, sticky="ew", padx=(6, 0))
+
+        tk.Label(api_frame, text="Base URL:", font=("Microsoft YaHei UI", 9)).grid(
+            row=1, column=0, sticky="w", pady=(6, 0)
+        )
+        self.base_url_entry = tk.Entry(
+            api_frame, textvariable=self.base_url_var, font=("Consolas", 9)
+        )
+        self.base_url_entry.grid(row=1, column=1, columnspan=3, sticky="ew", padx=(6, 0), pady=(6, 0))
+        api_frame.columnconfigure(1, weight=1)
+        api_frame.columnconfigure(3, weight=0)
+
         # Action buttons
         btn_frame = tk.Frame(self.root, padx=15, pady=5)
         btn_frame.pack(fill=tk.X)
@@ -698,6 +1099,16 @@ class InstallerApp:
             command=lambda: self._run_task("reinstall"), **common
         )
         self.update_btn.pack(side=tk.LEFT, padx=(6, 0), fill=tk.X, expand=True)
+
+        auto_frame = tk.Frame(self.root, padx=15, pady=(0, 5))
+        auto_frame.pack(fill=tk.X)
+
+        self.auto_translate_btn = tk.Button(
+            auto_frame, text="  自动补翻译并安装  ", bg="#673AB7", fg="white",
+            activebackground="#5E35B1",
+            command=lambda: self._run_task("auto_translate"), **common
+        )
+        self.auto_translate_btn.pack(fill=tk.X)
 
         # Log output
         log_frame = tk.Frame(self.root, padx=15, pady=8)
@@ -791,8 +1202,10 @@ class InstallerApp:
 
     def _set_buttons_state(self, state):
         for btn in (self.install_btn, self.uninstall_btn,
-                    self.update_btn, self.browse_btn):
+                    self.update_btn, self.auto_translate_btn, self.browse_btn):
             btn.configure(state=state)
+        for entry in (self.api_key_entry, self.base_url_entry, self.model_entry):
+            entry.configure(state=state)
 
     def _run_task(self, action):
         if self.running:
@@ -800,6 +1213,16 @@ class InstallerApp:
         if not self.game_dir:
             messagebox.showerror("错误", "请先选择游戏目录！")
             return
+
+        api_config = None
+        if action == "auto_translate":
+            api_key = self.api_key_var.get().strip()
+            base_url = self.base_url_var.get().strip() or "https://api.openai.com/v1"
+            model = self.model_var.get().strip() or "gpt-4o-mini"
+            if not api_key:
+                messagebox.showerror("错误", "请先填写 API Key。")
+                return
+            api_config = (api_key, base_url, model)
 
         self.running = True
         self._set_buttons_state(tk.DISABLED)
@@ -820,6 +1243,9 @@ class InstallerApp:
                 elif action == "reinstall":
                     self.status_var.set("正在重新安装...")
                     result = installer.reinstall_after_update()
+                elif action == "auto_translate":
+                    self.status_var.set("正在自动补翻译...")
+                    result = installer.auto_translate_and_install(*api_config)
                 else:
                     result = False
 
