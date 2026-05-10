@@ -1,41 +1,63 @@
-﻿@echo off
+@echo off
 chcp 65001 > nul
-title 构建汉化补丁 .exe
+title Build Pixel Art Academy Chinese patch
 
 echo.
-echo  ╔══════════════════════════════════════════╗
-echo  ║  构建 Pixel Art Academy 汉化补丁 .exe    ║
-echo  ╚══════════════════════════════════════════╝
+echo ========================================
+echo  Build Pixel Art Academy Chinese patch
+echo ========================================
 echo.
 
-:: Check Python
-python --version > nul 2>&1
-if errorlevel 1 (
-    echo [错误] 未找到 Python，请先安装 Python 3
+set "BUNDLED_PY=C:\Users\Administrator\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe"
+set "PYTHON_CMD="
+
+if exist "%BUNDLED_PY%" (
+    set "PYTHON_CMD="%BUNDLED_PY%""
+) else (
+    where python > nul 2>&1
+    if not errorlevel 1 set "PYTHON_CMD=python"
+)
+
+if not defined PYTHON_CMD (
+    where py > nul 2>&1
+    if not errorlevel 1 set "PYTHON_CMD=py -3"
+)
+
+if not defined PYTHON_CMD (
+    echo [ERROR] Python was not found. Please install Python 3, or run this from Codex again.
     pause
     exit /b 1
 )
 
-:: Install PyInstaller if not present
-echo [*] 检查 PyInstaller ...
-pip show pyinstaller > nul 2>&1
+echo [*] Python:
+%PYTHON_CMD% --version
 if errorlevel 1 (
-    echo [*] 正在安装 PyInstaller ...
-    pip install pyinstaller
+    echo [ERROR] Python failed to start.
+    pause
+    exit /b 1
+)
+
+echo.
+echo [*] Checking PyInstaller ...
+%PYTHON_CMD% -m pip show pyinstaller > nul 2>&1
+if errorlevel 1 (
+    echo [*] Installing PyInstaller ...
+    %PYTHON_CMD% -m pip install pyinstaller
     if errorlevel 1 (
-        echo [错误] 安装 PyInstaller 失败
+        echo [ERROR] Failed to install PyInstaller.
         pause
         exit /b 1
     )
 )
-echo [OK] PyInstaller 已就绪
+echo [OK] PyInstaller is ready.
 echo.
 
-:: Build
-echo [*] 正在构建 .exe 文件，请稍候...
+echo [*] Building exe, please wait ...
 echo.
 
-python -m PyInstaller --onefile --windowed ^
+if exist "paa_zh_installer.exe" del /f /q "paa_zh_installer.exe"
+
+%PYTHON_CMD% -m PyInstaller --onefile --windowed ^
     --name "paa_zh_installer" ^
     --add-data "translations_zh.json;." ^
     --add-data "hardcoded_zh.json;." ^
@@ -48,32 +70,28 @@ python -m PyInstaller --onefile --windowed ^
 
 if errorlevel 1 (
     echo.
-    echo [错误] 构建失败，请查看上方错误信息
+    echo [ERROR] Build failed. See the messages above.
     pause
     exit /b 1
 )
 
-python -c "import os; os.replace('paa_zh_installer.exe', 'Pixel Art Academy \u6c49\u5316\u8865\u4e01.exe')"
+%PYTHON_CMD% -c "import os; target='Pixel Art Academy \u6c49\u5316\u8865\u4e01.exe'; os.remove(target) if os.path.exists(target) else None; os.replace('paa_zh_installer.exe', target)"
 if errorlevel 1 (
     echo.
-    echo [错误] 重命名输出文件失败
+    echo [ERROR] Failed to rename output. Close any running patch exe and try again.
     pause
     exit /b 1
 )
 
 echo.
 echo ========================================
-echo  构建成功！
-echo  输出文件: Pixel Art Academy 汉化补丁.exe
-echo.
-echo  使用方法:
-echo    将 .exe 文件放到游戏根目录，双击运行即可。
+echo  Build succeeded!
+echo  Output: Pixel Art Academy Chinese patch exe
 echo ========================================
 echo.
 
-:: Clean up build artifacts
 if exist build rmdir /s /q build
-if exist "paa_zh_installer.spec" del "paa_zh_installer.spec"
-if exist "Pixel Art Academy 汉化补丁.spec" del "Pixel Art Academy 汉化补丁.spec"
+if exist "paa_zh_installer.spec" del /f /q "paa_zh_installer.spec"
+if exist "paa_zh_installer.exe" del /f /q "paa_zh_installer.exe"
 
 pause

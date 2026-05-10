@@ -504,48 +504,6 @@
   },
   {
     "file": "retronator_pixelartacademy-learnmode-intro.js",
-    "find": "static displayName() {\n      return \"To-do tasks\";\n    }",
-    "replace": "static displayName() {\n      return \"待办任务\";\n    }",
-    "comment": "ToDoTasks goal display name (chunk_009)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-intro.js",
-    "find": "static interests() {\n        return ['to-do tasks'];\n      }",
-    "replace": "static interests() {\n        return ['待办任务'];\n      }",
-    "comment": "OpenInstructions task interests (chunk_009)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-intro.js",
-    "find": "static displayName() {\n      return \"Pixel art software\";\n    }",
-    "replace": "static displayName() {\n      return \"像素画软件\";\n    }",
-    "comment": "PixelArtSoftware goal display name (chunk_009)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-intro.js",
-    "find": "static requiredInterests() {\n        return ['to-do tasks'];\n      }",
-    "replace": "static requiredInterests() {\n        return ['待办任务'];\n      }",
-    "comment": "Basics task required interests (chunk_009)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-intro.js",
-    "find": "static displayName() {\n      return \"Snake game\";\n    }",
-    "replace": "static displayName() {\n      return \"贪吃蛇游戏\";\n    }",
-    "comment": "Snake goal display name (chunk_010)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-intro.js",
-    "find": "static displayName() {\n      return \"Pixel art tools\";\n    }",
-    "replace": "static displayName() {\n      return \"像素画工具\";\n    }",
-    "comment": "Course display name (chunk_010)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-intro.js",
-    "find": "static displayName() {\n      return \"Apps\";\n    }",
-    "replace": "static displayName() {\n      return \"应用\";\n    }",
-    "comment": "Apps content display name (chunk_010)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-intro.js",
     "find": "static unlockInstructions() {\n      return \"Learn how to use to-do tasks to unlock apps.\";\n    }",
     "replace": "static unlockInstructions() {\n      return \"学习如何使用待办任务来解锁应用。\";\n    }",
     "comment": "Apps unlock instructions (chunk_010)"
@@ -558,12 +516,6 @@
   },
   {
     "file": "retronator_pixelartacademy-learnmode-intro.js",
-    "find": "static displayName() {\n      return \"Study goals\";\n    }",
-    "replace": "static displayName() {\n      return \"学习目标\";\n    }",
-    "comment": "Goals content display name (chunk_010)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-intro.js",
     "find": "static unlockInstructions() {\n      return \"Learn how to use to-do tasks to unlock study goals.\";\n    }",
     "replace": "static unlockInstructions() {\n      return \"学习如何使用待办任务来解锁学习目标。\";\n    }",
     "comment": "Goals unlock instructions (chunk_010)"
@@ -573,12 +525,6 @@
     "find": "static unlockInstructions() {\n        return \"Complete the Pixel art software challenge to unlock the Snake game study goal.\";\n      }",
     "replace": "static unlockInstructions() {\n        return \"完成像素画软件挑战以解锁贪吃蛇游戏学习目标。\";\n      }",
     "comment": "Snake goal unlock instructions (chunk_010)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-intro.js",
-    "find": "static displayName() {\n      return \"Drawing tutorials\";\n    }",
-    "replace": "static displayName() {\n      return \"绘画教程\";\n    }",
-    "comment": "DrawingTutorials display name (chunk_010)"
   },
   {
     "file": "retronator_pixelartacademy-learnmode-intro.js",
@@ -600,33 +546,9 @@
   },
   {
     "file": "retronator_pixelartacademy-learnmode-intro.js",
-    "find": "static displayName() {\n      return \"Drawing challenges\";\n    }",
-    "replace": "static displayName() {\n      return \"绘画挑战\";\n    }",
-    "comment": "DrawingChallenges display name (chunk_010)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-intro.js",
     "find": "static unlockInstructions() {\n      return \"Complete the Pixel art tools: basics tutorial to unlock drawing challenges.\";\n    }",
     "replace": "static unlockInstructions() {\n      return \"完成像素画工具：基础教程以解锁绘画挑战。\";\n    }",
     "comment": "DrawingChallenges unlock instructions (chunk_010)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-intro.js",
-    "find": "static displayName() {\n        return \"Copy a reference\";\n      }",
-    "replace": "static displayName() {\n        return \"临摹参考图\";\n      }",
-    "comment": "CopyReference display name (chunk_010)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-intro.js",
-    "find": "static displayName() {\n          return \"Small monochrome sprites\";\n        }",
-    "replace": "static displayName() {\n          return \"小型单色精灵图\";\n        }",
-    "comment": "SmallMonochrome display name (chunk_011)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-intro.js",
-    "find": "static displayName() {\n          return \"Small colored sprites\";\n        }",
-    "replace": "static displayName() {\n          return \"小型彩色精灵图\";\n        }",
-    "comment": "SmallColored display name (chunk_011)"
   },
   {
     "file": "retronator_pixelartacademy-learnmode-intro.js",
@@ -636,21 +558,9 @@
   },
   {
     "file": "retronator_pixelartacademy-learnmode-intro.js",
-    "find": "static displayName() {\n          return \"Big monochrome sprites\";\n        }",
-    "replace": "static displayName() {\n          return \"大型单色精灵图\";\n        }",
-    "comment": "BigMonochrome display name (chunk_011)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-intro.js",
     "find": "static unlockInstructions() {\n          return \"Complete the Helpers tutorial to unlock big sprites.\";\n        }",
     "replace": "static unlockInstructions() {\n          return \"完成辅助工具教程以解锁大型精灵图。\";\n        }",
     "comment": "BigMonochrome unlock instructions (chunk_011)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-intro.js",
-    "find": "static displayName() {\n          return \"Big colored sprites\";\n        }",
-    "replace": "static displayName() {\n          return \"大型彩色精灵图\";\n        }",
-    "comment": "BigColored display name (chunk_011)"
   },
   {
     "file": "retronator_pixelartacademy-learnmode-intro.js",
@@ -660,51 +570,15 @@
   },
   {
     "file": "retronator_pixelartacademy-learnmode-intro.js",
-    "find": "static displayName() {\n      return \"Projects\";\n    }",
-    "replace": "static displayName() {\n      return \"项目\";\n    }",
-    "comment": "Projects display name (chunk_011)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-intro.js",
     "find": "static unlockInstructions() {\n      return \"Unlock the PICO-8 app to get access to projects.\";\n    }",
     "replace": "static unlockInstructions() {\n      return \"解锁 PICO-8 应用以获取项目访问权限。\";\n    }",
     "comment": "Projects unlock instructions (chunk_011)"
   },
   {
     "file": "retronator_pixelartacademy-learnmode-intro.js",
-    "find": "static displayName() {\n        return \"Snake\";\n      }",
-    "replace": "static displayName() {\n        return \"贪吃蛇\";\n      }",
-    "comment": "Snake project display name (chunk_011)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-intro.js",
     "find": "static unlockInstructions() {\n        return \"Score some points in the Snake game on PICO-8 to unlock the Snake project.\";\n      }",
     "replace": "static unlockInstructions() {\n        return \"在 PICO-8 上的贪吃蛇游戏中获得一些分数以解锁贪吃蛇项目。\";\n      }",
     "comment": "Snake project unlock instructions (chunk_011)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-design.js",
-    "find": "static displayName() {\n      return \"Shape language\";\n    }",
-    "replace": "static displayName() {\n      return \"形状语言\";\n    }",
-    "comment": "ShapeLanguage goal display name (chunk_012)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-design.js",
-    "find": "static displayName() {\n      return \"Invasion game\";\n    }",
-    "replace": "static displayName() {\n      return \"入侵游戏\";\n    }",
-    "comment": "Invasion goal display name (chunk_012)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-design.js",
-    "find": "static displayName() {\n      return \"Design fundamentals\";\n    }",
-    "replace": "static displayName() {\n      return \"设计基础\";\n    }",
-    "comment": "Design fundamentals course display name (chunk_013)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-design.js",
-    "find": "static displayName() {\n      return \"Study goals\";\n    }",
-    "replace": "static displayName() {\n      return \"学习目标\";\n    }",
-    "comment": "Goals display name in design (chunk_013)"
   },
   {
     "file": "retronator_pixelartacademy-learnmode-design.js",
@@ -717,36 +591,6 @@
     "find": "static unlockInstructions() {\n        return \"Complete the Shape language tutorial to start working on the Invasion game.\";\n      }",
     "replace": "static unlockInstructions() {\n        return \"完成形状语言教程以开始制作入侵游戏。\";\n      }",
     "comment": "Invasion unlock instructions (chunk_013)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-design.js",
-    "find": "static displayName() {\n      return \"Drawing tutorials\";\n    }",
-    "replace": "static displayName() {\n      return \"绘画教程\";\n    }",
-    "comment": "DrawingTutorials display name in design (chunk_013)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-design.js",
-    "find": "static displayName() {\n        return \"Color schemes\";\n      }",
-    "replace": "static displayName() {\n        return \"配色方案\";\n      }",
-    "comment": "ColorSchemes display name (chunk_013)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-design.js",
-    "find": "static displayName() {\n        return \"Composition\";\n      }",
-    "replace": "static displayName() {\n        return \"构图\";\n      }",
-    "comment": "Composition display name (chunk_013)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-design.js",
-    "find": "static displayName() {\n      return \"Projects\";\n    }",
-    "replace": "static displayName() {\n      return \"项目\";\n    }",
-    "comment": "Projects display name in design (chunk_013)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-design.js",
-    "find": "static displayName() {\n        return \"Invasion\";\n      }",
-    "replace": "static displayName() {\n        return \"入侵\";\n      }",
-    "comment": "Invasion project display name (chunk_013)"
   },
   {
     "file": "retronator_pixelartacademy-learnmode-design.js",
@@ -797,28 +641,10 @@
     "comment": "Shield unlock instructions (chunk_013)"
   },
   {
-    "file": "retronator_pixelartacademy-learnmode-design.js",
-    "find": "static displayName() {\n        return \"Maze\";\n      }",
-    "replace": "static displayName() {\n        return \"迷宫\";\n      }",
-    "comment": "Maze display name (chunk_013)"
-  },
-  {
     "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
     "find": "static fullName() {\n      return \"Pixel art fundamentals\";\n    }",
     "replace": "static fullName() {\n      return \"像素艺术基础\";\n    }",
     "comment": "PixelArtFundamentals full name (chunk_015)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n      return \"Apps\";\n    }",
-    "replace": "static displayName() {\n      return \"应用\";\n    }",
-    "comment": "Apps display name (chunk_019)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n        return \"Study Plan\";\n      }",
-    "replace": "static displayName() {\n        return \"学习计划\";\n      }",
-    "comment": "StudyPlan display name (chunk_019)"
   },
   {
     "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
@@ -828,33 +654,9 @@
   },
   {
     "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n        return \"Pixelvision\";\n      }",
-    "replace": "static displayName() {\n        return \"Pixelvision\";\n      }",
-    "comment": "Pixelvision display name - keep as is (chunk_019)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n        return \"Pixel Kid\";\n      }",
-    "replace": "static displayName() {\n        return \"Pixel Kid\";\n      }",
-    "comment": "PixelKid display name - keep as is (chunk_019)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n        return \"Pixel Friend\";\n      }",
-    "replace": "static displayName() {\n        return \"Pixel Friend\";\n      }",
-    "comment": "PixelFriend display name - keep as is (chunk_019)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
     "find": "static unlockInstructions() {\n        return \"Complete the Pixel Art Tools course to unlock the Music app.\";\n      }",
     "replace": "static unlockInstructions() {\n        return \"完成像素画工具课程以解锁音乐应用。\";\n      }",
     "comment": "Music app unlock instructions (chunk_019)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n      return \"Study goals\";\n    }",
-    "replace": "static displayName() {\n      return \"学习目标\";\n    }",
-    "comment": "Goals display name (chunk_019)"
   },
   {
     "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
@@ -876,135 +678,9 @@
   },
   {
     "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n      return \"Drawing tutorials\";\n    }",
-    "replace": "static displayName() {\n      return \"绘画教程\";\n    }",
-    "comment": "DrawingTutorials display name (chunk_019)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n        return \"Elements of art\";\n      }",
-    "replace": "static displayName() {\n        return \"艺术元素\";\n      }",
-    "comment": "ElementsOfArt display name (chunk_019)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n          return \"Elements of art: form\";\n        }",
-    "replace": "static displayName() {\n          return \"艺术元素：形态\";\n        }",
-    "comment": "Form display name (chunk_019)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n          return \"Elements of art: space\";\n        }",
-    "replace": "static displayName() {\n          return \"艺术元素：空间\";\n        }",
-    "comment": "Space display name (chunk_019)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n          return \"Elements of art: value\";\n        }",
-    "replace": "static displayName() {\n          return \"艺术元素：明暗\";\n        }",
-    "comment": "Value display name (chunk_019)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n          return \"Elements of art: color\";\n        }",
-    "replace": "static displayName() {\n          return \"艺术元素：色彩\";\n        }",
-    "comment": "Color display name (chunk_019)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n          return \"Elements of art: texture\";\n        }",
-    "replace": "static displayName() {\n          return \"艺术元素：纹理\";\n        }",
-    "comment": "Texture display name (chunk_019)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n        return \"Pixel art\";\n      }",
-    "replace": "static displayName() {\n        return \"像素画\";\n      }",
-    "comment": "PixelArt display name (chunk_019)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n          return \"Pixel art shapes\";\n        }",
-    "replace": "static displayName() {\n          return \"像素画形状\";\n        }",
-    "comment": "Shapes display name (chunk_019)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n          return \"Pixel art rotation\";\n        }",
-    "replace": "static displayName() {\n          return \"像素画旋转\";\n        }",
-    "comment": "Rotation display name (chunk_019)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n          return \"Limited palettes\";\n        }",
-    "replace": "static displayName() {\n          return \"有限调色板\";\n        }",
-    "comment": "LimitedPalettes display name (chunk_019)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n          return \"Technical limitations\";\n        }",
-    "replace": "static displayName() {\n          return \"技术限制\";\n        }",
-    "comment": "TechnicalLimitations display name (chunk_019)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n          return \"Aliasing\";\n        }",
-    "replace": "static displayName() {\n          return \"锯齿\";\n        }",
-    "comment": "Aliasing display name (chunk_019)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n          return \"Dithering\";\n        }",
-    "replace": "static displayName() {\n          return \"抖动\";\n        }",
-    "comment": "Dithering display name (chunk_019)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n        return \"Graphical projections\";\n      }",
-    "replace": "static displayName() {\n        return \"图形投影\";\n      }",
-    "comment": "GraphicalProjections display name (chunk_019)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n          return \"Multiview\";\n        }",
-    "replace": "static displayName() {\n          return \"多视图\";\n        }",
-    "comment": "Multiview display name (chunk_019)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n          return \"Pixel isometric\";\n        }",
-    "replace": "static displayName() {\n          return \"像素等距\";\n        }",
-    "comment": "PixelIsometric display name (chunk_019)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n      return \"Drawing challenges\";\n    }",
-    "replace": "static displayName() {\n      return \"绘画挑战\";\n    }",
-    "comment": "DrawingChallenges display name (chunk_020)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n        return \"Pixel art line art\";\n      }",
-    "replace": "static displayName() {\n        return \"像素画线稿\";\n      }",
-    "comment": "PixelArtLineArt display name (chunk_020)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n          return \"Pixel-perfect lines\";\n        }",
-    "replace": "static displayName() {\n          return \"完美像素线条\";\n        }",
-    "comment": "PixelPerfectLines display name (chunk_020)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
     "find": "static unlockInstructions() {\n          return \"Complete the Pixel art lines tutorial to unlock Pixel-perfect lines evaluation.\";\n        }",
     "replace": "static unlockInstructions() {\n          return \"完成像素画线条教程以解锁完美像素线条评估。\";\n        }",
     "comment": "PixelPerfectLines unlock instructions (chunk_020)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n          return \"Even diagonals\";\n        }",
-    "replace": "static displayName() {\n          return \"均匀对角线\";\n        }",
-    "comment": "EvenDiagonals display name (chunk_020)"
   },
   {
     "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
@@ -1014,21 +690,9 @@
   },
   {
     "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n          return \"Smooth curves\";\n        }",
-    "replace": "static displayName() {\n          return \"平滑曲线\";\n        }",
-    "comment": "SmoothCurves display name (chunk_020)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
     "find": "static unlockInstructions() {\n          return \"Complete the Pixel art curves tutorial to unlock Smooth curves evaluation.\";\n        }",
     "replace": "static unlockInstructions() {\n          return \"完成像素画曲线教程以解锁平滑曲线评估。\";\n        }",
     "comment": "SmoothCurves unlock instructions (chunk_020)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n          return \"Consistent line width\";\n        }",
-    "replace": "static displayName() {\n          return \"一致的线条宽度\";\n        }",
-    "comment": "ConsistentLineWidth display name (chunk_020)"
   },
   {
     "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
@@ -1038,64 +702,9 @@
   },
   {
     "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n        return \"Draw quickly\";\n      }",
-    "replace": "static displayName() {\n        return \"快速绘画\";\n      }",
-    "comment": "DrawQuickly display name (chunk_020)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
     "find": "static unlockInstructions() {\n        return \"Complete the Simplification tutorial to unlock the Draw Quickly game on the Pixeltosh.\";\n      }",
     "replace": "static unlockInstructions() {\n        return \"完成简化教程以解锁 Pixeltosh 上的快速绘画游戏。\";\n      }",
     "comment": "DrawQuickly unlock instructions (chunk_020)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n          return \"Symbolic drawing\";\n        }",
-    "replace": "static displayName() {\n          return \"符号绘画\";\n        }",
-    "comment": "SymbolicDrawing display name (chunk_020)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n            return \"Easy\";\n          }",
-    "replace": "static displayName() {\n            return \"简单\";\n          }",
-    "comment": "Easy difficulty display name (chunk_020)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n            return \"Medium\";\n          }",
-    "replace": "static displayName() {\n            return \"中等\";\n          }",
-    "replace_all": true,
-    "comment": "Medium difficulty display name (2 occurrences) (chunk_020)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n            return \"Hard\";\n          }",
-    "replace": "static displayName() {\n            return \"困难\";\n          }",
-    "comment": "Hard difficulty display name (chunk_020)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n          return \"Realistic drawing\";\n        }",
-    "replace": "static displayName() {\n          return \"写实绘画\";\n        }",
-    "comment": "RealisticDrawing display name (chunk_020)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n            return \"Simple\";\n          }",
-    "replace": "static displayName() {\n            return \"简单\";\n          }",
-    "comment": "Simple complexity display name (chunk_020)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n            return \"Complex\";\n          }",
-    "replace": "static displayName() {\n            return \"复杂\";\n          }",
-    "comment": "Complex complexity display name (chunk_020)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n        return \"Pixel art readability\";\n      }",
-    "replace": "static displayName() {\n        return \"像素画可读性\";\n      }",
-    "comment": "PixelArtReadability display name (chunk_020)"
   },
   {
     "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
@@ -1105,45 +714,9 @@
   },
   {
     "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n      return \"Projects\";\n    }",
-    "replace": "static displayName() {\n      return \"项目\";\n    }",
-    "comment": "Projects display name (chunk_020)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n        return \"Pinball\";\n      }",
-    "replace": "static displayName() {\n        return \"弹珠台\";\n      }",
-    "comment": "Pinball project display name (chunk_020)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
     "find": "static unlockInstructions() {\n        return \"Complete the Smooth curves challenge to start the Pinball project.\";\n      }",
     "replace": "static unlockInstructions() {\n        return \"完成平滑曲线挑战以开始弹珠台项目。\";\n      }",
     "comment": "Pinball project unlock instructions (chunk_020)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n        return \"Block breaker\";\n      }",
-    "replace": "static displayName() {\n        return \"打砖块\";\n      }",
-    "comment": "BlockBreaker display name (chunk_020)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n        return \"Chess\";\n      }",
-    "replace": "static displayName() {\n        return \"国际象棋\";\n      }",
-    "comment": "Chess display name (chunk_020)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n        return \"PixelPaint\";\n      }",
-    "replace": "static displayName() {\n        return \"PixelPaint\";\n      }",
-    "comment": "PixelPaint display name - keep as is (chunk_020)"
-  },
-  {
-    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
-    "find": "static displayName() {\n        return \"City builder\";\n      }",
-    "replace": "static displayName() {\n        return \"城市建设\";\n      }",
-    "comment": "CityBuilder display name (chunk_020)"
   },
   {
     "file": "retronator_pixelartacademy-studyguide.js",
@@ -1733,324 +1306,6 @@
     "comment": "练习: Download 按钮"
   },
   {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Pencil\";",
-    "replace": "    static displayName() {\n      return \"铅笔\";",
-    "comment": "教程: Pencil"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Eraser\";",
-    "replace": "    static displayName() {\n      return \"橡皮擦\";",
-    "comment": "教程: Eraser"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Color fill\";",
-    "replace": "    static displayName() {\n      return \"颜色填充\";",
-    "comment": "教程: Color fill"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Color fill 2\";",
-    "replace": "    static displayName() {\n      return \"颜色填充 2\";",
-    "comment": "教程: Color fill 2"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Color fill 3\";",
-    "replace": "    static displayName() {\n      return \"颜色填充 3\";",
-    "comment": "教程: Color fill 3"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Basic tools\";",
-    "replace": "    static displayName() {\n      return \"基础工具\";",
-    "comment": "教程: Basic tools"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Shortcuts\";",
-    "replace": "    static displayName() {\n      return \"快捷键\";",
-    "comment": "教程: Shortcuts"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"References\";",
-    "replace": "    static displayName() {\n      return \"参考图\";",
-    "comment": "教程: References"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Color swatches\";",
-    "replace": "    static displayName() {\n      return \"色板\";",
-    "comment": "教程: Color swatches"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Color picking\";",
-    "replace": "    static displayName() {\n      return \"取色\";",
-    "comment": "教程: Color picking"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Quick color picking\";",
-    "replace": "    static displayName() {\n      return \"快速取色\";",
-    "comment": "教程: Quick color picking"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Zoom\";",
-    "replace": "    static displayName() {\n      return \"缩放\";",
-    "comment": "教程: Zoom"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Move image\";",
-    "replace": "    static displayName() {\n      return \"移动图像\";",
-    "comment": "教程: Move image"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Undo/redo\";",
-    "replace": "    static displayName() {\n      return \"撤销/重做\";",
-    "comment": "教程: Undo/redo"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Lines\";",
-    "replace": "    static displayName() {\n      return \"线条\";",
-    "comment": "教程: Lines"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Straight lines\";",
-    "replace": "    static displayName() {\n      return \"直线\";",
-    "comment": "教程: Straight lines"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Curved lines\";",
-    "replace": "    static displayName() {\n      return \"曲线\";",
-    "comment": "教程: Curved lines"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Broken lines\";",
-    "replace": "    static displayName() {\n      return \"折线\";",
-    "comment": "教程: Broken lines"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Broken lines 2\";",
-    "replace": "    static displayName() {\n      return \"折线 2\";",
-    "comment": "教程: Broken lines 2"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Outlines\";",
-    "replace": "    static displayName() {\n      return \"轮廓线\";",
-    "comment": "教程: Outlines"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Outlines 2\";",
-    "replace": "    static displayName() {\n      return \"轮廓线 2\";",
-    "comment": "教程: Outlines 2"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Edges\";",
-    "replace": "    static displayName() {\n      return \"边缘\";",
-    "comment": "教程: Edges"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Patterns\";",
-    "replace": "    static displayName() {\n      return \"图案\";",
-    "comment": "教程: Patterns"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Basic shapes\";",
-    "replace": "    static displayName() {\n      return \"基础形状\";",
-    "comment": "教程: Basic shapes"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Combining basic shapes\";",
-    "replace": "    static displayName() {\n      return \"组合基础形状\";",
-    "comment": "教程: Combining basic shapes"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Transformed basic shapes\";",
-    "replace": "    static displayName() {\n      return \"变换基础形状\";",
-    "comment": "教程: Transformed basic shapes"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Basic shapes breakdown\";",
-    "replace": "    static displayName() {\n      return \"基础形状分解\";",
-    "comment": "教程: Basic shapes breakdown"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Solid shapes\";",
-    "replace": "    static displayName() {\n      return \"实心形状\";",
-    "comment": "教程: Solid shapes"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Organic shapes\";",
-    "replace": "    static displayName() {\n      return \"有机形状\";",
-    "comment": "教程: Organic shapes"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Organic shapes 2\";",
-    "replace": "    static displayName() {\n      return \"有机形状 2\";",
-    "comment": "教程: Organic shapes 2"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Detailing\";",
-    "replace": "    static displayName() {\n      return \"细节处理\";",
-    "comment": "教程: Detailing"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Intended and perceived lines\";",
-    "replace": "    static displayName() {\n      return \"预期线条与感知线条\";",
-    "comment": "教程: Intended and perceived lines"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Jaggies\";",
-    "replace": "    static displayName() {\n      return \"锯齿\";",
-    "comment": "教程: Jaggies"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Corners\";",
-    "replace": "    static displayName() {\n      return \"拐角\";",
-    "comment": "教程: Corners"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Line art cleanup\";\n    }\n    static description() {\n      return \"练习清理重复像素和角落。\";",
-    "replace": "    static displayName() {\n      return \"线稿清理\";\n    }\n    static description() {\n      return \"练习清理重复像素和角落。\";",
-    "comment": "教程: Line art cleanup (线条章节)"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Jaggies 2\";",
-    "replace": "    static displayName() {\n      return \"锯齿 2\";",
-    "comment": "教程: Jaggies 2"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Even diagonals\";",
-    "replace": "    static displayName() {\n      return \"均匀对角线\";",
-    "comment": "教程: Even diagonals"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Constraining line angles\";",
-    "replace": "    static displayName() {\n      return \"约束线条角度\";",
-    "comment": "教程: Constraining line angles"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Uneven diagonals\";",
-    "replace": "    static displayName() {\n      return \"不均匀对角线\";",
-    "comment": "教程: Uneven diagonals"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Uneven diagonals as an art style\";",
-    "replace": "    static displayName() {\n      return \"不均匀对角线作为艺术风格\";",
-    "comment": "教程: Uneven diagonals as an art style"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Alternating and broken segment lengths\";",
-    "replace": "    static displayName() {\n      return \"交替和不规则线段长度\";",
-    "comment": "教程: Alternating and broken segment lengths"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Matching end segments\";",
-    "replace": "    static displayName() {\n      return \"匹配端点线段\";",
-    "comment": "教程: Matching end segments"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Smooth curves\";",
-    "replace": "    static displayName() {\n      return \"平滑曲线\";",
-    "comment": "教程: Smooth curves"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Circles\";",
-    "replace": "    static displayName() {\n      return \"圆形\";",
-    "comment": "教程: Circles"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Long curves\";",
-    "replace": "    static displayName() {\n      return \"长曲线\";",
-    "comment": "教程: Long curves"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Abrupt segment length changes\";",
-    "replace": "    static displayName() {\n      return \"突变线段长度变化\";",
-    "comment": "教程: Abrupt segment length changes"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Straight parts\";",
-    "replace": "    static displayName() {\n      return \"直线部分\";",
-    "comment": "教程: Straight parts"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Inflection points\";",
-    "replace": "    static displayName() {\n      return \"拐点\";",
-    "comment": "教程: Inflection points"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Line art cleanup\";\n    }\n    static description() {\n      return \"练习平滑你的曲线。\";",
-    "replace": "    static displayName() {\n      return \"线稿清理\";\n    }\n    static description() {\n      return \"练习平滑你的曲线。\";",
-    "comment": "教程: Line art cleanup (曲线章节)"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Line width\";",
-    "replace": "    static displayName() {\n      return \"线条宽度\";",
-    "comment": "教程: Line width"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Thin lines\";",
-    "replace": "    static displayName() {\n      return \"细线\";",
-    "comment": "教程: Thin lines"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Thick lines\";",
-    "replace": "    static displayName() {\n      return \"粗线\";",
-    "comment": "教程: Thick lines"
-  },
-  {
-    "file": "retronator_pixelartacademy-tutorials.js",
-    "find": "    static displayName() {\n      return \"Wide lines\";",
-    "replace": "    static displayName() {\n      return \"宽线\";",
-    "comment": "教程: Wide lines"
-  },
-  {
     "file": "retronator_pixelartacademy-studyguide.js",
     "find": "return \"one of\"",
     "replace": "return \"其中一个\"",
@@ -2285,5 +1540,713 @@
     "find": "<h2>Pixel Image Classification</h2>",
     "replace": "<h2>像素图像分类</h2>",
     "comment": "Image classification page subtitle"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-studyplan.js",
+    "find": "        return _.sortBy(interests, interest => {\n          return _.lowerCase(interest.name.translate().text);\n        });",
+    "replace": "        return _.sortBy(interests, interest => {\n          return _.lowerCase(this.localizedInterestName(interest));\n        });",
+    "comment": "Sort gained interests by localized display name"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-studyplan.js",
+    "find": "    onPointerLeaveInterest(event) {\n      return this.studyPlan.stopHighlightingTask();\n    }",
+    "replace": "    onPointerLeaveInterest(event) {\n      return this.studyPlan.stopHighlightingTask();\n    }\n    localizedInterestName(interest) {\n      var translations;\n      interest = interest || this.currentData();\n      if (!interest) {\n        return '';\n      }\n      translations = this.constructor.InterestNameTranslations || {};\n      return translations[interest.referenceName] || interest.name.translate().text;\n    }",
+    "comment": "Add localized interest display names for gained interests"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-studyplan.js",
+    "find": "    localizedInterestName(interest) {\n      var translations;\n      interest = interest || this.currentData();\n      translations = this.constructor.InterestNameTranslations || {};\n      return translations[interest.referenceName] || interest.name.translate().text;\n    }\n    events() {\n      return super.events(...arguments).concat({",
+    "replace": "    events() {\n      return super.events(...arguments).concat({",
+    "comment": "Remove misplaced localized interest helper from app class"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-studyplan.js",
+    "find": "  Interests.register(Interests.id());\n  return Interests;",
+    "replace": "  Interests.register(Interests.id());\n  Interests.InterestNameTranslations = {\n    'Learn Mode tutorial project': '学习模式教程项目',\n    'color': '颜色',\n    'even diagonal (pixel art)': '均匀对角线（像素画）',\n    'form': '形体',\n    'future tech': '未来科技',\n    'game design': '游戏设计',\n    'jaggy': '锯齿',\n    'lighting': '光照',\n    'line': '线条',\n    'line width (pixel art)': '线宽（像素画）',\n    'pico-8': 'PICO-8',\n    'pinball': '弹球',\n    'pixel art software': '像素画软件',\n    'pixel-perfect line': '像素完美线条',\n    'scene': '场景',\n    'shape': '形状',\n    'shape language': '形状语言',\n    'simplification': '简化',\n    'size (pixel art)': '尺寸（像素画）',\n    'sketching': '素描',\n    'smooth curve (pixel art)': '平滑曲线（像素画）',\n    'space': '空间',\n    'texture': '纹理',\n    'to-do tasks': '待办任务',\n    'value': '明度',\n    'video game': '电子游戏'\n  };\n  return Interests;",
+    "comment": "Map internal interest IDs to Chinese display names"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-studyplan.js",
+    "find": "    acquiredInterestClass() {\n      var interest, ref;\n      interest = this.currentData();\n      if (ref = interest.referenceName, indexOf.call(LOI.adventure.currentInterests(), ref) >= 0) {\n        return 'acquired';\n      }\n    }",
+    "replace": "    acquiredInterestClass() {\n      var interest, ref;\n      interest = this.currentData();\n      if (ref = interest.referenceName, indexOf.call(LOI.adventure.currentInterests(), ref) >= 0) {\n        return 'acquired';\n      }\n    }\n    localizedInterestName() {\n      var interest, translations;\n      interest = this.currentData();\n      translations = StudyPlan.Interests.InterestNameTranslations || {};\n      return translations[interest.referenceName] || interest.name.translate().text;\n    }",
+    "comment": "Add localized interest names in task info"
+  },
+  {
+    "file": "retronator_landsofillusions-ui.js",
+    "find": "return \"on\";",
+    "replace": "return \"开\";",
+    "replace_all": true,
+    "comment": "Menu state: on"
+  },
+  {
+    "file": "retronator_landsofillusions-ui.js",
+    "find": "return \"off\";",
+    "replace": "return \"关\";",
+    "replace_all": true,
+    "comment": "Menu state: off"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "<h1>Invasion</h1>",
+    "replace": "<h1>入侵</h1>",
+    "comment": "Invasion document title"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "<p>Design document</p>",
+    "replace": "<p>设计文档</p>",
+    "comment": "Invasion document subtitle"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "<h2 data-unit=\"game-concept-header\">1. Game Concept</h2>",
+    "replace": "<h2 data-unit=\"game-concept-header\">1. 游戏概念</h2>",
+    "comment": "Invasion game concept header"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "<h2 data-unit=\"game-elements-header\">2. Game Elements</h2>",
+    "replace": "<h2 data-unit=\"game-elements-header\">2. 游戏元素</h2>",
+    "comment": "Invasion game elements header"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "<h3 data-unit=\"entities-header\">2.a. Entities</h3>",
+    "replace": "<h3 data-unit=\"entities-header\">2.a. 实体</h3>",
+    "comment": "Invasion entities header"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "<p data-unit=\"entities-defender\">Defender: The player-controlled unit.</p>",
+    "replace": "<p data-unit=\"entities-defender\">防御者：玩家控制的单位。</p>",
+    "comment": "Invasion defender entity"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "<p data-unit=\"entities-invader\">Invader: A computer-controlled enemy unit.</p>",
+    "replace": "<p data-unit=\"entities-invader\">入侵者：电脑控制的敌方单位。</p>",
+    "comment": "Invasion invader entity"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "<p data-unit=\"entities-defender-projectile\">Defender projectile: A projectile the defender shoots at the invaders.</p>",
+    "replace": "<p data-unit=\"entities-defender-projectile\">防御者子弹：防御者向入侵者发射的子弹。</p>",
+    "comment": "Invasion defender projectile entity"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "<p data-unit=\"entities-invader-projectile\">Invader projectile: A projectile the invaders shoot towards the defender.</p>",
+    "replace": "<p data-unit=\"entities-invader-projectile\">入侵者子弹：入侵者射向防御者的子弹。</p>",
+    "comment": "Invasion invader projectile entity"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "<p data-unit=\"entities-shield\">Shield: A barrier between the defender and invaders.</p>",
+    "replace": "<p data-unit=\"entities-shield\">护盾：位于防御者和入侵者之间的屏障。</p>",
+    "comment": "Invasion shield entity"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "ScienceFiction: \"science fiction\"",
+    "replace": "ScienceFiction: \"科幻\"",
+    "comment": "Invasion theme science fiction"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "DeepSea: \"the deep sea\"",
+    "replace": "DeepSea: \"深海\"",
+    "comment": "Invasion theme deep sea"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "CosmicHorror: \"cosmic horror\"",
+    "replace": "CosmicHorror: \"宇宙恐怖\"",
+    "comment": "Invasion theme cosmic horror"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "MicroscopicWorld: \"the microscopic world\"",
+    "replace": "MicroscopicWorld: \"微观世界\"",
+    "comment": "Invasion theme microscopic world"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "Everything: \"a little bit of everything\"",
+    "replace": "Everything: \"什么都有一点\"",
+    "comment": "Invasion theme everything"
+  },
+  {
+    "file": "retronator_landsofillusions-ui.js",
+    "find": "\\n        <li class=\"menu-item\"><span class=\"actionable display\">Display</span></li>",
+    "replace": "\\n        <li class=\"menu-item\"><span class=\"actionable display\">显示</span></li>",
+    "replace_all": true,
+    "comment": "Settings: Display"
+  },
+  {
+    "file": "retronator_landsofillusions-ui.js",
+    "find": "\\n        <li class=\"menu-item\"><span class=\"actionable audio\">Audio</span></li>",
+    "replace": "\\n        <li class=\"menu-item\"><span class=\"actionable audio\">音频</span></li>",
+    "replace_all": true,
+    "comment": "Settings: Audio"
+  },
+  {
+    "file": "retronator_landsofillusions-ui.js",
+    "find": "\\n        <li class=\"menu-item\"><span class=\"actionable controls\">Controls</span></li>",
+    "replace": "\\n        <li class=\"menu-item\"><span class=\"actionable controls\">控制</span></li>",
+    "replace_all": true,
+    "comment": "Settings: Controls"
+  },
+  {
+    "file": "retronator_landsofillusions-ui.js",
+    "find": "\\n        <li class=\"menu-item\"><span class=\"actionable permissions\">Permissions</span></li>",
+    "replace": "\\n        <li class=\"menu-item\"><span class=\"actionable permissions\">权限</span></li>",
+    "replace_all": true,
+    "comment": "Settings: Permissions"
+  },
+  {
+    "file": "retronator_landsofillusions-ui.js",
+    "find": "\\n        <li class=\"menu-item\"><span class=\"back-to-menu actionable\">Back</span></li>",
+    "replace": "\\n        <li class=\"menu-item\"><span class=\"back-to-menu actionable\">返回</span></li>",
+    "replace_all": true,
+    "comment": "Settings: Back"
+  },
+  {
+    "file": "retronator_landsofillusions-ui.js",
+    "find": "\\n        <li class=\"menu-item\"><span class=\"back-to-settings actionable\">Back</span></li>",
+    "replace": "\\n        <li class=\"menu-item\"><span class=\"back-to-settings actionable\">返回</span></li>",
+    "replace_all": true,
+    "comment": "Submenu: Back"
+  },
+  {
+    "file": "retronator_landsofillusions-ui.js",
+    "find": "\\n    Fullscreen:\\n    ",
+    "replace": "\\n    全屏：\\n    ",
+    "replace_all": true,
+    "comment": "Display menu: Fullscreen label"
+  },
+  {
+    "file": "retronator_landsofillusions-ui.js",
+    "find": "\\n    Pixel scale:\\n    ",
+    "replace": "\\n    像素缩放：\\n    ",
+    "replace_all": true,
+    "comment": "Display menu: Pixel scale label"
+  },
+  {
+    "file": "retronator_landsofillusions-ui.js",
+    "find": "\\n      Auto\\n    ",
+    "replace": "\\n      自动\\n    ",
+    "replace_all": true,
+    "comment": "Display menu: Auto scale"
+  },
+  {
+    "file": "retronator_landsofillusions-ui.js",
+    "find": "\\n    CRT emulation: ",
+    "replace": "\\n    CRT 模拟：",
+    "replace_all": true,
+    "comment": "Display menu: CRT label"
+  },
+  {
+    "file": "retronator_landsofillusions-ui.js",
+    "find": "\\n    Slow CPU emulation: ",
+    "replace": "\\n    慢速 CPU 模拟：",
+    "replace_all": true,
+    "comment": "Display menu: slow CPU label"
+  },
+  {
+    "file": "retronator_landsofillusions-ui.js",
+    "find": "\\n          Smooth shading: ",
+    "replace": "\\n          平滑着色：",
+    "replace_all": true,
+    "comment": "Display menu: smooth shading label"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-studyplan.js",
+    "find": "\"\\n                \", Blaze._TemplateWith(function() {\n      return Spacebars.call(view.lookup(\"name\"));\n    }, function() {\n      return Spacebars.include(view.lookupTemplate(\"t10e\"));\n    }), \"\\n              \"",
+    "replace": "\"\\n                \", Blaze.View(\"lookup:localizedInterestName\", function() {\n      return Spacebars.mustache(view.lookup(\"localizedInterestName\"));\n    }), \"\\n              \"",
+    "comment": "Show localized gained interest names"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-studyplan.js",
+    "find": "Blaze._TemplateWith(function() {\n            return Spacebars.call(view.lookup(\"name\"));\n          }, function() {\n            return Spacebars.include(view.lookupTemplate(\"t10e\"));\n          })",
+    "replace": "Blaze.View(\"lookup:localizedInterestName\", function() {\n            return Spacebars.mustache(view.lookup(\"localizedInterestName\"));\n          })",
+    "replace_all": true,
+    "comment": "Show localized required/gained interest names in task info"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "\\n        Invasion is a single-screen shoot 'em up, inspired by\\n        ",
+    "replace": "\\n        《入侵》是一款单屏射击游戏，灵感来自\\n        ",
+    "comment": "Invasion concept first sentence"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": ".\\n        The player is fending off a fleet of computer-controlled invaders by shooting projectiles at them.\\n      ",
+    "replace": "。\\n        玩家需要发射子弹，击退一支由电脑控制的入侵者舰队。\\n      ",
+    "comment": "Invasion concept second sentence"
+  },
+  {
+    "file": "retronator_landsofillusions-ui.js",
+    "find": "<button class=\"menu-button\">Menu</button>",
+    "replace": "<button class=\"menu-button\">菜单</button>",
+    "comment": "Top-right menu button"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh.js",
+    "find": "caption: 'File'",
+    "replace": "caption: '文件'",
+    "replace_all": true,
+    "comment": "Pixeltosh menu bar: File"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-writer.js",
+    "find": "caption: 'File'",
+    "replace": "caption: '文件'",
+    "replace_all": true,
+    "comment": "Pixeltosh Writer menu bar: File"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-drawquickly.js",
+    "find": "caption: 'File'",
+    "replace": "caption: '文件'",
+    "replace_all": true,
+    "comment": "Draw Quickly menu bar: File"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-drawquickly.js",
+    "find": "caption: 'Game'",
+    "replace": "caption: '游戏'",
+    "replace_all": true,
+    "comment": "Draw Quickly menu bar: Game"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh.js",
+    "find": "return \"Close\";",
+    "replace": "return \"关闭\";",
+    "replace_all": true,
+    "comment": "Pixeltosh action: Close"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh.js",
+    "find": "return \"Quit\";",
+    "replace": "return \"退出\";",
+    "replace_all": true,
+    "comment": "Pixeltosh action: Quit"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh.js",
+    "find": "return \"Open\";",
+    "replace": "return \"打开\";",
+    "replace_all": true,
+    "comment": "Pixeltosh action: Open"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh.js",
+    "find": "return \"Close All\";",
+    "replace": "return \"全部关闭\";",
+    "replace_all": true,
+    "comment": "Pixeltosh action: Close All"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh.js",
+    "find": "return \"About the Finder...\";",
+    "replace": "return \"关于访达...\";",
+    "comment": "Pixeltosh Finder about action"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-writer.js",
+    "find": "return \"About Writer ...\";",
+    "replace": "return \"关于写作器...\";",
+    "comment": "Pixeltosh Writer about action"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-drawquickly.js",
+    "find": "return \"About Draw Quickly ...\";",
+    "replace": "return \"关于快速绘画...\";",
+    "comment": "Draw Quickly about action"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "    Directions: {\n      Up: 'up',\n      Down: 'down',\n      Left: 'left',\n      Right: 'right'\n    },\n    Sides: {\n      Top: 'top',\n      Bottom: 'bottom',\n      Left: 'left',\n      Right: 'right'\n    },",
+    "replace": "    Directions: {\n      Up: '向上',\n      Down: '向下',\n      Left: '向左',\n      Right: '向右'\n    },\n    Sides: {\n      Top: '上方',\n      Bottom: '下方',\n      Left: '左侧',\n      Right: '右侧'\n    },",
+    "comment": "Invasion design choices: directions and sides"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "    PostponeGameplay: {\n      None: 'starts immediately',\n      UntilSpawnedAll: 'pauses during this time'\n    },",
+    "replace": "    PostponeGameplay: {\n      None: '立即开始',\n      UntilSpawnedAll: '在此期间暂停'\n    },",
+    "comment": "Invasion design choices: postpone gameplay"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "      StartingAlignments: {\n        TopLeft: 'top-left corner',\n        TopCenter: 'top side',\n        TopRight: 'top-right corner',\n        MiddleLeft: 'left side',\n        MiddleCenter: 'center',\n        MiddleRight: 'right side',\n        BottomLeft: 'bottom-left corner',\n        BottomCenter: 'bottom side',\n        BottomRight: 'bottom-right corner'\n      },",
+    "replace": "      StartingAlignments: {\n        TopLeft: '左上角',\n        TopCenter: '上边',\n        TopRight: '右上角',\n        MiddleLeft: '左边',\n        MiddleCenter: '中心',\n        MiddleRight: '右边',\n        BottomLeft: '左下角',\n        BottomCenter: '下边',\n        BottomRight: '右下角'\n      },",
+    "comment": "Invasion design choices: starting alignments"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "        Movements: {\n          Horizontal: 'left and right',\n          Vertical: 'up and down',\n          AllDirections: \"in all 4 directions\"\n        }",
+    "replace": "        Movements: {\n          Horizontal: '左右',\n          Vertical: '上下',\n          AllDirections: \"四个方向\"\n        }",
+    "comment": "Invasion design choices: defender movements"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "        InvaderDeathTypes: {\n          Disappear: 'disappear',\n          Explode: 'explode'\n        },\n        LevelUp: {\n          IncreaseShootingFrequency: 'shoot more frequently',\n          IncreaseScore: 'score more points',\n          StayTheSame: 'stay the same'\n        }",
+    "replace": "        InvaderDeathTypes: {\n          Disappear: '消失',\n          Explode: '爆炸'\n        },\n        LevelUp: {\n          IncreaseShootingFrequency: '更频繁射击',\n          IncreaseScore: '分值提高',\n          StayTheSame: '保持不变'\n        }",
+    "comment": "Invasion design choices: defender projectile outcomes"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "          Appearing: {\n            Individual: 'one by one',\n            All: 'all at once'\n          },\n          SpawnOrder: {\n            Sequential: 'sequential order',\n            Random: 'random order'\n          },\n          MovementTypes: {\n            Individual: 'one by one',\n            All: 'in unison'\n          },\n          MovementOrientations: {\n            Horizontal: 'left and right',\n            Vertical: 'up and down'\n          },\n          AttackDirections: {\n            Up: 'ascend up',\n            Down: 'descend down',\n            Left: 'advance left',\n            Right: 'advance right',\n            NoHorizontal: 'do not move horizontally',\n            NoVertical: 'do not move vertically'\n          }",
+    "replace": "          Appearing: {\n            Individual: '逐个',\n            All: '一次全部'\n          },\n          SpawnOrder: {\n            Sequential: '顺序',\n            Random: '随机顺序'\n          },\n          MovementTypes: {\n            Individual: '逐个',\n            All: '同步'\n          },\n          MovementOrientations: {\n            Horizontal: '左右',\n            Vertical: '上下'\n          },\n          AttackDirections: {\n            Up: '向上推进',\n            Down: '向下推进',\n            Left: '向左推进',\n            Right: '向右推进',\n            NoHorizontal: '不水平移动',\n            NoVertical: '不垂直移动'\n          }",
+    "comment": "Invasion design choices: invader formation"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "        DefenderDeathTypes: {\n          Disappear: 'disappears',\n          Explode: 'explodes'\n        },\n        LevelUp: {\n          IncreaseShootingFrequency: 'shoot more frequently',\n          IncreaseScore: 'score more points',\n          StayTheSame: 'stay the same'\n        }",
+    "replace": "        DefenderDeathTypes: {\n          Disappear: '消失',\n          Explode: '爆炸'\n        },\n        LevelUp: {\n          IncreaseShootingFrequency: '更频繁射击',\n          IncreaseScore: '分值提高',\n          StayTheSame: '保持不变'\n        }",
+    "comment": "Invasion design choices: invader projectile outcomes"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "\"\\n              A defender moves \"",
+    "replace": "\"\\n              防御者会\"",
+    "comment": "Invasion document: defender movement"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "\",\\n              starting \"",
+    "replace": "\"，\\n              起始位置在\"",
+    "comment": "Invasion document: defender starting position"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "\"\\n              Invaders spawn \"",
+    "replace": "\"\\n              入侵者生成在\"",
+    "comment": "Invasion document: invader spawn"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "return \"on\";",
+    "replace": "return \"\";",
+    "replace_all": true,
+    "comment": "Invasion document: remove English preposition on"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "return \"in\";",
+    "replace": "return \"\";",
+    "replace_all": true,
+    "comment": "Invasion document: remove English preposition in"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "), \" the\\n              \", Blaze._TemplateWith(function() {",
+    "replace": "), \"\", Blaze._TemplateWith(function() {",
+    "replace_all": true,
+    "comment": "Invasion document: remove English article before positions"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "return \"vertical\";",
+    "replace": "return \"垂直\";",
+    "comment": "Invasion document: vertical line"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "return \"horizontal\";",
+    "replace": "return \"水平\";",
+    "comment": "Invasion document: horizontal line"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "\"\\n              Using the fire button, the player shoots a projectile\\n              \"",
+    "replace": "\"\\n              玩家按下开火键，向\"",
+    "comment": "Invasion document: defender projectile start"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "\"\\n              in a \"",
+    "replace": "\"发射投射物，轨迹为\"",
+    "comment": "Invasion document: projectile line orientation"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "\" line.\\n              Hitting an invader with a projectile makes the invader\\n              \"",
+    "replace": "\"线。\\n              投射物击中侵略者时，侵略者会\"",
+    "comment": "Invasion document: projectile hit effect"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "\"\\n              and the player earns points.\\n              If all the invaders are eliminated, the game repeats with a new level where invaders\\n              \"",
+    "replace": "\"，玩家获得分数。\\n              如果所有侵略者都被消灭，游戏会进入新关卡，侵略者会\"",
+    "comment": "Invasion document: scoring and level up"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "\".\\n              They appear\\n              \"",
+    "replace": "\"。\\n              它们会\"",
+    "comment": "Invasion document: invaders appear"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "\".\\n              The invaders\\n              \"",
+    "replace": "\"。\\n              入侵者\"",
+    "comment": "Invasion document: invaders sentence"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "\"\\n                in\\n                \"",
+    "replace": "\"\\n                按\"",
+    "comment": "Invasion document: spawn order prefix"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "\"\\n                and gameplay\\n                \"",
+    "replace": "\"出现，游戏流程\"",
+    "comment": "Invasion document: gameplay postponement"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "\"\\n                move\\n                \"",
+    "replace": "\"\\n                会\"",
+    "comment": "Invasion document: invader movement prefix"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "\",\\n                and\\n                \"",
+    "replace": "\"移动，\\n                并且\"",
+    "comment": "Invasion document: invader attack connector"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": " when they reach the edge of the screen",
+    "replace": "在到达屏幕边缘时",
+    "comment": "Invasion document: edge condition"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "\".\\n                Inside the formation they move\\n                \"",
+    "replace": "\"。\\n                在阵型内部，它们\"",
+    "comment": "Invasion document: formation movement"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "\"\\n              Every once in a while, a random invader shoots a projectile\\n              \"",
+    "replace": "\"\\n              每隔一段时间，随机一个侵略者会向\"",
+    "comment": "Invasion document: invader projectile start"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "\".\\n              If the defender gets hit by an enemy projectile, it\\n              \"",
+    "replace": "\"发射投射物。\\n              如果防御者被敌方投射物击中，它会\"",
+    "comment": "Invasion document: defender hit"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "\"\\n              and the player loses a life. When all lives are lost, the game is over.\\n            \"",
+    "replace": "\"，玩家失去一条生命。生命全部耗尽时，游戏结束。\\n            \"",
+    "comment": "Invasion document: life lost"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "\"\\n              To aid the player, shields are placed in the level on the\\n              \"",
+    "replace": "\"\\n              为了帮助玩家，护盾会放置在关卡的\"",
+    "comment": "Invasion document: shields start"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "\"\\n              side. They disintegrate as projectiles, invaders, or the defender hit them.\\n            \"",
+    "replace": "\"侧。它们会在被投射物、侵略者或防御者击中时瓦解。\\n            \"",
+    "comment": "Invasion document: shields disintegrate"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "— Starting lives: ",
+    "replace": "— 初始生命数：",
+    "comment": "Invasion document property: starting lives"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "— Speed: ",
+    "replace": "— 速度：",
+    "replace_all": true,
+    "comment": "Invasion document property: speed"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": " pixels per move",
+    "replace": " 像素/移动",
+    "replace_all": true,
+    "comment": "Invasion document property: pixels per move"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "— Maximum count: ",
+    "replace": "— 最大数量：",
+    "replace_all": true,
+    "comment": "Invasion document property: maximum count"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "— Rows in the grid: ",
+    "replace": "— 网格行数：",
+    "comment": "Invasion document property: rows"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "— Columns in the grid: ",
+    "replace": "— 网格列数：",
+    "comment": "Invasion document property: columns"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "— Horizontal spacing: ",
+    "replace": "— 水平间距：",
+    "comment": "Invasion document property: horizontal spacing"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "— Vertical spacing: ",
+    "replace": "— 垂直间距：",
+    "comment": "Invasion document property: vertical spacing"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "— Horizontal speed: ",
+    "replace": "— 水平速度：",
+    "comment": "Invasion document property: horizontal speed"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "— Vertical speed: ",
+    "replace": "— 垂直速度：",
+    "comment": "Invasion document property: vertical speed"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "— Spawn delay: ",
+    "replace": "— 生成延迟：",
+    "comment": "Invasion document property: spawn delay"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": " seconds per invader",
+    "replace": " 秒/侵略者",
+    "comment": "Invasion document property: seconds per invader"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "— Shooting delay in level 1 with all invaders: ",
+    "replace": "— 第 1 关全员时射击延迟：",
+    "comment": "Invasion document property: shooting delay full"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "— Shooting delay in level 1 with last invader: ",
+    "replace": "— 第 1 关剩最后一个时射击延迟：",
+    "comment": "Invasion document property: shooting delay empty"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "— Shooting delay decrease per level with all invaders: -",
+    "replace": "— 每关全员射击延迟减少：-",
+    "comment": "Invasion document property: shooting delay decrease"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": " seconds / level",
+    "replace": " 秒/关",
+    "comment": "Invasion document property: seconds per level"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "— Shooting delay randomness: ",
+    "replace": "— 射击延迟随机性：",
+    "comment": "Invasion document property: shooting randomness"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "— Score in level 1: ",
+    "replace": "— 第 1 关得分：",
+    "comment": "Invasion document property: score"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "— Score increase per level: +",
+    "replace": "— 每关得分增量：+",
+    "comment": "Invasion document property: score increase"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": " per invader per level",
+    "replace": " / 每个侵略者/每关",
+    "comment": "Invasion document property: per invader per level"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": " per invader",
+    "replace": " / 每个侵略者",
+    "comment": "Invasion document property: per invader"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "— Amount: ",
+    "replace": "— 数量：",
+    "comment": "Invasion document property: amount"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "— Spacing: ",
+    "replace": "— 间距：",
+    "comment": "Invasion document property: shield spacing"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "), \" pixels\")",
+    "replace": "), \" 像素\")",
+    "replace_all": true,
+    "comment": "Invasion document property/art: pixels"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "\\n              Defender (16×16 pixels)\\n              ",
+    "replace": "\\n              防御者（16×16 像素）\\n              ",
+    "comment": "Invasion document art: defender"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "\\n              Invader (16×16 pixels)\\n              ",
+    "replace": "\\n              侵略者（16×16 像素）\\n              ",
+    "comment": "Invasion document art: invader"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "\\n              Defender projectile (8×8 pixels)\\n              ",
+    "replace": "\\n              防御者投射物（8×8 像素）\\n              ",
+    "comment": "Invasion document art: defender projectile"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "\\n              Defender projectile explosion (8×8 pixels)\\n              ",
+    "replace": "\\n              防御者投射物爆炸（8×8 像素）\\n              ",
+    "comment": "Invasion document art: defender projectile explosion"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "\\n              Invader projectile (8×8 pixels)\\n              ",
+    "replace": "\\n              侵略者投射物（8×8 像素）\\n              ",
+    "comment": "Invasion document art: invader projectile"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "\\n              Invader projectile explosion (8×8 pixels)\\n              ",
+    "replace": "\\n              侵略者投射物爆炸（8×8 像素）\\n              ",
+    "comment": "Invasion document art: invader projectile explosion"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "\\n              Shield (24×24 pixels)\\n              ",
+    "replace": "\\n              护盾（24×24 像素）\\n              ",
+    "comment": "Invasion document art: shield"
   }
 ]

@@ -172,6 +172,8 @@ def inject_translations(cache_path, trans_path, log_fn=print):
 # ============================================================
 
 METHOD_NAMES = [
+    # Do not patch displayName here. Several game classes derive IDs and
+    # resource paths from static displayName(), so translating it hides content.
     'directive', 'instructions', 'description', 'name', 'shortName',
     'fullName', 'title', 'label', 'text', 'message', 'hint',
     'studyPlanDirective',
@@ -402,6 +404,89 @@ def _has_chinese(text):
     return any('\u4e00' <= ch <= '\u9fff' for ch in str(text))
 
 
+RUNTIME_DIAGNOSTICS_MARKER = "PAA-ZH runtime diagnostics"
+
+RUNTIME_DIAGNOSTICS_SNIPPET = r"""
+        // PAA-ZH runtime diagnostics
+        try {
+            const paaZhGameLogFile = join(path.resolve(__dirname, '..', '..', '..'), 'paa-zh-runtime.log');
+            const paaZhUserLogFile = join(this.userDataDir, 'paa-zh-runtime.log');
+            const paaZhAppend = (kind, message) => {
+                const entry = `[${new Date().toISOString()}] ${kind}: ${message}\n`;
+                try {
+                    fs.appendFileSync(paaZhGameLogFile, entry, 'utf8');
+                } catch (primaryError) {
+                    try {
+                        fs.appendFileSync(paaZhUserLogFile, entry, 'utf8');
+                    } catch (secondaryError) {
+                        if (this.l && this.l.warn) {
+                            this.l.warn(`PAA-ZH diagnostics log failed: ${secondaryError.toString()}`);
+                        }
+                    }
+                }
+            };
+            this.webContents.on('console-message', (_event, level, message, line, sourceId) => {
+                const text = String(message || '');
+                if (
+                    level >= 2
+                    || text.indexOf('[PAA-ZH-RUNTIME]') >= 0
+                    || /(?:TypeError|ReferenceError|RangeError|SyntaxError|Unhandled|Exception|Meteor code must always run within a Fiber)/i.test(text)
+                ) {
+                    paaZhAppend('renderer-console', `${text} (${sourceId || 'unknown'}:${line || 0})`);
+                }
+            });
+            this.webContents.on('did-fail-load', (_event, errorCode, errorDescription, validatedURL) => {
+                paaZhAppend('did-fail-load', `${errorCode} ${errorDescription} ${validatedURL}`);
+            });
+            this.webContents.on('render-process-gone', (_event, details) => {
+                paaZhAppend('render-process-gone', JSON.stringify(details));
+            });
+            this.webContents.on('crashed', () => {
+                paaZhAppend('renderer-crashed', 'webContents crashed');
+            });
+            this.webContents.on('did-finish-load', () => {
+                this.webContents.executeJavaScript(`
+                    (() => {
+                        if (window.__PAA_ZH_DIAGNOSTICS_INSTALLED__) return;
+                        window.__PAA_ZH_DIAGNOSTICS_INSTALLED__ = true;
+                        const stringify = (value) => {
+                            try {
+                                if (value instanceof Error) return value.stack || value.message || String(value);
+                                if (typeof value === 'string') return value;
+                                return JSON.stringify(value);
+                            } catch (e) {
+                                return String(value);
+                            }
+                        };
+                        window.addEventListener('error', (event) => {
+                            console.error('[PAA-ZH-RUNTIME]', stringify({
+                                type: 'error',
+                                message: event.message,
+                                source: event.filename,
+                                line: event.lineno,
+                                column: event.colno,
+                                stack: event.error && (event.error.stack || event.error.message)
+                            }));
+                        });
+                        window.addEventListener('unhandledrejection', (event) => {
+                            console.error('[PAA-ZH-RUNTIME]', stringify({
+                                type: 'unhandledrejection',
+                                reason: stringify(event.reason)
+                            }));
+                        });
+                    })();
+                `, true).catch((e) => {
+                    paaZhAppend('diagnostics-inject', e && e.message ? e.message : String(e));
+                });
+            });
+        } catch (e) {
+            if (this.l && this.l.warn) {
+                this.l.warn(`PAA-ZH diagnostics setup failed: ${e.toString()}`);
+            }
+        }
+"""
+
+
 def _chunk_entries(data, max_chars=9000):
     entries = []
     for section in ('cache', 'hardcoded'):
@@ -571,6 +656,294 @@ class PatchInstaller:
         self.writable_hardcoded_file = writable_data_path("hardcoded_zh.json")
         self.writable_skipped_file = writable_data_path("hardcoded_skipped.json")
 
+    def _install_runtime_diagnostics(self):
+        if not os.path.exists(self.app_js):
+            self.log("[警告] app.js 不存在，无法安装运行时错误日志")
+            return False
+
+        with open(self.app_js, 'r', encoding='utf-8') as f:
+            content = f.read()
+
+        if RUNTIME_DIAGNOSTICS_MARKER in content:
+            self.log("[OK] 运行时错误日志已启用 (跳过)")
+            return True
+
+        anchor = "        this.webContents = this.window.webContents;\n"
+        if anchor not in content:
+            self.log("[警告] 未找到窗口初始化位置，无法安装运行时错误日志")
+            return False
+
+        content = content.replace(anchor, anchor + RUNTIME_DIAGNOSTICS_SNIPPET + "\n", 1)
+        with open(self.app_js, 'w', encoding='utf-8', newline='') as f:
+            f.write(content)
+        self.log("[OK] 已启用运行时错误日志 paa-zh-runtime.log")
+        return True
+
+    def _runtime_log_paths(self):
+        paths = [os.path.join(self.game_dir, "paa-zh-runtime.log")]
+        appdata = os.environ.get("APPDATA")
+        if appdata:
+            user_dir = os.path.join(appdata, "Pixel Art Academy Learn Mode")
+            paths.append(os.path.join(user_dir, "paa-zh-runtime.log"))
+        unique = []
+        for path in paths:
+            if path not in unique:
+                unique.append(path)
+        return unique
+
+    def _read_text(self, path):
+        with open(path, 'r', encoding='utf-8', errors='replace') as f:
+            return f.read()
+
+    def _tail_text(self, path, max_lines=80):
+        try:
+            with open(path, 'r', encoding='utf-8', errors='replace') as f:
+                lines = f.read().splitlines()
+        except OSError:
+            return ""
+        return "\n".join(lines[-max_lines:])
+
+    def self_check(self, show_header=True, log_details=True):
+        checks = []
+        details = []
+
+        def record(level, message):
+            checks.append((level, message))
+            if log_details or level != "OK":
+                prefix = "[OK]" if level == "OK" else "[警告]" if level == "WARN" else "[错误]"
+                self.log(f"{prefix} {message}")
+
+        def ok(message):
+            record("OK", message)
+
+        def warn(message):
+            record("WARN", message)
+
+        def fail(message):
+            record("FAIL", message)
+
+        def read_package(filename):
+            path = os.path.join(self.packages_dir, filename)
+            if not os.path.exists(path):
+                fail(f"缺少 JS 模块: {filename}")
+                return ""
+            try:
+                return self._read_text(path)
+            except OSError as error:
+                fail(f"读取 JS 模块失败: {filename} ({error})")
+                return ""
+
+        if show_header:
+            self.log("=" * 45)
+            self.log("  汉化补丁自检 / 诊断报告")
+            self.log("=" * 45)
+            self.log("")
+
+        ok(f"游戏目录: {self.game_dir}")
+
+        if not os.path.exists(self.package_json):
+            fail("缺少 resources/app/package.json")
+        else:
+            try:
+                package_data = _load_json(self.package_json, {})
+                main_entry = package_data.get("main")
+                if main_entry == "app_extracted/index.js":
+                    ok("package.json 已指向解包后的汉化入口")
+                elif main_entry == "app.asar":
+                    fail("package.json 仍指向原版 app.asar，汉化尚未安装或已被 Steam 还原")
+                else:
+                    warn(f"package.json main 字段不是预期值: {main_entry}")
+            except Exception as error:
+                fail(f"package.json 解析失败: {error}")
+
+        if not os.path.exists(self.app_js):
+            fail("缺少 app_extracted/app.js")
+        else:
+            try:
+                app_content = self._read_text(self.app_js)
+                if "meteor_extracted" in app_content:
+                    ok("app.js 已指向 meteor_extracted")
+                else:
+                    fail("app.js 仍在加载 meteor.asar，汉化资源可能没有生效")
+                if RUNTIME_DIAGNOSTICS_MARKER in app_content:
+                    ok("运行时错误日志钩子已安装")
+                else:
+                    warn("运行时错误日志钩子未安装，请重新安装汉化补丁")
+            except OSError as error:
+                fail(f"读取 app.js 失败: {error}")
+
+        if not os.path.exists(self.cache_json):
+            fail("缺少翻译缓存 cache.json")
+        else:
+            try:
+                translations = _load_json(self.trans_file, {})
+                cache = _load_json(self.cache_json, {})
+                matched = 0
+                missing = []
+                for full_key in translations:
+                    if "|||" not in full_key:
+                        continue
+                    namespace, key = full_key.split("|||", 1)
+                    entry = cache.get(namespace, {}).get(key)
+                    if not isinstance(entry, list) or len(entry) < 2:
+                        continue
+                    matched += 1
+                    trans_obj = entry[1]
+                    zh_text = None
+                    if isinstance(trans_obj, dict):
+                        zh_text = trans_obj.get("zh", {}).get("cn", {}).get("text")
+                    if not zh_text:
+                        missing.append(full_key)
+                if matched == 0:
+                    fail("cache.json 中没有匹配到补丁翻译键")
+                elif missing:
+                    fail(f"cache.json 有 {len(missing)} 条翻译未注入")
+                    details.append("未注入示例:\n" + "\n".join(missing[:20]))
+                else:
+                    ok(f"cache.json 翻译注入完整 ({matched} 条)")
+            except Exception as error:
+                fail(f"cache.json 或 translations_zh.json 检查失败: {error}")
+
+        if not os.path.isdir(self.packages_dir):
+            fail("缺少 meteor_extracted/packages 目录")
+        else:
+            js_files = [name for name in os.listdir(self.packages_dir) if name.endswith(".js")]
+            if js_files:
+                ok(f"JS 模块目录存在 ({len(js_files)} 个文件)")
+            else:
+                fail("meteor_extracted/packages 目录里没有 JS 模块")
+
+            studyplan = read_package("retronator_pixelartacademy-pixelpad-studyplan.js")
+            if studyplan:
+                marker = "StudyPlan.Interests = function ()"
+                if marker not in studyplan:
+                    fail("未找到 StudyPlan.Interests 模块，兴趣面板可能缺失")
+                else:
+                    before_interests, after_marker = studyplan.split(marker, 1)
+                    interests_section = after_marker.split(
+                        "/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////",
+                        1
+                    )[0]
+                    if "\n    localizedInterestName(interest) {" in interests_section:
+                        ok("已获得兴趣面板包含本地化显示名函数")
+                    else:
+                        fail("已获得兴趣面板缺少 localizedInterestName，可能显示 0 个兴趣")
+                    if "this.localizedInterestName(interest)" in interests_section:
+                        ok("已获得兴趣排序使用本地化显示名")
+                    else:
+                        fail("已获得兴趣排序未使用本地化显示名")
+                    if "localizedInterestName(interest)" in before_interests:
+                        fail("localizedInterestName 被插入到了错误的早期模块")
+                    else:
+                        ok("localizedInterestName 没有插入到错误模块")
+
+            menu = read_package("retronator_landsofillusions-ui.js")
+            if menu:
+                if '<button class="menu-button">菜单</button>' in menu:
+                    ok("右上角 MENU 已汉化为 菜单")
+                else:
+                    warn("右上角 MENU 未汉化，可能仍显示英文")
+
+            pixeltosh = read_package("retronator_pixelartacademy-pixeltosh.js")
+            if pixeltosh:
+                if "caption: '文件'" in pixeltosh:
+                    ok("Pixeltosh File 菜单已汉化")
+                else:
+                    warn("Pixeltosh File 菜单未汉化")
+                if 'return "关闭";' in pixeltosh and 'return "退出";' in pixeltosh:
+                    ok("Pixeltosh Close/Quit 已汉化")
+                else:
+                    warn("Pixeltosh Close/Quit 未完全汉化")
+
+            invasion = read_package("retronator_pixelartacademy-pico8-invasion.js")
+            if invasion:
+                required_zh = [
+                    "防御者会",
+                    "起始位置在",
+                    "入侵者生成在",
+                    "— 速度：",
+                    "防御者（16×16 像素）",
+                ]
+                leftover_en = [
+                    "A defender moves",
+                    "They appear",
+                    "Every once in a while, a random invader shoots a projectile",
+                    " pixels per move",
+                    "Defender (16×16 pixels)",
+                ]
+                if all(text in invasion for text in required_zh):
+                    ok("Invasion 文档关键文本已汉化")
+                else:
+                    warn("Invasion 文档仍有关键中文文本缺失")
+                if any(text in invasion for text in leftover_en):
+                    warn("Invasion 文档仍残留关键英文说明")
+                else:
+                    ok("Invasion 文档关键英文残留已清除")
+
+            suspicious_interest_ids = []
+            internal_pattern = re.compile(
+                r"static\s+(requiredInterests|interests)\s*\(\)\s*\{[^{}]*?return\s*\[([^\]]*)\]",
+                re.S
+            )
+            for filename in js_files:
+                path = os.path.join(self.packages_dir, filename)
+                try:
+                    content = self._read_text(path)
+                except OSError:
+                    continue
+                for match in internal_pattern.finditer(content):
+                    if _has_chinese(match.group(2)):
+                        suspicious_interest_ids.append(f"{filename}:{match.group(1)}")
+                        if len(suspicious_interest_ids) >= 20:
+                            break
+                if len(suspicious_interest_ids) >= 20:
+                    break
+            if suspicious_interest_ids:
+                warn("发现疑似被翻译的内部兴趣 ID，可能导致目标/课程缺失")
+                details.append("疑似内部 ID 位置:\n" + "\n".join(suspicious_interest_ids))
+            else:
+                ok("未发现被翻译的内部兴趣 ID")
+
+        runtime_logs = [path for path in self._runtime_log_paths() if os.path.exists(path) and os.path.getsize(path) > 0]
+        if runtime_logs:
+            warn(f"检测到运行时错误日志: {runtime_logs[0]}")
+            details.append("最近的运行时错误日志:\n" + self._tail_text(runtime_logs[0]))
+        else:
+            ok("未发现汉化运行时错误日志")
+
+        failures = [message for level, message in checks if level == "FAIL"]
+        warnings = [message for level, message in checks if level == "WARN"]
+        report_path = os.path.join(self.game_dir, "汉化自检报告.txt")
+        report_lines = [
+            "Pixel Art Academy Learn Mode 简体中文汉化补丁自检报告",
+            f"生成时间: {time.strftime('%Y-%m-%d %H:%M:%S')}",
+            f"游戏目录: {self.game_dir}",
+            "",
+            f"错误: {len(failures)}",
+            f"警告: {len(warnings)}",
+            "",
+        ]
+        report_lines.extend(f"[{level}] {message}" for level, message in checks)
+        if details:
+            report_lines.append("")
+            report_lines.extend(details)
+        try:
+            with open(report_path, 'w', encoding='utf-8', newline='') as f:
+                f.write("\n".join(report_lines) + "\n")
+        except OSError:
+            report_path = writable_data_path("汉化自检报告.txt")
+            with open(report_path, 'w', encoding='utf-8', newline='') as f:
+                f.write("\n".join(report_lines) + "\n")
+
+        self.log("")
+        if failures:
+            self.log(f"[错误] 自检发现 {len(failures)} 个错误，报告已生成: {report_path}")
+        elif warnings:
+            self.log(f"[警告] 自检通过但有 {len(warnings)} 个警告，报告已生成: {report_path}")
+        else:
+            self.log(f"[OK] 自检通过，报告已生成: {report_path}")
+        return not failures
+
     # ---- INSTALL ----
 
     def install(self):
@@ -631,7 +1004,7 @@ class PatchInstaller:
         os.makedirs(self.backup_dir, exist_ok=True)
 
         # Step 1: Redirect Electron to load from extracted directories
-        self.log("[*] 步骤 1/4: 重定向游戏加载路径 ...")
+        self.log("[*] 步骤 1/5: 重定向游戏加载路径 ...")
 
         pkg_backup = os.path.join(self.backup_dir, "package.json.bak")
         if not os.path.exists(pkg_backup):
@@ -669,8 +1042,12 @@ class PatchInstaller:
         else:
             self.log("[OK] app.js 已是补丁状态 (跳过)")
 
-        # Step 2: Inject translations into cache.json
-        self.log("[*] 步骤 2/4: 注入中文翻译到 cache.json ...")
+        # Step 2: Add runtime diagnostics so players can report real game errors.
+        self.log("[*] 步骤 2/5: 启用运行时错误日志 ...")
+        self._install_runtime_diagnostics()
+
+        # Step 3: Inject translations into cache.json
+        self.log("[*] 步骤 3/5: 注入中文翻译到 cache.json ...")
 
         cache_backup = os.path.join(self.backup_dir, "cache.json.bak")
         if not os.path.exists(cache_backup):
@@ -680,11 +1057,11 @@ class PatchInstaller:
         injected = inject_translations(self.cache_json, self.trans_file, self.log)
         self.log(f"[OK] 翻译注入完成 ({injected} 条)")
 
-        # Step 3: Patch hardcoded strings and manual JS patches
+        # Step 4: Patch hardcoded strings and manual JS patches
         has_hardcoded = os.path.exists(self.hardcoded_file)
         has_manual = os.path.exists(self.manual_patches_file)
         if has_hardcoded or has_manual:
-            self.log("[*] 步骤 3/4: 替换 JS 中的硬编码和手动补丁文本 ...")
+            self.log("[*] 步骤 4/5: 替换 JS 中的硬编码和手动补丁文本 ...")
 
             hardcoded_trans = {}
             manual_patches = []
@@ -725,10 +1102,10 @@ class PatchInstaller:
                 patch_manual(self.packages_dir, manual_patches, self.log)
                 self.log("[OK] 手动补丁应用完成")
         else:
-            self.log("[*] 步骤 3/4: 未找到 JS 补丁文件，跳过")
+            self.log("[*] 步骤 4/5: 未找到 JS 补丁文件，跳过")
 
-        # Step 4: Patch fonts in CSS
-        self.log("[*] 步骤 4/4: 替换字体以支持中文显示 ...")
+        # Step 5: Patch fonts in CSS
+        self.log("[*] 步骤 5/5: 替换字体以支持中文显示 ...")
 
         css_backup = os.path.join(self.backup_dir, "merged-stylesheets.css.bak")
         if not os.path.exists(css_backup):
@@ -741,6 +1118,10 @@ class PatchInstaller:
             self.log("[OK] 字体替换完成")
         else:
             self.log("[警告] 字体文件未找到，跳过字体替换")
+
+        self.log("")
+        self.log("[*] 安装后自检 ...")
+        self.self_check(show_header=False, log_details=False)
 
         self.log("")
         self.log("=" * 45)
@@ -1123,6 +1504,13 @@ class InstallerApp:
         )
         self.install_btn.pack(side=tk.LEFT, padx=(0, 6), fill=tk.X, expand=True)
 
+        self.check_btn = tk.Button(
+            btn_frame, text="  自检报告  ", bg="#2196F3", fg="white",
+            activebackground="#1976D2",
+            command=lambda: self._run_task("self_check"), **common
+        )
+        self.check_btn.pack(side=tk.LEFT, padx=6, fill=tk.X, expand=True)
+
         self.uninstall_btn = tk.Button(
             btn_frame, text="  卸载汉化  ", bg="#f44336", fg="white",
             activebackground="#d32f2f",
@@ -1212,6 +1600,7 @@ class InstallerApp:
 
         self.log_text.tag_configure("ok", foreground="#4EC94E")
         self.log_text.tag_configure("error", foreground="#FF6B6B")
+        self.log_text.tag_configure("warn", foreground="#cccccc")
         self.log_text.tag_configure("info", foreground="#5DADE2")
         self.log_text.tag_configure("title", foreground="#F4D03F")
 
@@ -1299,8 +1688,10 @@ class InstallerApp:
         tag = None
         if message.startswith("[OK]"):
             tag = "ok"
-        elif message.startswith("[错误]") or message.startswith("[警告]"):
+        elif message.startswith("[错误]"):
             tag = "error"
+        elif message.startswith("[警告]"):
+            tag = "warn"
         elif message.startswith("[*]"):
             tag = "info"
         elif message.startswith("="):
@@ -1317,7 +1708,7 @@ class InstallerApp:
     # ---- Task Execution ----
 
     def _set_buttons_state(self, state):
-        for btn in (self.install_btn, self.uninstall_btn,
+        for btn in (self.install_btn, self.check_btn, self.uninstall_btn,
                     self.update_btn, self.auto_translate_btn, self.browse_btn,
                     self.maintainer_toggle_btn, self.api_key_toggle_btn):
             btn.configure(state=state)
@@ -1354,6 +1745,9 @@ class InstallerApp:
                 if action == "install":
                     self.status_var.set("正在安装...")
                     result = installer.install()
+                elif action == "self_check":
+                    self.status_var.set("正在自检...")
+                    result = installer.self_check()
                 elif action == "uninstall":
                     self.status_var.set("正在卸载...")
                     result = installer.uninstall()
@@ -1366,7 +1760,10 @@ class InstallerApp:
                 else:
                     result = False
 
-                self.status_var.set("操作完成！" if result else "操作失败")
+                if action == "self_check":
+                    self.status_var.set("自检通过" if result else "自检发现问题")
+                else:
+                    self.status_var.set("操作完成！" if result else "操作失败")
             except Exception as e:
                 self._enqueue_log(f"\n[错误] 发生异常: {e}")
                 self.status_var.set("操作失败")

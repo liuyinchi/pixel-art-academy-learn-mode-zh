@@ -20,6 +20,8 @@ import sys
 
 # Must match extract_hardcoded.py: only replace inside these contexts
 METHOD_NAMES = [
+    # Do not patch displayName here. Several game classes derive IDs and
+    # resource paths from static displayName(), so translating it hides content.
     'directive', 'instructions', 'description', 'name', 'shortName',
     'fullName', 'title', 'label', 'text', 'message', 'hint',
     'studyPlanDirective',
