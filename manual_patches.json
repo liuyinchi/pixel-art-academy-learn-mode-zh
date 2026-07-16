@@ -1422,6 +1422,24 @@
   },
   {
     "file": "retronator_pixelartacademy-challenges.js",
+    "find": "static displayName() {\n      return \"The Graphics Book of Icons\";\n    }",
+    "replace": "static displayName() {\n      return \"图标图形手册\";\n    }",
+    "comment": "Icon book volume 1 display name"
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
+    "find": "static displayName() {\n      return \"The Graphics Book of Icons — Nature\";\n    }",
+    "replace": "static displayName() {\n      return \"图标图形手册 — 自然\";\n    }",
+    "comment": "Icon book volume 2 display name"
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
+    "find": "<div class=\"pixeltosh emphasized\">Pixeltosh &amp; more</div>",
+    "replace": "<div class=\"pixeltosh emphasized\">Pixeltosh 及更多</div>",
+    "comment": "Icon book cover Pixeltosh and more label"
+  },
+  {
+    "file": "retronator_pixelartacademy-challenges.js",
     "find": "title: 'Transport'",
     "replace": "title: '交通'",
     "comment": "Icon book part title: Transport"
@@ -2248,5 +2266,861 @@
     "find": "\\n              Shield (24×24 pixels)\\n              ",
     "replace": "\\n              护盾（24×24 像素）\\n              ",
     "comment": "Invasion document art: shield"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "name: () => {\n          return \"Work in progress\";\n        }",
+    "replace": "name: () => {\n          return \"进行中的作品\";\n        }",
+    "comment": "Drawing portfolio WIP group name"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "      RestrictedColors: 'Restricted colors',\n      ColorPalette: 'Color palette',\n      PixelArtScaling: 'Pixel art scaling',\n      PixelArtEvaluation: 'Pixel art evaluation',\n      CanvasBorder: 'Canvas border'",
+    "replace": "      RestrictedColors: '受限颜色',\n      ColorPalette: '调色板',\n      PixelArtScaling: '像素画缩放',\n      PixelArtEvaluation: '像素艺术评估',\n      CanvasBorder: '画布边框'",
+    "comment": "Drawing new artwork extra item names"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "parts.push(\"Size: \".concat(bounds.width, \"x\").concat(bounds.height));",
+    "replace": "parts.push(\"尺寸：\".concat(bounds.width, \"x\").concat(bounds.height));",
+    "comment": "Drawing artwork summary size label"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "parts.push(\"Palette: \".concat(palette.name));",
+    "replace": "parts.push(\"调色板：\".concat({\"1-bit Black and White\": \"1 位黑白\", \"Black\": \"黑色\"}[palette.name] || palette.name));",
+    "comment": "Drawing artwork summary palette label"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "return ((ref = this.artwork()) != null ? ref.title : void 0) || 'Untitled';",
+    "replace": "return ((ref = this.artwork()) != null ? ref.title : void 0) || '未命名';",
+    "comment": "Drawing artwork fallback title"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "this.placeholder = \"Untitled\";",
+    "replace": "this.placeholder = \"未命名\";",
+    "comment": "Drawing artwork title placeholder fallback"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "placeholder=\"Enter artwork title\"",
+    "replace": "placeholder=\"请输入作品标题\"",
+    "comment": "Drawing new artwork title placeholder"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "placeholder: \"width\"",
+    "replace": "placeholder: \"宽度\"",
+    "comment": "Drawing new artwork width placeholder"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "placeholder: \"height\"",
+    "replace": "placeholder: \"高度\"",
+    "comment": "Drawing new artwork height placeholder"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "return \"Please enter a valid size.\";",
+    "replace": "return \"请输入有效尺寸。\";",
+    "comment": "Drawing new artwork invalid size error"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "return [ \"The maximum size is \", Blaze.View(\"lookup:maxSize\", function() {",
+    "replace": "return [ \"最大尺寸为 \", Blaze.View(\"lookup:maxSize\", function() {",
+    "comment": "Drawing new artwork maximum size error"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "message: \"Do you really want to destroy this artwork?\",\n        buttons: [{\n          text: \"Trash\",\n          value: true\n        }, {\n          text: \"Cancel\"\n        }]",
+    "replace": "message: \"你确定要删除这个作品吗？\",\n        buttons: [{\n          text: \"删除\",\n          value: true\n        }, {\n          text: \"取消\"\n        }]",
+    "comment": "Drawing artwork delete confirmation dialog"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "    events() {\n      return super.events(...arguments).concat({\n        'click .menu-item': this.onClickMenuItem\n      });",
+    "replace": "    localizedCategory(category) {\n      return {\n        [LOI.Assets.Palette.Categories.Basic]: \"基础\",\n        [LOI.Assets.Palette.Categories.Monoramp]: \"单色阶\",\n        [LOI.Assets.Palette.Categories.System]: \"系统\",\n        [LOI.Assets.Palette.Categories.Modern]: \"现代\"\n      }[category] || category;\n    }\n    events() {\n      return super.events(...arguments).concat({\n        'click .menu-item': this.onClickMenuItem\n      });",
+    "comment": "Palette selector cover localized category helper"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "Blaze.View(\"lookup:category\", function() {\n      return Spacebars.mustache(view.lookup(\"category\"));",
+    "replace": "Blaze.View(\"lookup:localizedCategory\", function() {\n      return Spacebars.mustache(view.lookup(\"localizedCategory\"), view.lookup(\"category\"));",
+    "replace_all": true,
+    "comment": "Palette selector category labels"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "    infoStyle() {\n      var darkestColor;",
+    "replace": "    localizedName() {\n      return {\n        \"1-bit Black and White\": \"1 位黑白\",\n        \"Black\": \"黑色\"\n      }[this.data().name] || this.data().name;\n    }\n    infoStyle() {\n      var darkestColor;",
+    "comment": "Palette page localized palette name helper"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "  }, \"\\n      \", HTML.SPAN({\n    class: \"name\"\n  }, Blaze.View(\"lookup:name\", function() {\n    return Spacebars.mustache(view.lookup(\"name\"));\n  })), \"\\n      \", Blaze.If(function() {",
+    "replace": "  }, \"\\n      \", HTML.SPAN({\n    class: \"name\"\n  }, Blaze.View(\"lookup:localizedName\", function() {\n    return Spacebars.mustache(view.lookup(\"localizedName\"));\n  })), \"\\n      \", Blaze.If(function() {",
+    "comment": "Palette page palette name label"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "    }, \"by\\n          \", HTML.SPAN({",
+    "replace": "    }, \"作者：\\n          \", HTML.SPAN({",
+    "comment": "Palette page author prefix"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "path: 'Pinball Creation Kit'",
+    "replace": "path: '弹球创作套件'",
+    "comment": "Pixeltosh Pinball disk path"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "path: 'Pinball Creation Kit/Pinball Creation Kit'",
+    "replace": "path: '弹球创作套件/弹球创作套件'",
+    "comment": "Pixeltosh Pinball program path"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "path: 'Pinball Creation Kit/My Pinball Machine'",
+    "replace": "path: '弹球创作套件/我的弹球机'",
+    "comment": "Pixeltosh Pinball project file path"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "path: 'Pinball Creation Kit/Demo Machines/Moon Shot'",
+    "replace": "path: '弹球创作套件/演示机器/月球发射'",
+    "comment": "Pixeltosh Pinball demo file path"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "path: 'Draw Quickly'",
+    "replace": "path: '快速绘制'",
+    "comment": "Pixeltosh Draw Quickly disk path"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-pixelartfundamentals.js",
+    "find": "path: 'Draw Quickly/Draw Quickly'",
+    "replace": "path: '快速绘制/快速绘制'",
+    "comment": "Pixeltosh Draw Quickly program path"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-design.js",
+    "find": "path: 'Invasion'",
+    "replace": "path: '入侵'",
+    "comment": "Pixeltosh Invasion disk path"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-design.js",
+    "find": "path: 'Invasion/Invasion Design Document'",
+    "replace": "path: '入侵/入侵设计文档'",
+    "comment": "Pixeltosh Invasion design document path"
+  },
+  {
+    "file": "retronator_pixelartacademy-pico8-invasion.js",
+    "find": "getFileForPath('Invasion/Invasion Design Document')",
+    "replace": "getFileForPath('入侵/入侵设计文档')",
+    "comment": "Invasion design document lookup path"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-writer.js",
+    "find": "path: 'Document'",
+    "replace": "path: '文档'",
+    "comment": "Pixeltosh Writer default document path"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "<div class=\"title\">Pinball Creation Kit</div>",
+    "replace": "<div class=\"title\">弹球创作套件</div>",
+    "comment": "Pinball about dialog title"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "caption: 'File'",
+    "replace": "caption: '文件'",
+    "comment": "Pinball File menu caption"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "caption: 'Edit'",
+    "replace": "caption: '编辑'",
+    "comment": "Pinball Edit menu caption"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "caption: 'View'",
+    "replace": "caption: '视图'",
+    "comment": "Pinball View menu caption"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "return \"Ball\";",
+    "replace": "return \"球\";",
+    "comment": "Pinball asset display name: ball"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "return \"Plunger\";",
+    "replace": "return \"发射器\";",
+    "comment": "Pinball asset display name: plunger"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "return \"Playfield\";",
+    "replace": "return \"球场\";",
+    "comment": "Pinball asset display name: playfield"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "return \"Gobble hole\";",
+    "replace": "return \"吞球洞\";",
+    "comment": "Pinball asset display name: gobble hole"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "return \"Drain\";",
+    "replace": "return \"排水口\";",
+    "comment": "Pinball asset display name: drain"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "return \"Bumper\";",
+    "replace": "return \"弹射器\";",
+    "comment": "Pinball asset display name: bumper"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "return \"Gate\";",
+    "replace": "return \"闸门\";",
+    "comment": "Pinball asset display name: gate"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "return \"Flipper\";",
+    "replace": "return \"挡板\";",
+    "comment": "Pinball asset display name: flipper"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "return \"Spinning target\";",
+    "replace": "return \"旋转靶\";",
+    "comment": "Pinball asset display name: spinning target"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "      name: 'Captive ball',",
+    "replace": "      name: '禁闭球',",
+    "comment": "Pinball setting: captive ball"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "          name: 'Pulling speed',",
+    "replace": "          name: '拉动速度',",
+    "comment": "Pinball setting: pulling speed"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "          name: 'Release speed',",
+    "replace": "          name: '释放速度',",
+    "comment": "Pinball setting: release speed"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "          name: 'Angle range',",
+    "replace": "          name: '角度范围',",
+    "comment": "Pinball setting: angle range"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "          name: 'Speed',",
+    "replace": "          name: '速度',",
+    "comment": "Pinball setting: speed"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "          name: 'Points',",
+    "replace": "          name: '分数',",
+    "replace_all": true,
+    "comment": "Pinball setting: points"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "          name: \"Angle\",",
+    "replace": "          name: \"角度\",",
+    "comment": "Pinball setting: angle"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "          name: \"Balls per play\",",
+    "replace": "          name: \"每局球数\",",
+    "comment": "Pinball setting: balls per play"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "          name: 'Active',",
+    "replace": "          name: '主动',",
+    "comment": "Pinball setting: active"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "          name: 'Bounciness',",
+    "replace": "          name: '弹力',",
+    "comment": "Pinball setting: bounciness"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "          name: 'Kick speed',",
+    "replace": "          name: '弹出速度',",
+    "comment": "Pinball setting: kick speed"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "              name: 'Parts',",
+    "replace": "              name: '部件',",
+    "comment": "Pinball tab: parts"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "              name: 'Settings',",
+    "replace": "              name: '设置',",
+    "comment": "Pinball tab: settings"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "return HTML.Raw(\"\\n        <p>GAME OVER</p>\\n      \");",
+    "replace": "return HTML.Raw(\"\\n        <p>游戏结束</p>\\n      \");",
+    "comment": "Pinball backbox game over"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "HTML.P(\"Ball: \", Blaze.View(\"lookup:ballNumber\", function() {",
+    "replace": "HTML.P(\"球：\", Blaze.View(\"lookup:ballNumber\", function() {",
+    "comment": "Pinball backbox ball label"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "HTML.P(\"Score: \", Blaze.View(\"lookup:score\", function() {",
+    "replace": "HTML.P(\"得分：\", Blaze.View(\"lookup:score\", function() {",
+    "comment": "Pinball backbox score label"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "}), \" balls per play.\")",
+    "replace": "}), \" 个球/局。\")",
+    "comment": "Pinball instructions balls per play"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "<p>Plunger: return, space, down arrow</p>",
+    "replace": "<p>发射器：回车、空格、下方向键</p>",
+    "comment": "Pinball instructions plunger controls"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "<p>Flippers: ctrl, shift, left/right arrow</p>",
+    "replace": "<p>挡板：Ctrl、Shift、左/右方向键</p>",
+    "comment": "Pinball instructions flipper controls"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "  static displayName() {\n    return this.mode();\n  }",
+    "replace": "  static displayName() {\n    return {\n      [Pinball.GameManager.Modes.Edit]: \"编辑\",\n      [Pinball.GameManager.Modes.Test]: \"测试\",\n      [Pinball.GameManager.Modes.Play]: \"游玩\"\n    }[this.mode()] || this.mode();\n  }",
+    "comment": "Pinball mode action display names"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "return \"Debug physics\";",
+    "replace": "return \"调试物理\";",
+    "comment": "Pinball action: debug physics"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "return \"Slow motion\";",
+    "replace": "return \"慢动作\";",
+    "comment": "Pinball action: slow motion"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "return \"Display walls\";",
+    "replace": "return \"显示墙壁\";",
+    "comment": "Pinball action: display walls"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "return \"Grid\";",
+    "replace": "return \"网格\";",
+    "comment": "Pinball action: grid"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "return \"Reset\";",
+    "replace": "return \"重置\";",
+    "comment": "Pinball action: reset"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "return \"Flip\";",
+    "replace": "return \"翻转\";",
+    "comment": "Pinball action: flip"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "return \"Rotate clockwise\";",
+    "replace": "return \"顺时针旋转\";",
+    "comment": "Pinball action: rotate clockwise"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "return \"Rotate counter-clockwise\";",
+    "replace": "return \"逆时针旋转\";",
+    "comment": "Pinball action: rotate counter-clockwise"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "return \"Delete\";",
+    "replace": "return \"删除\";",
+    "comment": "Pinball action: delete"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-pinball.js",
+    "find": "return \"About Pinball Creation Kit...\";",
+    "replace": "return \"关于弹球创作套件...\";",
+    "comment": "Pinball action: about"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-drawquickly.js",
+    "find": "    static getBestScore() {\n      var bestScore, difficulty, i, len, ref;\n      ref = ['hard', 'medium', 'easy'];\n      for (i = 0, len = ref.length; i < len; i++) {\n        difficulty = ref[i];\n        if (bestScore = this.getBestScoreForDifficulty(difficulty)) {\n          if (bestScore.score) {\n            bestScore.difficulty = difficulty;\n            return bestScore;\n          }\n        }\n      }\n      return null;\n    }\n    constructor(drawQuickly) {",
+    "replace": "    static getBestScore() {\n      var bestScore, difficulty, i, len, ref;\n      ref = ['hard', 'medium', 'easy'];\n      for (i = 0, len = ref.length; i < len; i++) {\n        difficulty = ref[i];\n        if (bestScore = this.getBestScoreForDifficulty(difficulty)) {\n          if (bestScore.score) {\n            bestScore.difficulty = difficulty;\n            return bestScore;\n          }\n        }\n      }\n      return null;\n    }\n    static localizedThing(thing) {\n      return {\n        \"alarm clock\": \"闹钟\",\n        \"airplane\": \"飞机\",\n        \"ant\": \"蚂蚁\",\n        \"apple\": \"苹果\",\n        \"axe\": \"斧头\",\n        \"banana\": \"香蕉\",\n        \"bat\": \"蝙蝠\",\n        \"bear\": \"熊\",\n        \"bee\": \"蜜蜂\",\n        \"bench\": \"长椅\",\n        \"bicycle\": \"自行车\",\n        \"bottle\": \"瓶子\",\n        \"bread\": \"面包\",\n        \"butterfly\": \"蝴蝶\",\n        \"camel\": \"骆驼\",\n        \"candle\": \"蜡烛\",\n        \"cannon\": \"大炮\",\n        \"car\": \"汽车\",\n        \"castle\": \"城堡\",\n        \"cat\": \"猫\",\n        \"chair\": \"椅子\",\n        \"church\": \"教堂\",\n        \"couch\": \"沙发\",\n        \"cow\": \"奶牛\",\n        \"crab\": \"螃蟹\",\n        \"cup\": \"杯子\",\n        \"dog\": \"狗\",\n        \"dolphin\": \"海豚\",\n        \"door\": \"门\",\n        \"duck\": \"鸭子\",\n        \"elephant\": \"大象\",\n        \"eyeglasses\": \"眼镜\",\n        \"fan\": \"风扇\",\n        \"fish\": \"鱼\",\n        \"flower\": \"花\",\n        \"frog\": \"青蛙\",\n        \"giraffe\": \"长颈鹿\",\n        \"guitar\": \"吉他\",\n        \"hamburger\": \"汉堡\",\n        \"hammer\": \"锤子\",\n        \"harp\": \"竖琴\",\n        \"hat\": \"帽子\",\n        \"hedgehog\": \"刺猬\",\n        \"helicopter\": \"直升机\",\n        \"horse\": \"马\",\n        \"hot air balloon\": \"热气球\",\n        \"hourglass\": \"沙漏\",\n        \"kangaroo\": \"袋鼠\",\n        \"knife\": \"刀\",\n        \"lion\": \"狮子\",\n        \"lobster\": \"龙虾\",\n        \"mouse\": \"老鼠\",\n        \"mushroom\": \"蘑菇\",\n        \"owl\": \"猫头鹰\",\n        \"parrot\": \"鹦鹉\",\n        \"pear\": \"梨\",\n        \"penguin\": \"企鹅\",\n        \"piano\": \"钢琴\",\n        \"pickup truck\": \"皮卡\",\n        \"pig\": \"猪\",\n        \"pineapple\": \"菠萝\",\n        \"pizza\": \"披萨\",\n        \"rabbit\": \"兔子\",\n        \"raccoon\": \"浣熊\",\n        \"rhinoceros\": \"犀牛\",\n        \"rifle\": \"步枪\",\n        \"sailboat\": \"帆船\",\n        \"saw\": \"锯子\",\n        \"saxophone\": \"萨克斯管\",\n        \"scissors\": \"剪刀\",\n        \"scorpion\": \"蝎子\",\n        \"shark\": \"鲨鱼\",\n        \"sheep\": \"绵羊\",\n        \"shoe\": \"鞋\",\n        \"skyscraper\": \"摩天楼\",\n        \"snail\": \"蜗牛\",\n        \"snake\": \"蛇\",\n        \"spider\": \"蜘蛛\",\n        \"spoon\": \"勺子\",\n        \"squirrel\": \"松鼠\",\n        \"strawberry\": \"草莓\",\n        \"swan\": \"天鹅\",\n        \"sword\": \"剑\",\n        \"table\": \"桌子\",\n        \"teapot\": \"茶壶\",\n        \"teddy bear\": \"泰迪熊\",\n        \"tiger\": \"老虎\",\n        \"tree\": \"树\",\n        \"trumpet\": \"小号\",\n        \"turtle\": \"乌龟\",\n        \"umbrella\": \"雨伞\",\n        \"violin\": \"小提琴\",\n        \"windmill\": \"风车\",\n        \"zebra\": \"斑马\"\n      }[thing] || thing;\n    }\n    constructor(drawQuickly) {",
+    "comment": "Draw Quickly symbolic drawing localized thing names"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-drawquickly.js",
+    "find": "                results.push(\"\".concat(guess.label).concat(guessStyle));",
+    "replace": "                results.push(\"\".concat(this.constructor.localizedThing(guess.label)).concat(guessStyle));",
+    "comment": "Draw Quickly symbolic drawing localized guess labels"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-drawquickly.js",
+    "find": "          this.canvasText(\"\".concat(foundLabel, \"!\"));",
+    "replace": "          this.canvasText(\"\".concat(this.constructor.localizedThing(foundLabel), \"!\"));",
+    "comment": "Draw Quickly symbolic drawing localized found label"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-drawquickly.js",
+    "find": "        this.canvasText(\"Game over\");",
+    "replace": "        this.canvasText(\"游戏结束\");",
+    "comment": "Draw Quickly symbolic drawing game over"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-drawquickly.js",
+    "find": "    bestScore() {\n      var speed;\n      speed = this.currentData();\n      return DrawQuickly.SymbolicDrawing.getBestScoreForDifficultyAndSpeed(this.drawQuickly.symbolicDrawing.difficulty, speed);\n    }\n    events() {",
+    "replace": "    bestScore() {\n      var speed;\n      speed = this.currentData();\n      return DrawQuickly.SymbolicDrawing.getBestScoreForDifficultyAndSpeed(this.drawQuickly.symbolicDrawing.difficulty, speed);\n    }\n    localizedSpeed(speed) {\n      return {\n        slow: \"慢速\",\n        medium: \"中速\",\n        fast: \"快速\"\n      }[speed] || speed;\n    }\n    events() {",
+    "comment": "Draw Quickly speed screen localized speed helper"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-drawquickly.js",
+    "find": "    }), \":\", Blaze.View(\"lookup:seconds\", function() {\n      return Spacebars.mustache(view.lookup(\"seconds\"));\n    }), \"\\n          \"), \"\\n          \", HTML.BUTTON({\n      class: \"difficulty-button pixelartacademy-pixeltosh-os-interface-button\"\n    }, Blaze.View(\"lookup:upperFirst\", function() {\n      return Spacebars.mustache(view.lookup(\"upperFirst\"), view.lookup(\".\"));\n    })), \"\\n          \", Blaze.If(function() {",
+    "replace": "    }), \":\", Blaze.View(\"lookup:seconds\", function() {\n      return Spacebars.mustache(view.lookup(\"seconds\"));\n    }), \"\\n          \"), \"\\n          \", HTML.BUTTON({\n      class: \"difficulty-button pixelartacademy-pixeltosh-os-interface-button\"\n    }, Blaze.View(\"lookup:localizedSpeed\", function() {\n      return Spacebars.mustache(view.lookup(\"localizedSpeed\"), view.lookup(\".\"));\n    })), \"\\n          \", Blaze.If(function() {",
+    "comment": "Draw Quickly speed screen localized speed buttons"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-drawquickly.js",
+    "find": "      }, \"\\n              Best: \", Blaze.View(\"lookup:bestScore\", function() {",
+    "replace": "      }, \"\\n              最佳：\", Blaze.View(\"lookup:bestScore\", function() {",
+    "comment": "Draw Quickly speed screen best score label"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-drawquickly.js",
+    "find": "    return HTML.Raw(\"\\n        <h1>Symbolic Drawing</h1>\\n        <p>You will be given a list of 10 things.</p>\\n        <p>You can draw them in any order you want.</p>\\n        <p>Draw as many of them as possible before the time runs out!</p>\\n      \");",
+    "replace": "    return HTML.Raw(\"\\n        <h1>符号绘画</h1>\\n        <p>系统会给你一组 10 个物品。</p>\\n        <p>你可以按任意顺序来画。</p>\\n        <p>在时间结束前，尽可能多地画出来！</p>\\n      \");",
+    "comment": "Draw Quickly symbolic drawing instructions"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-drawquickly.js",
+    "find": "  }), \"Clear\"), \"\\n    \"), HTML.Raw('\\n    <div class=\"canvas-area\" data-cursor=\"drawquickly-pencil\"></div>\\n  '));",
+    "replace": "  }), \"清除\"), \"\\n    \"), HTML.Raw('\\n    <div class=\"canvas-area\" data-cursor=\"drawquickly-pencil\"></div>\\n  '));",
+    "comment": "Draw Quickly canvas clear button"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-drawquickly.js",
+    "find": "      drawnClass() {\n        var thingToDraw, thingsDrawn;\n        thingToDraw = this.data();\n        thingsDrawn = this.symbolicDrawing.thingsDrawn();\n        if (indexOf.call(thingsDrawn, thingToDraw) >= 0) {\n          return 'drawn';\n        }\n      }\n    }",
+    "replace": "      drawnClass() {\n        var thingToDraw, thingsDrawn;\n        thingToDraw = this.data();\n        thingsDrawn = this.symbolicDrawing.thingsDrawn();\n        if (indexOf.call(thingsDrawn, thingToDraw) >= 0) {\n          return 'drawn';\n        }\n      }\n      localizedThing(thing) {\n        return DrawQuickly.SymbolicDrawing.localizedThing(thing);\n      }\n    }",
+    "comment": "Draw Quickly symbolic drawing list localized helper"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-drawquickly.js",
+    "find": "      return [ \"thing \", Spacebars.mustache(view.lookup(\"drawnClass\")) ];\n    }\n  }, HTML.SPAN({\n    class: \"text\"\n  }, Blaze.View(\"lookup:.\", function() {\n    return Spacebars.mustache(view.lookup(\".\"));\n  })));",
+    "replace": "      return [ \"thing \", Spacebars.mustache(view.lookup(\"drawnClass\")) ];\n    }\n  }, HTML.SPAN({\n    class: \"text\"\n  }, Blaze.View(\"lookup:localizedThing\", function() {\n    return Spacebars.mustache(view.lookup(\"localizedThing\"), view.lookup(\".\"));\n  })));",
+    "comment": "Draw Quickly symbolic drawing list localized labels"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-drawquickly.js",
+    "find": "      await LOI.adventure.showDialogMessage(\"Freehand drawing from reference can be hard for beginners and requires training that will be added later in development.\\n\\nIt's OK if you're not happy with your results yet.\");",
+    "replace": "      await LOI.adventure.showDialogMessage(\"对新手来说，对着参考图自由绘画可能有点难，这部分训练会在后续开发中加入。\\n\\n如果你现在对结果还不满意，也没关系。\");",
+    "comment": "Draw Quickly realistic drawing warning dialog"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-drawquickly.js",
+    "find": "        this.canvasText(\"Time's up!\");",
+    "replace": "        this.canvasText(\"时间到！\");",
+    "comment": "Draw Quickly realistic drawing time up"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-drawquickly.js",
+    "find": "    bestScore() {\n      var difficulty;\n      difficulty = this.currentData();\n      return DrawQuickly.SymbolicDrawing.getBestScoreForDifficulty(difficulty);\n    }\n    events() {",
+    "replace": "    bestScore() {\n      var difficulty;\n      difficulty = this.currentData();\n      return DrawQuickly.SymbolicDrawing.getBestScoreForDifficulty(difficulty);\n    }\n    localizedDifficulty(difficulty) {\n      return {\n        easy: \"简单\",\n        medium: \"中等\",\n        hard: \"困难\"\n      }[difficulty] || difficulty;\n    }\n    localizedSpeed(speed) {\n      return {\n        slow: \"慢速\",\n        medium: \"中速\",\n        fast: \"快速\"\n      }[speed] || speed;\n    }\n    events() {",
+    "comment": "Draw Quickly difficulty screen localized helpers"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-drawquickly.js",
+    "find": "    }, Blaze.View(\"lookup:upperFirst\", function() {\n      return Spacebars.mustache(view.lookup(\"upperFirst\"), view.lookup(\".\"));\n    })), \"\\n          \", Blaze.If(function() {\n      return Spacebars.call(view.lookup(\"bestScore\"));\n    }, function() {\n      return [ \"\\n            \", HTML.DIV({\n        class: \"best-score\"\n      }, \"\\n              Best: \", Blaze.View(\"lookup:bestScore.score\", function() {\n        return Spacebars.mustache(Spacebars.dot(view.lookup(\"bestScore\"), \"score\"));\n      }), HTML.Raw(\"/10<br>\\n              \"), Blaze.View(\"lookup:bestScore.speed\", function() {\n        return Spacebars.mustache(Spacebars.dot(view.lookup(\"bestScore\"), \"speed\"));\n      }), \" speed\\n            \"), \"\\n          \" ];",
+    "replace": "    }, Blaze.View(\"lookup:localizedDifficulty\", function() {\n      return Spacebars.mustache(view.lookup(\"localizedDifficulty\"), view.lookup(\".\"));\n    })), \"\\n          \", Blaze.If(function() {\n      return Spacebars.call(view.lookup(\"bestScore\"));\n    }, function() {\n      return [ \"\\n            \", HTML.DIV({\n        class: \"best-score\"\n      }, \"\\n              最佳：\", Blaze.View(\"lookup:bestScore.score\", function() {\n        return Spacebars.mustache(Spacebars.dot(view.lookup(\"bestScore\"), \"score\"));\n      }), HTML.Raw(\"/10<br>\\n              \"), Blaze.View(\"lookup:localizedSpeed\", function() {\n        return Spacebars.mustache(view.lookup(\"localizedSpeed\"), Spacebars.dot(view.lookup(\"bestScore\"), \"speed\"));\n      }), \"\\n            \"), \"\\n          \" ];",
+    "comment": "Draw Quickly difficulty screen localized labels"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-drawquickly.js",
+    "find": "    allCount() {\n      var complexity;\n      complexity = this.currentData();\n      return DrawQuickly.RealisticDrawing.thingsByComplexity[complexity].length;\n    }\n    events() {",
+    "replace": "    allCount() {\n      var complexity;\n      complexity = this.currentData();\n      return DrawQuickly.RealisticDrawing.thingsByComplexity[complexity].length;\n    }\n    localizedComplexity(complexity) {\n      return {\n        simple: \"简单\",\n        medium: \"中等\",\n        complex: \"复杂\"\n      }[complexity] || complexity;\n    }\n    events() {",
+    "comment": "Draw Quickly complexity screen localized helper"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-drawquickly.js",
+    "find": "    }, Blaze.View(\"lookup:upperFirst\", function() {\n      return Spacebars.mustache(view.lookup(\"upperFirst\"), view.lookup(\".\"));\n    })), \"\\n          \", Blaze.If(function() {\n      return Spacebars.call(view.lookup(\"completedCount\"));\n    }, function() {\n      return [ \"\\n            \", HTML.DIV({\n        class: \"completion\"\n      }, \"\\n              Completed: \", Blaze.View(\"lookup:completedCount\", function() {\n        return Spacebars.mustache(view.lookup(\"completedCount\"));\n      }), \"/\", Blaze.View(\"lookup:allCount\", function() {\n        return Spacebars.mustache(view.lookup(\"allCount\"));\n      }), HTML.Raw(\"<br>\\n            \")), \"\\n          \" ];",
+    "replace": "    }, Blaze.View(\"lookup:localizedComplexity\", function() {\n      return Spacebars.mustache(view.lookup(\"localizedComplexity\"), view.lookup(\".\"));\n    })), \"\\n          \", Blaze.If(function() {\n      return Spacebars.call(view.lookup(\"completedCount\"));\n    }, function() {\n      return [ \"\\n            \", HTML.DIV({\n        class: \"completion\"\n      }, \"\\n              已完成：\", Blaze.View(\"lookup:completedCount\", function() {\n        return Spacebars.mustache(view.lookup(\"completedCount\"));\n      }), \"/\", Blaze.View(\"lookup:allCount\", function() {\n        return Spacebars.mustache(view.lookup(\"allCount\"));\n      }), HTML.Raw(\"<br>\\n            \")), \"\\n          \" ];",
+    "comment": "Draw Quickly complexity screen localized labels"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-drawquickly.js",
+    "find": "    completedClass() {\n      if (this.completedThing()) {\n        return 'completed';\n      }\n    }\n    events() {",
+    "replace": "    completedClass() {\n      if (this.completedThing()) {\n        return 'completed';\n      }\n    }\n    localizedThing(thing) {\n      return DrawQuickly.SymbolicDrawing.localizedThing(thing);\n    }\n    events() {",
+    "comment": "Draw Quickly realistic subject screen localized helper"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-drawquickly.js",
+    "find": "    }, Blaze.View(\"lookup:.\", function() {\n      return Spacebars.mustache(view.lookup(\".\"));\n    })), \"\\n      \" ];",
+    "replace": "    }, Blaze.View(\"lookup:localizedThing\", function() {\n      return Spacebars.mustache(view.lookup(\"localizedThing\"), view.lookup(\".\"));\n    })), \"\\n      \" ];",
+    "comment": "Draw Quickly realistic subject screen localized labels"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-drawquickly.js",
+    "find": "    return HTML.Raw(\"\\n        <h1>Realistic Drawing</h1>\\n        <p>You will be given a reference to draw.</p>\\n        <p>The time for drawing will get shorter each round.</p>\\n        <p>Simplify the subject to get done in time!</p>\\n      \");",
+    "replace": "    return HTML.Raw(\"\\n        <h1>写实绘画</h1>\\n        <p>系统会给你一张参考图来临摹。</p>\\n        <p>每一轮的绘画时间都会变短。</p>\\n        <p>学会简化对象，才能按时完成！</p>\\n      \");",
+    "comment": "Draw Quickly realistic drawing instructions"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-drawquickly.js",
+    "find": "  }, \"Score: \", Blaze.View(\"lookup:symbolicDrawing.thingsDrawn.length\", function() {",
+    "replace": "  }, \"得分：\", Blaze.View(\"lookup:symbolicDrawing.thingsDrawn.length\", function() {",
+    "comment": "Draw Quickly symbolic results score label"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-drawquickly.js",
+    "find": "    durations() {\n      var duration, i, index, len, realisticDrawingData, ref, results;",
+    "replace": "    localizedThing(thing) {\n      return DrawQuickly.SymbolicDrawing.localizedThing(thing);\n    }\n    durations() {\n      var duration, i, index, len, realisticDrawingData, ref, results;",
+    "comment": "Draw Quickly realistic results localized helper"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-drawquickly.js",
+    "find": "  }, \"\\n    \", HTML.DIV({\n    class: \"title\"\n  }, Blaze.View(\"lookup:realisticDrawing.thingToDraw\", function() {\n    return Spacebars.mustache(Spacebars.dot(view.lookup(\"realisticDrawing\"), \"thingToDraw\"));\n  })), \"\\n    \", HTML.UL({",
+    "replace": "  }, \"\\n    \", HTML.DIV({\n    class: \"title\"\n  }, Blaze.View(\"lookup:localizedThing\", function() {\n    return Spacebars.mustache(view.lookup(\"localizedThing\"), Spacebars.dot(view.lookup(\"realisticDrawing\"), \"thingToDraw\"));\n  })), \"\\n    \", HTML.UL({",
+    "comment": "Draw Quickly realistic results localized title"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-app.js",
+    "find": "            message: \"Steam Cloud saves are now available! Do you want to enable Steam Cloud for this save game?\\n          \\nEnabling Steam Cloud will sync the \".concat(profile.debugName(), \" save game with your \").concat(steam.player.name, \" Steam account. You will have to be logged in to Steam to see this save game.\"),",
+    "replace": "            message: \"Steam 云存档现已可用！是否为此存档启用 Steam 云同步？\\n          \\n启用后，存档“\".concat(profile.debugName(), \"”将与 Steam 账户“\").concat(steam.player.name, \"”同步。您必须登录 Steam 才能看到此存档。\"),",
+    "comment": "Steam Cloud first-time migration dialog"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-app.js",
+    "find": "        }), HTML.Raw('<span class=\"checkmark\"></span> Use Steam Cloud\\n              ')),",
+    "replace": "        }), HTML.Raw('<span class=\"checkmark\"></span> 使用 Steam 云存档\\n              ')),",
+    "comment": "Steam Cloud new-save checkbox"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-app.js",
+    "find": "      }, \"Save\"), \"\\n        \"),",
+    "replace": "      }, \"保存\"), \"\\n        \"),",
+    "comment": "Save game save button"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-app.js",
+    "find": "        message: \"Enabling Steam Cloud will sync the \".concat(profile.debugName(), \" save game with your \").concat(steam.player.name, \" Steam account. You will have to be logged in to Steam to see this save game.\"),",
+    "replace": "        message: \"启用 Steam 云同步后，存档“\".concat(profile.debugName(), \"”将与 Steam 账户“\").concat(steam.player.name, \"”同步。您必须登录 Steam 才能看到此存档。\"),",
+    "comment": "Steam Cloud enable confirmation dialog"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-app.js",
+    "find": "        message: \"Disabling Steam Cloud will make the \".concat(profile.debugName(), \" save game available only locally on this computer.\"),",
+    "replace": "        message: \"停用 Steam 云同步后，存档“\".concat(profile.debugName(), \"”将只能在此电脑本地使用。\"),",
+    "comment": "Steam Cloud disable confirmation dialog"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-app.js",
+    "find": "          text: \"Enable\"",
+    "replace": "          text: \"启用\"",
+    "replace_all": true,
+    "comment": "Steam Cloud enable dialog buttons"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-app.js",
+    "find": "          text: \"Disable\"",
+    "replace": "          text: \"停用\"",
+    "comment": "Steam Cloud disable dialog button"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-app.js",
+    "find": "          text: \"Cancel\"",
+    "replace": "          text: \"取消\"",
+    "replace_all": true,
+    "comment": "Steam Cloud dialog cancel buttons"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-app.js",
+    "find": "          }, \"Edit\"), \"\\n            \" ];",
+    "replace": "          }, \"编辑\"), \"\\n            \" ];",
+    "comment": "Save game edit button"
+  },
+  {
+    "file": "retronator_pixelartacademy-learnmode-app.js",
+    "find": "      }, \"\\n              Loading …\\n              \", Blaze.If(function() {",
+    "replace": "      }, \"\\n              正在加载……\\n              \", Blaze.If(function() {",
+    "comment": "Save game loading status"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-chess.js",
+    "find": "        caption: 'File',",
+    "replace": "        caption: '文件',",
+    "comment": "Chess menu: File"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-chess.js",
+    "find": "        caption: 'View',",
+    "replace": "        caption: '视图',",
+    "comment": "Chess menu: View"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-chess.js",
+    "find": "        caption: 'Audio',",
+    "replace": "        caption: '音频',",
+    "comment": "Chess menu: Audio"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-chess.js",
+    "find": "        caption: 'Theme',",
+    "replace": "        caption: '主题',",
+    "comment": "Chess menu: Theme"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-chess.js",
+    "find": "        caption: 'Play',",
+    "replace": "        caption: '对弈',",
+    "comment": "Chess menu: Play"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-chess.js",
+    "find": "                name: 'Lessons',",
+    "replace": "                name: '课程',",
+    "comment": "Chess tab: Lessons"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-chess.js",
+    "find": "                name: 'Puzzles'",
+    "replace": "                name: '谜题'",
+    "comment": "Chess tab: Puzzles"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-chess.js",
+    "find": "                name: 'Play',",
+    "replace": "                name: '对弈',",
+    "comment": "Chess tab: Play"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-chess.js",
+    "find": "    static displayName() {\n      return \"About Chess Academy ..\";\n    }",
+    "replace": "    static displayName() {\n      return \"关于国际象棋学院……\";\n    }",
+    "comment": "Chess action: About"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-chess.js",
+    "find": "    static displayName() {\n      return \"Back to Menu\";\n    }",
+    "replace": "    static displayName() {\n      return \"返回菜单\";\n    }",
+    "comment": "Chess action: Back to menu"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-chess.js",
+    "find": "    static displayName() {\n      return \"Board Coordinates\";\n    }",
+    "replace": "    static displayName() {\n      return \"棋盘坐标\";\n    }",
+    "comment": "Chess action: Board coordinates"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-chess.js",
+    "find": "    static displayName() {\n      return \"Flip Board\";\n    }",
+    "replace": "    static displayName() {\n      return \"翻转棋盘\";\n    }",
+    "comment": "Chess action: Flip board"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-chess.js",
+    "find": "    static displayName() {\n      return \"Board Sounds\";\n    }",
+    "replace": "    static displayName() {\n      return \"棋盘音效\";\n    }",
+    "comment": "Chess action: Board sounds"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-chess.js",
+    "find": "    static displayName() {\n      return \"Pixeltosh Voice\";\n    }",
+    "replace": "    static displayName() {\n      return \"Pixeltosh 语音\";\n    }",
+    "comment": "Chess action: Pixeltosh voice"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-chess.js",
+    "find": "    static displayName() {\n      return \"Light Interface\";\n    }",
+    "replace": "    static displayName() {\n      return \"浅色界面\";\n    }",
+    "comment": "Chess action: Light interface"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-chess.js",
+    "find": "    static displayName() {\n      return \"Dark Interface\";\n    }",
+    "replace": "    static displayName() {\n      return \"深色界面\";\n    }",
+    "comment": "Chess action: Dark interface"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-chess.js",
+    "find": "    static displayName() {\n      return \"Newspaper Chessboard\";\n    }",
+    "replace": "    static displayName() {\n      return \"报纸棋盘\";\n    }",
+    "comment": "Chess action: Newspaper chessboard"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-chess.js",
+    "find": "    static displayName() {\n      return \"Light Chessboard\";\n    }",
+    "replace": "    static displayName() {\n      return \"浅色棋盘\";\n    }",
+    "comment": "Chess action: Light chessboard"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-chess.js",
+    "find": "    static displayName() {\n      return \"Contrast Chessboard\";\n    }",
+    "replace": "    static displayName() {\n      return \"高对比棋盘\";\n    }",
+    "comment": "Chess action: Contrast chessboard"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-chess.js",
+    "find": "    static displayName() {\n      return \"Dark Chessboard\";\n    }",
+    "replace": "    static displayName() {\n      return \"深色棋盘\";\n    }",
+    "comment": "Chess action: Dark chessboard"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-chess.js",
+    "find": "    static displayName() {\n      return \"Back in History\";\n    }",
+    "replace": "    static displayName() {\n      return \"回看上一步\";\n    }",
+    "comment": "Chess action: Back in history"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-chess.js",
+    "find": "    static displayName() {\n      return \"Forward in History\";\n    }",
+    "replace": "    static displayName() {\n      return \"查看下一步\";\n    }",
+    "comment": "Chess action: Forward in history"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-chess.js",
+    "find": "    static displayName() {\n      return \"Always Promote to Queen\";\n    }",
+    "replace": "    static displayName() {\n      return \"总是升变为后\";\n    }",
+    "comment": "Chess action: Auto promotion"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixeltosh-chess.js",
+    "find": "    static displayName() {\n      return \"Automatically Flip Board\";\n    }",
+    "replace": "    static displayName() {\n      return \"自动翻转棋盘\";\n    }",
+    "comment": "Chess action: Auto flip board"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "    static id() {\n      return 'PixelArtAcademy.PixelPad.Apps.Drawing.Editor.Desktop.ReadabilityAnalysis';\n    }\n    constructor() {",
+    "replace": "    static id() {\n      return 'PixelArtAcademy.PixelPad.Apps.Drawing.Editor.Desktop.ReadabilityAnalysis';\n    }\n    static localizedLabel(label) {\n      return {\n        \"alarm clock\": \"闹钟\",\n        \"airplane\": \"飞机\",\n        \"ant\": \"蚂蚁\",\n        \"apple\": \"苹果\",\n        \"axe\": \"斧头\",\n        \"banana\": \"香蕉\",\n        \"bat\": \"蝙蝠\",\n        \"bear\": \"熊\",\n        \"bee\": \"蜜蜂\",\n        \"bench\": \"长椅\",\n        \"bicycle\": \"自行车\",\n        \"bottle\": \"瓶子\",\n        \"bread\": \"面包\",\n        \"butterfly\": \"蝴蝶\",\n        \"camel\": \"骆驼\",\n        \"candle\": \"蜡烛\",\n        \"cannon\": \"大炮\",\n        \"car\": \"汽车\",\n        \"castle\": \"城堡\",\n        \"cat\": \"猫\",\n        \"chair\": \"椅子\",\n        \"church\": \"教堂\",\n        \"couch\": \"沙发\",\n        \"cow\": \"奶牛\",\n        \"crab\": \"螃蟹\",\n        \"cup\": \"杯子\",\n        \"dog\": \"狗\",\n        \"dolphin\": \"海豚\",\n        \"door\": \"门\",\n        \"duck\": \"鸭子\",\n        \"elephant\": \"大象\",\n        \"eyeglasses\": \"眼镜\",\n        \"fan\": \"风扇\",\n        \"fish\": \"鱼\",\n        \"flower\": \"花\",\n        \"frog\": \"青蛙\",\n        \"giraffe\": \"长颈鹿\",\n        \"guitar\": \"吉他\",\n        \"hamburger\": \"汉堡\",\n        \"hammer\": \"锤子\",\n        \"harp\": \"竖琴\",\n        \"hat\": \"帽子\",\n        \"hedgehog\": \"刺猬\",\n        \"helicopter\": \"直升机\",\n        \"horse\": \"马\",\n        \"hot air balloon\": \"热气球\",\n        \"hourglass\": \"沙漏\",\n        \"kangaroo\": \"袋鼠\",\n        \"knife\": \"刀\",\n        \"lion\": \"狮子\",\n        \"lobster\": \"龙虾\",\n        \"mouse\": \"老鼠\",\n        \"mushroom\": \"蘑菇\",\n        \"owl\": \"猫头鹰\",\n        \"parrot\": \"鹦鹉\",\n        \"pear\": \"梨\",\n        \"penguin\": \"企鹅\",\n        \"piano\": \"钢琴\",\n        \"pickup truck\": \"皮卡\",\n        \"pig\": \"猪\",\n        \"pineapple\": \"菠萝\",\n        \"pizza\": \"披萨\",\n        \"rabbit\": \"兔子\",\n        \"raccoon\": \"浣熊\",\n        \"rhinoceros\": \"犀牛\",\n        \"rifle\": \"步枪\",\n        \"sailboat\": \"帆船\",\n        \"saw\": \"锯子\",\n        \"saxophone\": \"萨克斯管\",\n        \"scissors\": \"剪刀\",\n        \"scorpion\": \"蝎子\",\n        \"shark\": \"鲨鱼\",\n        \"sheep\": \"绵羊\",\n        \"shoe\": \"鞋\",\n        \"skyscraper\": \"摩天楼\",\n        \"snail\": \"蜗牛\",\n        \"snake\": \"蛇\",\n        \"spider\": \"蜘蛛\",\n        \"spoon\": \"勺子\",\n        \"squirrel\": \"松鼠\",\n        \"strawberry\": \"草莓\",\n        \"swan\": \"天鹅\",\n        \"sword\": \"剑\",\n        \"table\": \"桌子\",\n        \"teapot\": \"茶壶\",\n        \"teddy bear\": \"泰迪熊\",\n        \"tiger\": \"老虎\",\n        \"tree\": \"树\",\n        \"trumpet\": \"小号\",\n        \"turtle\": \"乌龟\",\n        \"umbrella\": \"雨伞\",\n        \"violin\": \"小提琴\",\n        \"windmill\": \"风车\",\n        \"zebra\": \"斑马\"\n      }[label] || label;\n    }\n    constructor() {",
+    "comment": "Readability analysis localized classifier labels"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "          label: region.targetLabel,",
+    "replace": "          label: this.constructor.localizedLabel(region.targetLabel),",
+    "comment": "Readability analysis localized image subject"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "}, \"Image \", Blaze.View(\"lookup:number\", function() {",
+    "replace": "}, \"图像 \", Blaze.View(\"lookup:number\", function() {",
+    "comment": "Readability analysis image title"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "})), \": \", Blaze.View(\"lookup:label\", function() {",
+    "replace": "})), \"：\", Blaze.View(\"lookup:label\", function() {",
+    "comment": "Readability analysis image title punctuation"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "  if (ref = region.targetLabel, indexOf.call(PAA.ImageClassification.SimpleClassifier.pluralLabels, ref) >= 0) {\n    demonstrative = \"these\";\n    copula = \"are\";\n    labelString = region.targetLabel;\n  } else {\n    demonstrative = \"this\";\n    copula = \"is\";\n    labelString = AB.Rules.English.addIndefinitePronoun(region.targetLabel);\n  }",
+    "replace": "  labelString = this.constructor.localizedLabel(region.targetLabel);",
+    "comment": "Readability analysis localized target label in feedback"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "    summary: \"Perfect\",\n    explanation: \"There is no doubt \".concat(demonstrative, \" \").concat(copula, \" \").concat(labelString, \".\")",
+    "replace": "    summary: \"完美\",\n    explanation: \"毫无疑问，这是\".concat(labelString, \"。\")",
+    "comment": "Readability analysis perfect result"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "    summary: \"Great\",\n    explanation: \"\".concat(_.upperFirst(demonstrative), \" \").concat(copula, \" easily recognized as \").concat(labelString, \".\")",
+    "replace": "    summary: \"优秀\",\n    explanation: \"可以轻松识别为\".concat(labelString, \"。\")",
+    "comment": "Readability analysis great result"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "    summary: \"Good\",\n    explanation: \"\".concat(_.upperFirst(demonstrative), \" \").concat(copula, \" likely \").concat(labelString, \".\")",
+    "replace": "    summary: \"良好\",\n    explanation: \"这很可能是\".concat(labelString, \"。\")",
+    "comment": "Readability analysis good result"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "    summary: \"Adequate\",\n    explanation: \"\".concat(_.upperFirst(demonstrative), \" could be \").concat(labelString, \".\")",
+    "replace": "    summary: \"尚可\",\n    explanation: \"这可能是\".concat(labelString, \"。\")",
+    "comment": "Readability analysis adequate result"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "    unrecognizableExplanation = \"This could maybe be confused with \".concat(AB.Rules.English.addIndefinitePronoun(bestOtherLabelProbabilities[0].label), \" or \").concat(AB.Rules.English.addIndefinitePronoun(bestOtherLabelProbabilities[1].label), \".\");",
+    "replace": "    unrecognizableExplanation = \"这可能会与\".concat(this.constructor.localizedLabel(bestOtherLabelProbabilities[0].label), \"或\").concat(this.constructor.localizedLabel(bestOtherLabelProbabilities[1].label), \"混淆。\");",
+    "comment": "Readability analysis two-label confusion feedback"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "    unrecognizableExplanation = \"This could maybe be confused with \".concat(AB.Rules.English.addIndefinitePronoun(bestOtherLabelProbabilities[0].label), \".\");",
+    "replace": "    unrecognizableExplanation = \"这可能会与\".concat(this.constructor.localizedLabel(bestOtherLabelProbabilities[0].label), \"混淆。\");",
+    "comment": "Readability analysis one-label confusion feedback"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "    unrecognizableExplanation = \"Draw more details to distinguish the subject.\";",
+    "replace": "    unrecognizableExplanation = \"请添加更多细节，以便区分主体。\";",
+    "comment": "Readability analysis detail feedback"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "      summary: \"Poor\",",
+    "replace": "      summary: \"较差\",",
+    "comment": "Readability analysis poor result"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "      summary: \"Problematic\",",
+    "replace": "      summary: \"有问题\",",
+    "comment": "Readability analysis problematic result"
+  },
+  {
+    "file": "retronator_pixelartacademy-pixelpad-drawing.js",
+    "find": "      summary: \"Inconclusive\",\n      explanation: \"I'm having trouble distinguish the subject at this small size.\"",
+    "replace": "      summary: \"无法判断\",\n      explanation: \"图像尺寸太小，我难以辨认主体。\"",
+    "comment": "Readability analysis inconclusive result"
   }
 ]

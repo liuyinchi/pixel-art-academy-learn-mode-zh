@@ -58,6 +58,19 @@ function Do-Install {
         try { if (Get-Command python -ErrorAction SilentlyContinue) { $pythonCmd = "python" } } catch {}
     }
     if (-not $pythonCmd) {
+        $knownPythonPaths = @(
+            (Join-Path $env:LOCALAPPDATA "Programs\Python\Python312\python.exe"),
+            (Join-Path $env:LOCALAPPDATA "Programs\Python\Python311\python.exe"),
+            (Join-Path $env:LOCALAPPDATA "Programs\Python\Python310\python.exe")
+        )
+        foreach ($candidate in $knownPythonPaths) {
+            if (Test-Path $candidate) {
+                $pythonCmd = $candidate
+                break
+            }
+        }
+    }
+    if (-not $pythonCmd) {
         Write-Err "Python not found. Please install Python 3 from https://www.python.org/downloads/"
         return $false
     }
@@ -253,6 +266,8 @@ function Do-Install {
         Copy-Item $CssFile $CssBackup -Force
         Write-OK "CSS backed up"
     }
+    Copy-Item $CssBackup $CssFile -Force
+    Write-OK "CSS restored from backup before font patching"
 
     # Copy font files to meteor_extracted directory
     $fontDest = $MeteorExtracted
@@ -270,39 +285,53 @@ function Do-Install {
         return $true
     }
 
-    # Read CSS and patch font-face declarations
+    # Read CSS and append scoped Pixeltosh-only Chinese pixel fonts.
     $cssContent = [System.IO.File]::ReadAllText($CssFile, [System.Text.UTF8Encoding]::new($false))
+    $markerPattern = "(?s)\r?\n?/\* PAA ZH PIXELTOSH FONT START \*/.*?/\* PAA ZH PIXELTOSH FONT END \*/"
+    $cssContent = [regex]::Replace($cssContent, $markerPattern, "")
 
-    # Font mapping: font-family-name -> replacement TTF file
-    # We replace the base64 src line with a url() to our TTF file
-    $fontMap = @{
-        "Adventure Retronator"  = "fp8.ttf"
-        "Freehand Retronator"   = "fp8.ttf"
-        "Checkout Retronator"   = "fp8.ttf"
-        "Small Print Retronator"= "fp8.ttf"
-        "Daily Retronator"      = "fp10.ttf"
-        "Typecast Retronator"   = "fp12.ttf"
-        "Study Plan Retronator" = "fp8.ttf"
-    }
-
-    $fontPatched = 0
-    foreach ($fontName in $fontMap.Keys) {
-        $ttfFile = $fontMap[$fontName]
-        # Match @font-face src line that follows a font-family declaration
-        # Handles both with and without 'Microsoft YaHei' fallback
-        $escaped = [regex]::Escape($fontName)
-        $pattern = "(?<=font-family:\s*['""]$escaped['""][^;]*;\s*\r?\n\s*)src:\s*url\(data:[^)]+\)\s*format\(['""]woff['""]\);"
-        $replacement = "src: url('$ttfFile') format('truetype');"
-
-        $newCss = [regex]::Replace($cssContent, $pattern, $replacement)
-        if ($newCss -ne $cssContent) {
-            $cssContent = $newCss
-            $fontPatched++
-        }
-    }
+    # Inline as data: URLs because meteor://desktop/__cordova/ does not serve
+    # arbitrary copied files reliably and returns HTML, which Chrome reports as
+    # an invalid font sfntVersion.
+    $pixelFont8 = "data:font/truetype;base64," + [Convert]::ToBase64String([System.IO.File]::ReadAllBytes($Font8))
+    $pixelFont10 = "data:font/truetype;base64," + [Convert]::ToBase64String([System.IO.File]::ReadAllBytes($Font10))
+    $pixelFont12 = "data:font/truetype;base64," + [Convert]::ToBase64String([System.IO.File]::ReadAllBytes($Font12))
+    $pixeltoshFontCss = @"
+/* PAA ZH PIXELTOSH FONT START */
+@font-face {
+  font-family: 'PAA ZH Pixel 8';
+  src: url('$pixelFont8') format('truetype');
+}
+@font-face {
+  font-family: 'PAA ZH Pixel 10';
+  src: url('$pixelFont10') format('truetype');
+}
+@font-face {
+  font-family: 'PAA ZH Pixel 12';
+  src: url('$pixelFont12') format('truetype');
+}
+.pixelartacademy-pixeltosh-os,
+.pixelartacademy-pixeltosh-os *,
+.pixelartacademy-pixeltosh-program-view,
+.pixelartacademy-pixeltosh-program-view *,
+.pixelartacademy-pixeltosh-os-interface-window,
+.pixelartacademy-pixeltosh-os-interface-window *,
+.pixelartacademy-pixeltosh-os-interface-titlebar,
+.pixelartacademy-pixeltosh-os-interface-titlebar * {
+  font-family: 'PAA ZH Pixel 8', 'Microsoft YaHei UI', 'Microsoft YaHei', sans-serif;
+}
+.pixelartacademy-pixeltosh-programs-drawquickly-interface-game-speed .button-area .difficulty .time,
+.pixelartacademy-pixeltosh-programs-drawquickly-interface-game-draw .canvas-text,
+.pixelartacademy-pixeltosh-programs-drawquickly-interface-game-draw-timer,
+.pixelartacademy-pixeltosh-programs-resultsquickly-interface-game-results .title {
+  font-family: 'PAA ZH Pixel 12', 'Microsoft YaHei UI', 'Microsoft YaHei', sans-serif;
+}
+/* PAA ZH PIXELTOSH FONT END */
+"@
+    $cssContent = $cssContent.TrimEnd() + "`r`n`r`n" + $pixeltoshFontCss + "`r`n"
 
     [System.IO.File]::WriteAllText($CssFile, $cssContent, [System.Text.UTF8Encoding]::new($false))
-    Write-OK "Patched $fontPatched font declarations"
+    Write-OK "Scoped Chinese pixel fonts to Pixeltosh"
 
     Write-Host ""
     Write-Host "========================================" -ForegroundColor Green

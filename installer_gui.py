@@ -7,6 +7,7 @@ All-in-one GUI installer, can be packaged as a standalone .exe via PyInstaller.
 import os
 import sys
 import struct
+import base64
 import json
 import re
 import shutil
@@ -17,6 +18,8 @@ import tkinter as tk
 import urllib.error
 import urllib.request
 from tkinter import scrolledtext, messagebox, filedialog
+
+from localization_coverage import build_coverage_report, format_coverage_report
 
 
 # ============================================================
@@ -176,7 +179,7 @@ METHOD_NAMES = [
     # resource paths from static displayName(), so translating it hides content.
     'directive', 'instructions', 'description', 'name', 'shortName',
     'fullName', 'title', 'label', 'text', 'message', 'hint',
-    'studyPlanDirective',
+    'retryMessage', 'studyPlanDirective',
 ]
 METHODS_RE = '|'.join(METHOD_NAMES)
 PAT_STATIC = re.compile(
@@ -207,6 +210,7 @@ HARDCODED_TARGET_PACKAGES = [
     'retronator_pixelartacademy-tutorials.js',
     'retronator_pixelartacademy-challenges.js',
     'retronator_pixelartacademy-pixeltosh.js',
+    'retronator_pixelartacademy-pixeltosh-chess.js',
     'retronator_pixelartacademy-pixeltosh-pinball.js',
     'retronator_pixelartacademy-pixeltosh-drawquickly.js',
     'retronator_pixelartacademy-pixeltosh-writer.js',
@@ -276,30 +280,24 @@ def patch_hardcoded(packages_dir, translations, log_fn=print):
                           .replace('"', '\\"')
                           .replace('\n', '\\n')
                           .replace('\r', ''))
-            done = False
+            static_matches = [m for m in PAT_STATIC.finditer(content) if m.group(2) == raw_en]
+            for match in reversed(static_matches):
+                content = content[:match.start(2)] + zh_escaped + content[match.end(2):]
+            patched += len(static_matches)
 
-            for m in PAT_STATIC.finditer(content):
-                if m.group(2) == raw_en:
-                    content = content[:m.start(2)] + zh_escaped + content[m.end(2):]
-                    patched += 1
-                    done = True
-                    break
+            template_matches = [
+                m for m in PAT_TEMPLATE.finditer(content)
+                if m.group(1).strip() == raw_en.strip()
+            ]
+            for match in reversed(template_matches):
+                content = content[:match.start(1)] + zh_escaped + content[match.end(1):]
+            patched += len(template_matches)
 
-            if not done:
-                for m in PAT_TEMPLATE.finditer(content):
-                    if m.group(1).strip() == raw_en.strip():
-                        content = content[:m.start(1)] + zh_escaped + content[m.end(1):]
-                        patched += 1
-                        done = True
-                        break
-
-            if not done:
-                zh_html = (zh_text.replace("'", "\\'")
-                           .replace('\n', '\\n')
-                           .replace('\r', ''))
-                content, replaced_count = _try_replace_html_raw(content, raw_en, zh_html)
-                if replaced_count:
-                    patched += replaced_count
+            zh_html = (zh_text.replace("'", "\\'")
+                       .replace('\n', '\\n')
+                       .replace('\r', ''))
+            content, replaced_count = _try_replace_html_raw(content, raw_en, zh_html)
+            patched += replaced_count
 
         if patched > 0:
             with open(filepath, 'w', encoding='utf-8') as f:
@@ -579,23 +577,15 @@ def _translate_chunk(chunk, index, total, api_key, base_url, model):
 # Font Patching
 # ============================================================
 
-FONT_MAP = {
-    "Adventure Retronator":   "fp8.ttf",
-    "Freehand Retronator":    "fp8.ttf",
-    "Checkout Retronator":    "fp8.ttf",
-    "Small Print Retronator": "fp8.ttf",
-    "Daily Retronator":       "fp10.ttf",
-    "Typecast Retronator":    "fp12.ttf",
-    "Study Plan Retronator":  "fp8.ttf",
-}
-
-
 def patch_fonts(css_path, font_src_dir, font_dest_dir, log_fn=print):
+    font_data_uris = {}
     for ttf in ("fp8.ttf", "fp10.ttf", "fp12.ttf"):
         src = os.path.join(font_src_dir, ttf)
         dst = os.path.join(font_dest_dir, ttf)
         if os.path.exists(src):
             shutil.copy2(src, dst)
+            with open(src, 'rb') as f:
+                font_data_uris[ttf] = "data:font/truetype;base64," + base64.b64encode(f.read()).decode('ascii')
         else:
             log_fn(f"  警告: 字体文件 {ttf} 未找到")
             return 0
@@ -604,23 +594,50 @@ def patch_fonts(css_path, font_src_dir, font_dest_dir, log_fn=print):
     with open(css_path, 'r', encoding='utf-8') as f:
         css_content = f.read()
 
-    patched = 0
-    for font_name, ttf_file in FONT_MAP.items():
-        escaped_name = re.escape(font_name)
-        pattern = (
-            r"(font-family:\s*['\"]" + escaped_name + r"['\"][^;]*;\s*\r?\n\s*)"
-            r"src:\s*url\(data:[^)]+\)\s*format\(['\"]woff['\"]\);"
-        )
-        replacement = r"\g<1>src: url('" + ttf_file + "') format('truetype');"
-        new_css, count = re.subn(pattern, replacement, css_content)
-        if count > 0:
-            css_content = new_css
-            patched += count
+    css_content = re.sub(
+        r"\r?\n?/\* PAA ZH PIXELTOSH FONT START \*/.*?/\* PAA ZH PIXELTOSH FONT END \*/",
+        "",
+        css_content,
+        flags=re.S,
+    )
+    pixeltosh_css = f"""
+/* PAA ZH PIXELTOSH FONT START */
+@font-face {{
+  font-family: 'PAA ZH Pixel 8';
+  src: url('{font_data_uris["fp8.ttf"]}') format('truetype');
+}}
+@font-face {{
+  font-family: 'PAA ZH Pixel 10';
+  src: url('{font_data_uris["fp10.ttf"]}') format('truetype');
+}}
+@font-face {{
+  font-family: 'PAA ZH Pixel 12';
+  src: url('{font_data_uris["fp12.ttf"]}') format('truetype');
+}}
+.pixelartacademy-pixeltosh-os,
+.pixelartacademy-pixeltosh-os *,
+.pixelartacademy-pixeltosh-program-view,
+.pixelartacademy-pixeltosh-program-view *,
+.pixelartacademy-pixeltosh-os-interface-window,
+.pixelartacademy-pixeltosh-os-interface-window *,
+.pixelartacademy-pixeltosh-os-interface-titlebar,
+.pixelartacademy-pixeltosh-os-interface-titlebar * {{
+  font-family: 'PAA ZH Pixel 8', 'Microsoft YaHei UI', 'Microsoft YaHei', sans-serif;
+}}
+.pixelartacademy-pixeltosh-programs-drawquickly-interface-game-speed .button-area .difficulty .time,
+.pixelartacademy-pixeltosh-programs-drawquickly-interface-game-draw .canvas-text,
+.pixelartacademy-pixeltosh-programs-drawquickly-interface-game-draw-timer,
+.pixelartacademy-pixeltosh-programs-resultsquickly-interface-game-results .title {{
+  font-family: 'PAA ZH Pixel 12', 'Microsoft YaHei UI', 'Microsoft YaHei', sans-serif;
+}}
+/* PAA ZH PIXELTOSH FONT END */
+"""
+    css_content = css_content.rstrip() + "\n\n" + pixeltosh_css + "\n"
 
     with open(css_path, 'w', encoding='utf-8') as f:
         f.write(css_content)
-    log_fn(f"  已替换 {patched} 个字体声明")
-    return patched
+    log_fn("  中文像素字体已限制在 Pixeltosh 内使用")
+    return 3
 
 
 # ============================================================
@@ -702,6 +719,82 @@ class PatchInstaller:
         except OSError:
             return ""
         return "\n".join(lines[-max_lines:])
+
+    def _tail_runtime_errors(self, path, max_lines=80):
+        benign_fragments = (
+            "Failed to decode downloaded font:",
+            "OTS parsing error:",
+        )
+        tail = self._tail_text(path, max_lines)
+        lines = [
+            line for line in tail.splitlines()
+            if not any(fragment in line for fragment in benign_fragments)
+        ]
+        return "\n".join(lines)
+
+    def _build_coverage_report(self):
+        cache_source = os.path.join(self.backup_dir, "cache.json.bak")
+        if not os.path.exists(cache_source):
+            cache_source = self.cache_json
+        packages_source = os.path.join(self.backup_dir, "packages_bak")
+        if not os.path.isdir(packages_source):
+            packages_source = self.packages_dir
+        return build_coverage_report(
+            cache_source,
+            packages_source,
+            self.packages_dir,
+            self.trans_file,
+            self.hardcoded_file,
+            self.skipped_file,
+            self.manual_patches_file,
+        )
+
+    def _coverage_uncovered_count(self, coverage):
+        return (
+            len(coverage.get("cache", {}).get("missing", []))
+            + len(coverage.get("hardcoded", {}).get("missing", []))
+            + len(coverage.get("manual", {}).get("missing", []))
+            + len(coverage.get("manual", {}).get("file_missing", []))
+        )
+
+    def coverage_report(self):
+        self.log("=" * 45)
+        self.log("  汉化覆盖率 / 漏翻巡检")
+        self.log("=" * 45)
+        self.log("")
+
+        try:
+            coverage = self._build_coverage_report()
+            coverage_text = format_coverage_report(coverage)
+            for line in coverage_text.splitlines():
+                self.log(line)
+
+            report_path = os.path.join(self.game_dir, "汉化覆盖率报告.txt")
+            report_lines = [
+                "Pixel Art Academy Learn Mode 简体中文汉化覆盖率报告",
+                f"生成时间: {time.strftime('%Y-%m-%d %H:%M:%S')}",
+                f"游戏目录: {self.game_dir}",
+                "",
+                coverage_text,
+            ]
+            try:
+                with open(report_path, 'w', encoding='utf-8', newline='') as f:
+                    f.write("\n".join(report_lines) + "\n")
+            except OSError:
+                report_path = writable_data_path("汉化覆盖率报告.txt")
+                with open(report_path, 'w', encoding='utf-8', newline='') as f:
+                    f.write("\n".join(report_lines) + "\n")
+
+            self.log("")
+            uncovered = self._coverage_uncovered_count(coverage)
+            if uncovered:
+                self.log(f"[警告] 发现 {uncovered} 条未覆盖项目，报告已生成: {report_path}")
+                return False
+            self.log(f"[OK] 覆盖率巡检完成，报告已生成: {report_path}")
+            return True
+        except Exception as error:
+            self.log(f"[错误] 汉化覆盖率统计失败: {error}")
+            return False
 
     def self_check(self, show_header=True, log_details=True):
         checks = []
@@ -855,6 +948,40 @@ class PatchInstaller:
                 else:
                     warn("Pixeltosh Close/Quit 未完全汉化")
 
+            drawing = read_package("retronator_pixelartacademy-pixelpad-drawing.js")
+            if drawing:
+                if "'未命名'" in drawing:
+                    ok("作品默认标题 Untitled 已汉化")
+                else:
+                    warn("作品默认标题 Untitled 未汉化")
+                if "你确定要删除这个作品吗？" in drawing and 'text: "删除"' in drawing and 'text: "取消"' in drawing:
+                    ok("作品删除确认弹窗已汉化")
+                else:
+                    warn("作品删除确认弹窗未完全汉化")
+                if '{"1-bit Black and White": "1 位黑白", "Black": "黑色"}[palette.name] || palette.name' in drawing:
+                    ok("作品摘要调色板名称已本地化")
+                else:
+                    warn("作品摘要调色板名称未完全本地化")
+
+                cover_marker = "PAA.PixelPad.Apps.Drawing.PaletteSelection.Page.Cover = function ()"
+                if cover_marker not in drawing:
+                    fail("未找到调色板选择页封面模块，点击 Black 可能无响应")
+                else:
+                    before_cover, after_cover = drawing.split(cover_marker, 1)
+                    cover_module = after_cover.split('}},"separator"', 1)[0]
+                    if "\n    localizedCategory(category) {" in cover_module:
+                        ok("调色板选择页包含本地化分类函数")
+                    else:
+                        fail("调色板选择页缺少 localizedCategory，点击 Black 可能无响应")
+                    if 'Spacebars.mustache(view.lookup("localizedCategory"), view.lookup("category"))' in cover_module:
+                        ok("调色板选择页分类标签已本地化")
+                    else:
+                        warn("调色板选择页分类标签未本地化")
+                    if "localizedCategory(category)" in before_cover:
+                        fail("localizedCategory 被插入到了错误模块，会导致调色板选择页运行时错误")
+                    else:
+                        ok("localizedCategory 没有插入到错误模块")
+
             invasion = read_package("retronator_pixelartacademy-pico8-invasion.js")
             if invasion:
                 required_zh = [
@@ -880,6 +1007,33 @@ class PatchInstaller:
                 else:
                     ok("Invasion 文档关键英文残留已清除")
 
+            challenges = read_package("retronator_pixelartacademy-challenges.js")
+            if challenges:
+                icon_book_required = [
+                    'return "图标图形手册";',
+                    'return "图标图形手册 — 自然";',
+                    "<h1>目录</h1>",
+                    "<h2>图标图形手册</h2>",
+                    "title: '交通'",
+                    "airplane: '飞机'",
+                    '<div class="pixeltosh emphasized">Pixeltosh 及更多</div>',
+                ]
+                icon_book_leftovers = [
+                    'return "The Graphics Book of Icons";',
+                    'return "The Graphics Book of Icons — Nature";',
+                    "<h1>Contents</h1>",
+                    "<h2>The Graphics Book of Icons</h2>",
+                    '<div class="pixeltosh emphasized">Pixeltosh &amp; more</div>',
+                ]
+                if all(text in challenges for text in icon_book_required):
+                    ok("图标书目录和封面关键文本已汉化")
+                else:
+                    warn("图标书目录或封面仍有关键中文文本缺失")
+                if any(text in challenges for text in icon_book_leftovers):
+                    warn("图标书仍残留关键英文文本")
+                else:
+                    ok("图标书关键英文残留已清除")
+
             suspicious_interest_ids = []
             internal_pattern = re.compile(
                 r"static\s+(requiredInterests|interests)\s*\(\)\s*\{[^{}]*?return\s*\[([^\]]*)\]",
@@ -904,10 +1058,30 @@ class PatchInstaller:
             else:
                 ok("未发现被翻译的内部兴趣 ID")
 
+        try:
+            coverage = self._build_coverage_report()
+            coverage_text = format_coverage_report(coverage)
+            details.append(coverage_text)
+            if log_details:
+                self.log("")
+                for line in coverage_text.splitlines():
+                    self.log(line)
+            uncovered = self._coverage_uncovered_count(coverage)
+            if uncovered:
+                warn(f"汉化覆盖率统计发现 {uncovered} 条未覆盖项目，详见报告热点")
+            else:
+                ok("汉化覆盖率统计未发现未覆盖项目")
+        except Exception as error:
+            warn(f"汉化覆盖率统计失败: {error}")
+
         runtime_logs = [path for path in self._runtime_log_paths() if os.path.exists(path) and os.path.getsize(path) > 0]
         if runtime_logs:
-            warn(f"检测到运行时错误日志: {runtime_logs[0]}")
-            details.append("最近的运行时错误日志:\n" + self._tail_text(runtime_logs[0]))
+            runtime_tail = self._tail_runtime_errors(runtime_logs[0])
+            if runtime_tail:
+                warn(f"检测到运行时错误日志: {runtime_logs[0]}")
+                details.append("最近的运行时错误日志:\n" + runtime_tail)
+            else:
+                ok("未发现汉化运行时错误日志（仅有字体解码提示）")
         else:
             ok("未发现汉化运行时错误日志")
 
@@ -1111,11 +1285,13 @@ class PatchInstaller:
         if not os.path.exists(css_backup):
             shutil.copy2(self.css_file, css_backup)
             self.log("[OK] CSS 已备份")
+        shutil.copy2(css_backup, self.css_file)
+        self.log("[OK] CSS 已从备份还原，准备重新应用字体规则")
 
         font8 = os.path.join(self.fonts_dir, "fp8.ttf")
         if os.path.exists(font8):
             patch_fonts(self.css_file, self.fonts_dir, self.meteor_extracted, self.log)
-            self.log("[OK] 字体替换完成")
+            self.log("[OK] 字体规则应用完成")
         else:
             self.log("[警告] 字体文件未找到，跳过字体替换")
 
@@ -1424,8 +1600,8 @@ class InstallerApp:
     FG_LIGHT = "#e0e0e0"
     FG_DIM = "#aaaaaa"
     WINDOW_WIDTH = 760
-    WINDOW_HEIGHT_NORMAL = 570
-    WINDOW_HEIGHT_MAINTAINER = 660
+    WINDOW_HEIGHT_NORMAL = 520
+    WINDOW_HEIGHT_MAINTAINER = 640
 
     def __init__(self):
         self.root = tk.Tk()
@@ -1504,13 +1680,6 @@ class InstallerApp:
         )
         self.install_btn.pack(side=tk.LEFT, padx=(0, 6), fill=tk.X, expand=True)
 
-        self.check_btn = tk.Button(
-            btn_frame, text="  自检报告  ", bg="#2196F3", fg="white",
-            activebackground="#1976D2",
-            command=lambda: self._run_task("self_check"), **common
-        )
-        self.check_btn.pack(side=tk.LEFT, padx=6, fill=tk.X, expand=True)
-
         self.uninstall_btn = tk.Button(
             btn_frame, text="  卸载汉化  ", bg="#f44336", fg="white",
             activebackground="#d32f2f",
@@ -1527,15 +1696,29 @@ class InstallerApp:
 
         maintainer_toggle_frame = tk.Frame(self.root, padx=15)
         maintainer_toggle_frame.pack(fill=tk.X, pady=(0, 5))
+        small_common = dict(font=("Microsoft YaHei UI", 9), cursor="hand2")
 
         self.maintainer_toggle_btn = tk.Button(
             maintainer_toggle_frame, text="显示维护者工具",
-            font=("Microsoft YaHei UI", 9), command=self._toggle_maintainer_tools
+            command=self._toggle_maintainer_tools, **small_common
         )
         self.maintainer_toggle_btn.pack(side=tk.RIGHT)
 
+        self.coverage_btn = tk.Button(
+            maintainer_toggle_frame, text="覆盖率", bg="#009688", fg="white",
+            activebackground="#00897B",
+            command=lambda: self._run_task("coverage"), **small_common
+        )
+        self.coverage_btn.pack(side=tk.RIGHT, padx=(0, 8))
+
+        self.check_btn = tk.Button(
+            maintainer_toggle_frame, text="自检报告", bg="#2196F3", fg="white",
+            activebackground="#1976D2",
+            command=lambda: self._run_task("self_check"), **small_common
+        )
+        self.check_btn.pack(side=tk.RIGHT, padx=(0, 8))
+
         self.maintainer_container = tk.Frame(self.root, bg="#f0f0f0")
-        self.maintainer_container.pack(fill=tk.X)
 
         self.api_frame = tk.LabelFrame(
             self.maintainer_container, text="AI 自动补翻译（维护者工具）",
@@ -1588,11 +1771,11 @@ class InstallerApp:
         self.auto_translate_btn.pack(fill=tk.X)
 
         # Log output
-        log_frame = tk.Frame(self.root, padx=15, pady=8)
-        log_frame.pack(fill=tk.BOTH, expand=True)
+        self.log_frame = tk.Frame(self.root, padx=15, pady=8)
+        self.log_frame.pack(fill=tk.BOTH, expand=True)
 
         self.log_text = scrolledtext.ScrolledText(
-            log_frame, font=("Consolas", 10), bg=self.BG_LOG, fg="#cccccc",
+            self.log_frame, font=("Consolas", 10), bg=self.BG_LOG, fg="#cccccc",
             insertbackground="white", wrap=tk.WORD, state=tk.DISABLED,
             relief=tk.FLAT, borderwidth=1
         )
@@ -1646,10 +1829,12 @@ class InstallerApp:
         if self.maintainer_tools_visible:
             self.api_frame.pack_forget()
             self.auto_frame.pack_forget()
+            self.maintainer_container.pack_forget()
             self.maintainer_toggle_btn.configure(text="显示维护者工具")
             self.maintainer_tools_visible = False
             target_height = self.WINDOW_HEIGHT_NORMAL
         else:
+            self.maintainer_container.pack(fill=tk.X, before=self.log_frame)
             self.api_frame.pack(fill=tk.X, padx=15, pady=(0, 8))
             self.auto_frame.pack(fill=tk.X, pady=(0, 5))
             self.maintainer_toggle_btn.configure(text="隐藏维护者工具")
@@ -1709,7 +1894,7 @@ class InstallerApp:
 
     def _set_buttons_state(self, state):
         for btn in (self.install_btn, self.check_btn, self.uninstall_btn,
-                    self.update_btn, self.auto_translate_btn, self.browse_btn,
+                    self.coverage_btn, self.update_btn, self.auto_translate_btn, self.browse_btn,
                     self.maintainer_toggle_btn, self.api_key_toggle_btn):
             btn.configure(state=state)
         for entry in (self.api_key_entry, self.base_url_entry, self.model_entry):
@@ -1748,6 +1933,9 @@ class InstallerApp:
                 elif action == "self_check":
                     self.status_var.set("正在自检...")
                     result = installer.self_check()
+                elif action == "coverage":
+                    self.status_var.set("正在统计覆盖率...")
+                    result = installer.coverage_report()
                 elif action == "uninstall":
                     self.status_var.set("正在卸载...")
                     result = installer.uninstall()
@@ -1762,6 +1950,8 @@ class InstallerApp:
 
                 if action == "self_check":
                     self.status_var.set("自检通过" if result else "自检发现问题")
+                elif action == "coverage":
+                    self.status_var.set("覆盖率正常" if result else "覆盖率需要复核")
                 else:
                     self.status_var.set("操作完成！" if result else "操作失败")
             except Exception as e:

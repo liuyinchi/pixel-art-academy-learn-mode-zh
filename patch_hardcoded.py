@@ -24,7 +24,7 @@ METHOD_NAMES = [
     # resource paths from static displayName(), so translating it hides content.
     'directive', 'instructions', 'description', 'name', 'shortName',
     'fullName', 'title', 'label', 'text', 'message', 'hint',
-    'studyPlanDirective',
+    'retryMessage', 'studyPlanDirective',
 ]
 METHODS_RE = '|'.join(METHOD_NAMES)
 PAT_STATIC = re.compile(
@@ -103,34 +103,27 @@ def patch(packages_dir, translations_path):
             zh_escaped = zh_escaped.replace('\n', '\\n')
             zh_escaped = zh_escaped.replace('\r', '')
 
-            done = False
-
             # Try Pattern 1: static method return "..."
-            for m in PAT_STATIC.finditer(content):
-                if m.group(2) == raw_en:
-                    content = content[:m.start(2)] + zh_escaped + content[m.end(2):]
-                    patched += 1
-                    done = True
-                    break
+            static_matches = [m for m in PAT_STATIC.finditer(content) if m.group(2) == raw_en]
+            for match in reversed(static_matches):
+                content = content[:match.start(2)] + zh_escaped + content[match.end(2):]
+            patched += len(static_matches)
 
             # Try Pattern 2: Blaze template return "\n ... \n"
-            if not done:
-                for m in PAT_TEMPLATE.finditer(content):
-                    if m.group(1).strip() == raw_en.strip():
-                        content = content[:m.start(1)] + zh_escaped + content[m.end(1):]
-                        patched += 1
-                        done = True
-                        break
+            template_matches = [
+                m for m in PAT_TEMPLATE.finditer(content)
+                if m.group(1).strip() == raw_en.strip()
+            ]
+            for match in reversed(template_matches):
+                content = content[:match.start(1)] + zh_escaped + content[match.end(1):]
+            patched += len(template_matches)
 
             # Try Pattern 3: HTML.Raw('...>text<...')
-            if not done:
-                zh_html = zh_text.replace("'", "\\'")
-                zh_html = zh_html.replace('\n', '\\n')
-                zh_html = zh_html.replace('\r', '')
-                content, replaced_count = try_replace_html_raw(content, raw_en, zh_html)
-                if replaced_count:
-                    patched += replaced_count
-                    done = True
+            zh_html = zh_text.replace("'", "\\'")
+            zh_html = zh_html.replace('\n', '\\n')
+            zh_html = zh_html.replace('\r', '')
+            content, replaced_count = try_replace_html_raw(content, raw_en, zh_html)
+            patched += replaced_count
 
         if patched > 0:
             with open(filepath, 'w', encoding='utf-8') as f:

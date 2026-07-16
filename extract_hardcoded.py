@@ -45,6 +45,7 @@ TARGET_PACKAGES = [
     'retronator_pixelartacademy-challenges.js',
     # --- pixeltosh apps ---
     'retronator_pixelartacademy-pixeltosh.js',
+    'retronator_pixelartacademy-pixeltosh-chess.js',
     'retronator_pixelartacademy-pixeltosh-pinball.js',
     'retronator_pixelartacademy-pixeltosh-drawquickly.js',
     'retronator_pixelartacademy-pixeltosh-writer.js',
@@ -66,7 +67,7 @@ TARGET_PACKAGES = [
 METHOD_NAMES = [
     'directive', 'instructions', 'description', 'name', 'shortName',
     'fullName', 'title', 'label', 'text', 'message', 'hint',
-    'studyPlanDirective',
+    'retryMessage', 'studyPlanDirective',
 ]
 
 # Pattern 1: static methodName() { \n return "..."; }

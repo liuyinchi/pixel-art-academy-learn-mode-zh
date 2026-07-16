@@ -94,6 +94,10 @@ def patch(packages_dir, patches_path):
             replace_all = p.get('replace_all', False)
             comment = p.get('comment', find_str[:40])
 
+            if not replace_all and replace_str in content:
+                print(f"    Skip (already patched): {comment}")
+                continue
+
             if find_str not in content:
                 print(f"    Skip (not found / already patched): {comment}")
                 continue
